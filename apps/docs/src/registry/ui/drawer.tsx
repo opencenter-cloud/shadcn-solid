@@ -1,9 +1,9 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { Show, mergeProps, splitProps } from "solid-js"
-import type { DynamicProps } from "@corvu/drawer"
-import DrawerPrimitive from "@corvu/drawer"
+import { Show, merge, omit } from "solid-js"
+import type { DynamicProps } from "@corvu-next/drawer"
+import DrawerPrimitive from "@corvu-next/drawer"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const DrawerPortal = DrawerPrimitive.Portal
 
@@ -41,13 +41,13 @@ export const DrawerContent = <T extends ValidComponent = "div">(
 ) => {
   const context = DrawerPrimitive.useContext()
 
-  const merge = mergeProps<DrawerContentProps[]>(
+  const mergedProps = merge<DrawerContentProps[]>(
     {
       withHandle: context.side() === "bottom",
     },
     props as DrawerContentProps,
   )
-  const [, rest] = splitProps(merge, ["class", "children", "withHandle"])
+  const rest = omit(mergedProps, "class", "children", "withHandle")
 
   return (
     <>
@@ -103,7 +103,7 @@ export type DrawerLabelProps<T extends ValidComponent = "h2"> = ComponentProps<
 export const DrawerLabel = <T extends ValidComponent = "h2">(
   props: DynamicProps<T, DrawerLabelProps<T>>,
 ) => {
-  const [, rest] = splitProps(props as DrawerLabelProps, ["class"])
+  const rest = omit(props as DrawerLabelProps, "class")
 
   return (
     <DrawerPrimitive.Label
@@ -120,7 +120,7 @@ export type DrawerDescriptionProps<T extends ValidComponent = "p"> =
 export const DrawerDescription = <T extends ValidComponent = "p">(
   props: DynamicProps<T, DrawerDescriptionProps<T>>,
 ) => {
-  const [, rest] = splitProps(props as DrawerDescriptionProps, ["class"])
+  const rest = omit(props as DrawerDescriptionProps, "class")
 
   return (
     <DrawerPrimitive.Description
@@ -134,7 +134,7 @@ export const DrawerDescription = <T extends ValidComponent = "p">(
 export type DrawerHeaderProps = ComponentProps<"div">
 
 export const DrawerHeader = (props: DrawerHeaderProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -148,7 +148,7 @@ export const DrawerHeader = (props: DrawerHeaderProps) => {
 export type DrawerFooterProps = ComponentProps<"div">
 
 export const DrawerFooter = (props: DrawerFooterProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div

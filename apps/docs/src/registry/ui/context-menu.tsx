@@ -1,8 +1,8 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
-import { ContextMenu as ContextMenuPrimitive } from "@kobalte/core/context-menu"
+import { omit } from "solid-js"
+import { ContextMenu as ContextMenuPrimitive } from "@opencenter-cloud/kobalte-core/context-menu"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const ContextMenuPortal = ContextMenuPrimitive.Portal
 
@@ -64,11 +64,7 @@ export type ContextMenuSubTriggerProps<T extends ValidComponent = "div"> =
 export const ContextMenuSubTrigger = <T extends ValidComponent = "div">(
   props: ContextMenuSubTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ContextMenuSubTriggerProps, [
-    "class",
-    "children",
-    "inset",
-  ])
+  const rest = omit(props as ContextMenuSubTriggerProps, "class", "children", "inset")
 
   return (
     <ContextMenuPrimitive.SubTrigger
@@ -105,7 +101,7 @@ export type ContextMenuSubContentProps<T extends ValidComponent = "div"> =
 export const ContextMenuSubContent = <T extends ValidComponent = "div">(
   props: ContextMenuSubContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ContextMenuSubContentProps, ["class"])
+  const rest = omit(props as ContextMenuSubContentProps, "class")
 
   return (
     <ContextMenuPrimitive.SubContent
@@ -126,7 +122,7 @@ export type ContextMenuContentProps<T extends ValidComponent = "div"> =
 export const ContextMenuContent = <T extends ValidComponent = "div">(
   props: ContextMenuContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ContextMenuContentProps, ["class"])
+  const rest = omit(props as ContextMenuContentProps, "class")
 
   return (
     <ContextMenuPrimitive.Content
@@ -150,11 +146,7 @@ export type ContextMenuItemProps<T extends ValidComponent = "div"> =
 export const ContextMenuItem = <T extends ValidComponent = "div">(
   props: ContextMenuItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ContextMenuItemProps, [
-    "class",
-    "inset",
-    "variant",
-  ])
+  const rest = omit(props as ContextMenuItemProps, "class", "inset", "variant")
 
   return (
     <ContextMenuPrimitive.Item
@@ -176,10 +168,7 @@ export type ContextMenuCheckboxItemProps<T extends ValidComponent = "div"> =
 export const ContextMenuCheckboxItem = <T extends ValidComponent = "div">(
   props: ContextMenuCheckboxItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ContextMenuCheckboxItemProps, [
-    "class",
-    "children",
-  ])
+  const rest = omit(props as ContextMenuCheckboxItemProps, "class", "children")
 
   return (
     <ContextMenuPrimitive.CheckboxItem
@@ -218,10 +207,7 @@ export type ContextMenuRadioItemProps<T extends ValidComponent = "div"> =
 export const ContextMenuRadioItem = <T extends ValidComponent = "div">(
   props: ContextMenuRadioItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ContextMenuRadioItemProps, [
-    "class",
-    "children",
-  ])
+  const rest = omit(props as ContextMenuRadioItemProps, "class", "children")
 
   return (
     <ContextMenuPrimitive.RadioItem
@@ -264,10 +250,7 @@ export type ContextMenuGroupLabelProps<T extends ValidComponent = "span"> =
 export const ContextMenuGroupLabel = <T extends ValidComponent = "span">(
   props: ContextMenuGroupLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ContextMenuGroupLabelProps, [
-    "class",
-    "inset",
-  ])
+  const rest = omit(props as ContextMenuGroupLabelProps, "class", "inset")
 
   return (
     <ContextMenuPrimitive.GroupLabel
@@ -291,10 +274,7 @@ export type ContextMenuItemLabelProps<T extends ValidComponent = "div"> =
 export const ContextMenuItemLabel = <T extends ValidComponent = "div">(
   props: ContextMenuItemLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ContextMenuItemLabelProps, [
-    "class",
-    "inset",
-  ])
+  const rest = omit(props as ContextMenuItemLabelProps, "class", "inset")
 
   return (
     <ContextMenuPrimitive.ItemLabel
@@ -315,7 +295,7 @@ export type ContextMenuSeparatorProps<T extends ValidComponent = "hr"> =
 export const ContextMenuSeparator = <T extends ValidComponent = "hr">(
   props: ContextMenuSeparatorProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ContextMenuSeparatorProps, ["class"])
+  const rest = omit(props as ContextMenuSeparatorProps, "class")
 
   return (
     <ContextMenuPrimitive.Separator
@@ -329,7 +309,7 @@ export const ContextMenuSeparator = <T extends ValidComponent = "hr">(
 export type ContextMenuShortcutProps = ComponentProps<"span">
 
 export const ContextMenuShortcut = (props: ContextMenuShortcutProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <span

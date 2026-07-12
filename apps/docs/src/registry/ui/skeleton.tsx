@@ -1,8 +1,8 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { mergeProps, splitProps } from "solid-js"
-import { Root as SkeletonPrimitive } from "@kobalte/core/skeleton"
+import { merge, omit } from "solid-js"
+import { Root as SkeletonPrimitive } from "@opencenter-cloud/kobalte-core/skeleton"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type SkeletonProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof SkeletonPrimitive<T>
@@ -11,13 +11,13 @@ export type SkeletonProps<T extends ValidComponent = "div"> = ComponentProps<
 export const Skeleton = <T extends ValidComponent = "div">(
   props: SkeletonProps<T>,
 ) => {
-  const merge = mergeProps(
+  const mergedProps = merge(
     {
       radius: 8,
     } as SkeletonProps,
     props,
   )
-  const [, rest] = splitProps(merge, ["class"])
+  const rest = omit(mergedProps, "class")
 
   return (
     <SkeletonPrimitive

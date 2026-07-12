@@ -1,8 +1,8 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { Show, mergeProps, splitProps } from "solid-js"
-import { Dialog as DialogPrimitive } from "@kobalte/core/dialog"
+import { Show, merge, omit } from "solid-js"
+import { Dialog as DialogPrimitive } from "@opencenter-cloud/kobalte-core/dialog"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const DialogPortal = DialogPrimitive.Portal
 
@@ -38,13 +38,13 @@ export type DialogContentProps<T extends ValidComponent = "div"> =
 export const DialogContent = <T extends ValidComponent = "div">(
   props: DialogContentProps<T>,
 ) => {
-  const merge = mergeProps(
+  const mergedProps = merge(
     {
       showCloseButton: true,
     } as DialogContentProps,
     props,
   )
-  const [, rest] = splitProps(merge, ["class", "children", "showCloseButton"])
+  const rest = omit(mergedProps, "class", "children", "showCloseButton")
 
   return (
     <>
@@ -86,7 +86,7 @@ export const DialogContent = <T extends ValidComponent = "div">(
 export type DialogHeaderProps = ComponentProps<"div">
 
 export const DialogHeader = (props: DialogHeaderProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -100,7 +100,7 @@ export const DialogHeader = (props: DialogHeaderProps) => {
 export type DialogFooterProps = ComponentProps<"div">
 
 export const DialogFooter = (props: DialogFooterProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -121,7 +121,7 @@ export type DialogTitleProps<T extends ValidComponent = "h2"> = ComponentProps<
 export const DialogTitle = <T extends ValidComponent = "h2">(
   props: DialogTitleProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DialogTitleProps, ["class"])
+  const rest = omit(props as DialogTitleProps, "class")
 
   return (
     <DialogPrimitive.Title
@@ -138,7 +138,7 @@ export type DialogDescriptionProps<T extends ValidComponent = "p"> =
 export const DialogDescription = <T extends ValidComponent = "p">(
   props: DialogDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DialogDescriptionProps, ["class"])
+  const rest = omit(props as DialogDescriptionProps, "class")
 
   return (
     <DialogPrimitive.Description

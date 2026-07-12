@@ -1,10 +1,10 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { Match, Switch, splitProps } from "solid-js"
-import CalendarPrimitive from "@corvu/calendar"
+import { Match, Switch, omit } from "solid-js"
+import CalendarPrimitive from "@corvu-next/calendar"
 
 import { cx } from "@/registry/lib/cva"
 
 import { buttonVariants } from "./button"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type CalendarProps = ComponentProps<typeof CalendarPrimitive>
 
@@ -18,7 +18,7 @@ export type CalendarNavProps<T extends ValidComponent = "button"> =
 export const CalendarNav = <T extends ValidComponent = "button">(
   props: CalendarNavProps<T>,
 ) => {
-  const [, rest] = splitProps(props as CalendarNavProps, ["action", "class"])
+  const rest = omit(props as CalendarNavProps, "action", "class")
 
   return (
     <CalendarPrimitive.Nav
@@ -81,7 +81,7 @@ export type CalendarLabelProps<T extends ValidComponent = "h2"> =
 export const CalendarLabel = <T extends ValidComponent = "h2">(
   props: CalendarLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as CalendarLabelProps, ["class"])
+  const rest = omit(props as CalendarLabelProps, "class")
 
   return (
     <CalendarPrimitive.Label
@@ -107,7 +107,7 @@ export type CalendarHeadCellProps<T extends ValidComponent = "th"> =
 export const CalendarHeadCell = <T extends ValidComponent = "th">(
   props: CalendarHeadCellProps<T>,
 ) => {
-  const [, rest] = splitProps(props as CalendarHeadCellProps, ["class"])
+  const rest = omit(props as CalendarHeadCellProps, "class")
 
   return (
     <CalendarPrimitive.HeadCell
@@ -128,7 +128,7 @@ export type CalendarCellProps<T extends ValidComponent = "td"> = ComponentProps<
 export const CalendarCell = <T extends ValidComponent = "td">(
   props: CalendarCellProps<T>,
 ) => {
-  const [, rest] = splitProps(props as CalendarCellProps, ["class"])
+  const rest = omit(props as CalendarCellProps, "class")
 
   return (
     <CalendarPrimitive.Cell
@@ -148,7 +148,7 @@ export type CalendarCellTriggerProps<T extends ValidComponent = "button"> =
 export const CalendarCellTrigger = <T extends ValidComponent = "button">(
   props: CalendarCellTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as CalendarCellTriggerProps, ["class"])
+  const rest = omit(props as CalendarCellTriggerProps, "class")
 
   return (
     <CalendarPrimitive.CellTrigger

@@ -1,12 +1,11 @@
 import {
-  mergeProps,
-  splitProps,
-  type ComponentProps,
-  type ValidComponent,
+  merge,
+  omit
 } from "solid-js"
-import { Menubar as MenubarPrimitive } from "@kobalte/core/menubar"
+import { Menubar as MenubarPrimitive } from "@opencenter-cloud/kobalte-core/menubar"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const MenubarPortal = MenubarPrimitive.Portal
 
@@ -17,7 +16,7 @@ export type MenubarProps<T extends ValidComponent = "div"> = ComponentProps<
 export const Menubar = <T extends ValidComponent = "div">(
   props: MenubarProps<T>,
 ) => {
-  const [, rest] = splitProps(props as MenubarProps, ["class"])
+  const rest = omit(props as MenubarProps, "class")
 
   return (
     <MenubarPrimitive
@@ -34,7 +33,7 @@ export const Menubar = <T extends ValidComponent = "div">(
 export type MenubarMenuProps = ComponentProps<typeof MenubarPrimitive.Menu>
 
 export const MenubarMenu = (props: MenubarMenuProps) => {
-  const merge = mergeProps<MenubarMenuProps[]>(
+  const mergedProps = merge<MenubarMenuProps[]>(
     {
       gutter: 8,
     },
@@ -66,7 +65,7 @@ export type MenubarTriggerProps<T extends ValidComponent = "button"> =
 export const MenubarTrigger = <T extends ValidComponent = "button">(
   props: MenubarTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as MenubarTriggerProps, ["class"])
+  const rest = omit(props as MenubarTriggerProps, "class")
 
   return (
     <MenubarPrimitive.Trigger
@@ -86,7 +85,7 @@ export type MenubarContentProps<T extends ValidComponent = "div"> =
 export const MenubarContent = <T extends ValidComponent = "div">(
   props: MenubarContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as MenubarContentProps, ["class"])
+  const rest = omit(props as MenubarContentProps, "class")
 
   return (
     <MenubarPrimitive.Content
@@ -111,13 +110,13 @@ export type MenubarItemProps<T extends ValidComponent = "div"> = ComponentProps<
 export const MenubarItem = <T extends ValidComponent = "div">(
   props: MenubarItemProps<T>,
 ) => {
-  const merge = mergeProps(
+  const mergedProps = merge(
     {
       variant: "default",
     } as MenubarItemProps,
     props,
   )
-  const [, rest] = splitProps(merge, ["class", "inset", "variant"])
+  const rest = omit(mergedProps, "class", "inset", "variant")
 
   return (
     <MenubarPrimitive.Item
@@ -140,10 +139,7 @@ export type MenubarCheckboxItemProps<T extends ValidComponent = "div"> =
 export const MenubarCheckboxItem = <T extends ValidComponent = "div">(
   props: MenubarCheckboxItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as MenubarCheckboxItemProps, [
-    "class",
-    "children",
-  ])
+  const rest = omit(props as MenubarCheckboxItemProps, "class", "children")
 
   return (
     <MenubarPrimitive.CheckboxItem
@@ -183,10 +179,7 @@ export type MenubarRadioItemProps<T extends ValidComponent = "div"> =
 export const MenubarRadioItem = <T extends ValidComponent = "div">(
   props: MenubarRadioItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as MenubarRadioItemProps, [
-    "class",
-    "children",
-  ])
+  const rest = omit(props as MenubarRadioItemProps, "class", "children")
 
   return (
     <MenubarPrimitive.RadioItem
@@ -232,10 +225,7 @@ export type MenubarGroupLabelProps<T extends ValidComponent = "span"> =
 export const MenubarGroupLabel = <T extends ValidComponent = "span">(
   props: MenubarGroupLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as MenubarGroupLabelProps, [
-    "class",
-    "inset",
-  ])
+  const rest = omit(props as MenubarGroupLabelProps, "class", "inset")
 
   return (
     <MenubarPrimitive.GroupLabel
@@ -258,10 +248,7 @@ export type MenubarItemLabelProps<T extends ValidComponent = "div"> =
 export const MenubarItemLabel = <T extends ValidComponent = "div">(
   props: MenubarItemLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as MenubarItemLabelProps, [
-    "class",
-    "inset",
-  ])
+  const rest = omit(props as MenubarItemLabelProps, "class", "inset")
 
   return (
     <MenubarPrimitive.ItemLabel
@@ -282,7 +269,7 @@ export type MenubarSeparatorProps<T extends ValidComponent = "hr"> =
 export const MenubarSeparator = <T extends ValidComponent = "hr">(
   props: MenubarSeparatorProps<T>,
 ) => {
-  const [, rest] = splitProps(props as MenubarSeparatorProps, ["class"])
+  const rest = omit(props as MenubarSeparatorProps, "class")
 
   return (
     <MenubarPrimitive.Separator
@@ -296,7 +283,7 @@ export const MenubarSeparator = <T extends ValidComponent = "hr">(
 export type MenubarShortcut = ComponentProps<"span">
 
 export const MenubarShortcut = (props: MenubarShortcut) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <span
@@ -324,11 +311,7 @@ export type MenubarSubTriggerProps<T extends ValidComponent = "div"> =
 export const MenubarSubTrigger = <T extends ValidComponent = "div">(
   props: MenubarSubTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as MenubarSubTriggerProps, [
-    "class",
-    "inset",
-    "children",
-  ])
+  const rest = omit(props as MenubarSubTriggerProps, "class", "inset", "children")
 
   return (
     <MenubarPrimitive.SubTrigger
@@ -365,7 +348,7 @@ export type MenubarSubContentProps<T extends ValidComponent = "div"> =
 export const MenubarSubContent = <T extends ValidComponent = "div">(
   props: MenubarSubContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as MenubarSubContentProps, ["class"])
+  const rest = omit(props as MenubarSubContentProps, "class")
 
   return (
     <MenubarPrimitive.SubContent

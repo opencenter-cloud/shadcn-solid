@@ -1,12 +1,11 @@
 import {
-  mergeProps,
-  splitProps,
-  type ComponentProps,
-  type ValidComponent,
+  merge,
+  omit
 } from "solid-js"
-import { NavigationMenu as NavigationMenuPrimitive } from "@kobalte/core/navigation-menu"
+import { NavigationMenu as NavigationMenuPrimitive } from "@opencenter-cloud/kobalte-core/navigation-menu"
 
 import { cva, cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const NavigationMenuPortal = NavigationMenuPrimitive.Portal
 
@@ -16,8 +15,8 @@ export type NavigationMenuProps<T extends ValidComponent = "ul"> =
 export const NavigationMenu = <T extends ValidComponent = "ul">(
   props: NavigationMenuProps<T>,
 ) => {
-  const merge = mergeProps({ gutter: 6 } as NavigationMenuProps, props)
-  const [, rest] = splitProps(merge, ["class", "children"])
+  const mergedProps = merge({ gutter: 6 } as NavigationMenuProps, props)
+  const rest = omit(mergedProps, "class", "children")
 
   return (
     <NavigationMenuPrimitive
@@ -50,7 +49,7 @@ export type NavigationMenuItemProps<T extends ValidComponent = "a"> =
 export const NavigationMenuItem = <T extends ValidComponent = "a">(
   props: NavigationMenuItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NavigationMenuItemProps, ["class"])
+  const rest = omit(props as NavigationMenuItemProps, "class")
 
   return (
     <NavigationMenuPrimitive.Item
@@ -78,10 +77,7 @@ export type NavigationMenuTriggerProps<T extends ValidComponent = "button"> =
 export const NavigationMenuTrigger = <T extends ValidComponent = "button">(
   props: NavigationMenuTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NavigationMenuTriggerProps, [
-    "class",
-    "children",
-  ])
+  const rest = omit(props as NavigationMenuTriggerProps, "class", "children")
 
   return (
     <NavigationMenuPrimitive.Trigger
@@ -118,7 +114,7 @@ export type NavigationMenuContentProps<T extends ValidComponent = "ul"> =
 export const NavigationMenuContent = <T extends ValidComponent = "ul">(
   props: NavigationMenuContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NavigationMenuContentProps, ["class"])
+  const rest = omit(props as NavigationMenuContentProps, "class")
 
   return (
     <NavigationMenuPrimitive.Content
@@ -142,7 +138,7 @@ export type NavigationItemLabelProps<T extends ValidComponent = "div"> =
 export const NavigationItemLabel = <T extends ValidComponent = "div">(
   props: NavigationItemLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NavigationItemLabelProps, ["class"])
+  const rest = omit(props as NavigationItemLabelProps, "class")
 
   return (
     <NavigationMenuPrimitive.ItemLabel
@@ -159,9 +155,7 @@ export type NavigationItemDescriptionProps<T extends ValidComponent = "div"> =
 export const NavigationItemDescription = <T extends ValidComponent = "div">(
   props: NavigationItemDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NavigationItemDescriptionProps, [
-    "class",
-  ])
+  const rest = omit(props as NavigationItemDescriptionProps, "class")
 
   return (
     <NavigationMenuPrimitive.ItemDescription

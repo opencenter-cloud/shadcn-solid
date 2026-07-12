@@ -1,8 +1,9 @@
-import type { ComponentProps, ValidComponent, VoidProps } from "solid-js"
-import { mergeProps, splitProps } from "solid-js"
-import { Select as SelectPrimitive } from "@kobalte/core/select"
+import type { VoidProps } from "solid-js"
+import { merge, omit } from "solid-js"
+import { Select as SelectPrimitive } from "@opencenter-cloud/kobalte-core/select"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const SelectPortal = SelectPrimitive.Portal
 export const HiddenSelect = SelectPrimitive.HiddenSelect
@@ -20,7 +21,7 @@ export const Select = <
 >(
   props: SelectProps<Option, OptGroup, T>,
 ) => {
-  const [, rest] = splitProps(props as SelectProps<Option, OptGroup>, ["class"])
+  const rest = omit(props as SelectProps<Option, OptGroup>, "class")
 
   return (
     <SelectPrimitive
@@ -50,8 +51,8 @@ export type SelectTriggerProps<T extends ValidComponent = "button"> =
 export const SelectTrigger = <T extends ValidComponent = "button">(
   props: SelectTriggerProps<T>,
 ) => {
-  const merge = mergeProps({ size: "default" } as SelectTriggerProps, props)
-  const [, rest] = splitProps(merge, ["class", "size", "children"])
+  const mergedProps = merge({ size: "default" } as SelectTriggerProps, props)
+  const rest = omit(mergedProps, "class", "size", "children")
 
   return (
     <SelectPrimitive.Trigger
@@ -94,7 +95,7 @@ export type SelectContentProps<T extends ValidComponent = "div"> = VoidProps<
 export const SelectContent = <T extends ValidComponent = "div">(
   props: SelectContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SelectContentProps, ["class"])
+  const rest = omit(props as SelectContentProps, "class")
 
   return (
     <SelectPrimitive.Content
@@ -118,7 +119,7 @@ export type SelectItemProps<T extends ValidComponent = "li"> = ComponentProps<
 export const SelectItem = <T extends ValidComponent = "li">(
   props: SelectItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SelectItemProps, ["class", "children"])
+  const rest = omit(props as SelectItemProps, "class", "children")
 
   return (
     <SelectPrimitive.Item
@@ -161,7 +162,7 @@ export type SelectSectionProps<T extends ValidComponent = "li"> =
 export const SelectSection = <T extends ValidComponent = "li">(
   props: SelectSectionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SelectSectionProps, ["class"])
+  const rest = omit(props as SelectSectionProps, "class")
 
   return (
     <SelectPrimitive.Section
@@ -178,7 +179,7 @@ export type SelectDescriptionProps<T extends ValidComponent = "div"> =
 export const SelectDescription = <T extends ValidComponent = "div">(
   props: SelectDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SelectDescriptionProps, ["class"])
+  const rest = omit(props as SelectDescriptionProps, "class")
 
   return (
     <SelectPrimitive.Description
@@ -198,7 +199,7 @@ export type SelectLabelProps<T extends ValidComponent = "label"> =
 export const SelectLabel = <T extends ValidComponent = "label">(
   props: SelectLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SelectLabelProps, ["class"])
+  const rest = omit(props as SelectLabelProps, "class")
 
   return (
     <SelectPrimitive.Label
@@ -218,7 +219,7 @@ export type SelectErrorMessageProps<T extends ValidComponent = "div"> =
 export const SelectErrorMessage = <T extends ValidComponent = "div">(
   props: SelectErrorMessageProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SelectErrorMessageProps, ["class"])
+  const rest = omit(props as SelectErrorMessageProps, "class")
 
   return (
     <SelectPrimitive.ErrorMessage

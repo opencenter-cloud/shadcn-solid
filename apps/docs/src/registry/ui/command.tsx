@@ -1,13 +1,13 @@
-import type { ComponentProps } from "solid-js"
-import { splitProps } from "solid-js"
-import { Command as CommandPrimitive } from "cmdk-solid"
+import { omit } from "solid-js"
+import { Command as CommandPrimitive } from "@opencenter-cloud/cmdk-solid"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps } from "@solidjs/web";
 
 export type CommandProps = ComponentProps<typeof CommandPrimitive>
 
 export const Command = (props: CommandProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <CommandPrimitive
@@ -29,11 +29,7 @@ export type CommandDialogProps = ComponentProps<
 }
 
 export const CommandDialog = (props: CommandDialogProps) => {
-  const [, rest] = splitProps(props, [
-    "contentClassName",
-    "overlayClassName",
-    "class",
-  ])
+  const rest = omit(props, "contentClassName", "overlayClassName", "class")
 
   return (
     <CommandPrimitive.Dialog
@@ -58,7 +54,7 @@ export const CommandDialog = (props: CommandDialogProps) => {
 export type CommandInputProps = ComponentProps<typeof CommandPrimitive.Input>
 
 export const CommandInput = (props: CommandInputProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -96,7 +92,7 @@ export const CommandInput = (props: CommandInputProps) => {
 export type CommandListProps = ComponentProps<typeof CommandPrimitive.List>
 
 export const CommandList = (props: CommandListProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <CommandPrimitive.List
@@ -113,7 +109,7 @@ export const CommandList = (props: CommandListProps) => {
 export type CommandEmptyProps = ComponentProps<typeof CommandPrimitive.Empty>
 
 export const CommandEmpty = (props: CommandEmptyProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <CommandPrimitive.Empty
@@ -127,7 +123,7 @@ export const CommandEmpty = (props: CommandEmptyProps) => {
 export type CommandGroupProps = ComponentProps<typeof CommandPrimitive.Group>
 
 export const CommandGroup = (props: CommandGroupProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <CommandPrimitive.Group
@@ -146,7 +142,7 @@ export type CommandSeparatorProps = ComponentProps<
 >
 
 export const CommandSeparator = (props: CommandSeparatorProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <CommandPrimitive.Separator
@@ -160,7 +156,7 @@ export const CommandSeparator = (props: CommandSeparatorProps) => {
 export type CommandItemProps = ComponentProps<typeof CommandPrimitive.Item>
 
 export const CommandItem = (props: CommandItemProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <CommandPrimitive.Item
@@ -177,7 +173,7 @@ export const CommandItem = (props: CommandItemProps) => {
 export type CommandShortcutProps = ComponentProps<"span">
 
 export const CommandShortcut = (props: CommandShortcutProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <span

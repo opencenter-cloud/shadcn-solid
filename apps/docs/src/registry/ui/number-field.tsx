@@ -1,8 +1,9 @@
-import type { ValidComponent, VoidProps } from "solid-js"
-import { splitProps, type ComponentProps } from "solid-js"
-import { NumberField as NumberFieldPrimitive } from "@kobalte/core/number-field"
+import type { VoidProps } from "solid-js"
+import { omit } from "solid-js"
+import { NumberField as NumberFieldPrimitive } from "@opencenter-cloud/kobalte-core/number-field"
 
 import { cx } from "@/registry/lib/cva"
+import type { ValidComponent, ComponentProps } from "@solidjs/web";
 
 export type NumberFieldProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof NumberFieldPrimitive<T>
@@ -11,7 +12,7 @@ export type NumberFieldProps<T extends ValidComponent = "div"> = ComponentProps<
 export const NumberField = <T extends ValidComponent = "div">(
   props: NumberFieldProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NumberFieldProps, ["class"])
+  const rest = omit(props as NumberFieldProps, "class")
 
   return (
     <NumberFieldPrimitive
@@ -25,7 +26,7 @@ export const NumberField = <T extends ValidComponent = "div">(
 export type NumberFieldGroupProps = ComponentProps<"div">
 
 export const NumberFieldGroup = (props: NumberFieldGroupProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -45,7 +46,7 @@ export type NumberFieldLabelProps<T extends ValidComponent = "label"> =
 export const NumberFieldLabel = <T extends ValidComponent = "label">(
   props: NumberFieldLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NumberFieldLabelProps, ["class"])
+  const rest = omit(props as NumberFieldLabelProps, "class")
 
   return (
     <NumberFieldPrimitive.Label
@@ -65,7 +66,7 @@ export type NumberFieldInputProps<T extends ValidComponent = "input"> =
 export const NumberFieldInput = <T extends ValidComponent = "input">(
   props: NumberFieldInputProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NumberFieldInputProps, ["class"])
+  const rest = omit(props as NumberFieldInputProps, "class")
 
   return (
     <NumberFieldPrimitive.Input
@@ -88,9 +89,7 @@ export const NumberFieldDecrementTrigger = <
 >(
   props: NumberFieldDecrementTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NumberFieldDecrementTriggerProps, [
-    "class",
-  ])
+  const rest = omit(props as NumberFieldDecrementTriggerProps, "class")
 
   return (
     <NumberFieldPrimitive.DecrementTrigger
@@ -128,9 +127,7 @@ export const NumberFieldIncrementTrigger = <
 >(
   props: NumberFieldIncrementTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NumberFieldIncrementTriggerProps, [
-    "class",
-  ])
+  const rest = omit(props as NumberFieldIncrementTriggerProps, "class")
 
   return (
     <NumberFieldPrimitive.IncrementTrigger
@@ -165,7 +162,7 @@ export type NumberFieldErrorMessageProps<T extends ValidComponent = "div"> =
 export const NumberFieldErrorMessage = <T extends ValidComponent = "div">(
   props: NumberFieldErrorMessageProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NumberFieldErrorMessageProps, ["class"])
+  const rest = omit(props as NumberFieldErrorMessageProps, "class")
 
   return (
     <NumberFieldPrimitive.ErrorMessage
@@ -182,7 +179,7 @@ export type NumberFieldDescriptionProps<T extends ValidComponent = "div"> =
 export const NumberFieldDescription = <T extends ValidComponent = "div">(
   props: NumberFieldDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as NumberFieldDescriptionProps, ["class"])
+  const rest = omit(props as NumberFieldDescriptionProps, "class")
 
   return (
     <NumberFieldPrimitive.Description

@@ -1,9 +1,9 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
-import { Alert as AlertPrimitive } from "@kobalte/core/alert"
+import { omit } from "solid-js"
+import { Alert as AlertPrimitive } from "@opencenter-cloud/kobalte-core/alert"
 import type { VariantProps } from "cva"
 
 import { cva, cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const alertVariants = cva({
   base: "relative w-full rounded-lg border px-4 py-3 text-sm grid has-[>svg]:grid-cols-[calc(var(--spacing)*4)_1fr] grid-cols-[0_1fr] has-[>svg]:gap-x-3 gap-y-0.5 items-start [&>svg]:size-4 [&>svg]:translate-y-0.5 [&>svg]:text-current",
@@ -27,7 +27,7 @@ export type AlertProps<T extends ValidComponent = "button"> = ComponentProps<
 export const Alert = <T extends ValidComponent = "button">(
   props: AlertProps<T>,
 ) => {
-  const [, rest] = splitProps(props as AlertProps, ["class", "variant"])
+  const rest = omit(props as AlertProps, "class", "variant")
 
   return (
     <AlertPrimitive
@@ -44,7 +44,7 @@ export const Alert = <T extends ValidComponent = "button">(
 export type AlertTitleProps = ComponentProps<"div">
 
 export const AlertTitle = (props: AlertTitleProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -61,7 +61,7 @@ export const AlertTitle = (props: AlertTitleProps) => {
 export type AlertDescriptionProps = ComponentProps<"div">
 
 export const AlertDescription = (props: AlertDescriptionProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div

@@ -1,8 +1,8 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
-import { HoverCard as HoverCardPrimitive } from "@kobalte/core/hover-card"
+import { omit } from "solid-js"
+import { HoverCard as HoverCardPrimitive } from "@opencenter-cloud/kobalte-core/hover-card"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const HoverCardPortal = HoverCardPrimitive.Portal
 
@@ -29,7 +29,7 @@ export type HoverCardContentProps<T extends ValidComponent = "div"> =
 export const HoverCardContent = <T extends ValidComponent = "div">(
   props: HoverCardContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as HoverCardContentProps, ["class"])
+  const rest = omit(props as HoverCardContentProps, "class")
 
   return (
     <HoverCardPrimitive.Content

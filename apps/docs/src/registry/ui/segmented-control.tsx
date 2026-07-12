@@ -1,8 +1,8 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
-import { SegmentedControl as SegmentedControlPrimitive } from "@kobalte/core/segmented-control"
+import { omit } from "solid-js"
+import { SegmentedControl as SegmentedControlPrimitive } from "@opencenter-cloud/kobalte-core/segmented-control"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type SegmentedControlProps<T extends ValidComponent = "div"> =
   ComponentProps<typeof SegmentedControlPrimitive<T>>
@@ -10,7 +10,7 @@ export type SegmentedControlProps<T extends ValidComponent = "div"> =
 export const SegmentedControl = <T extends ValidComponent = "div">(
   props: SegmentedControlProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SegmentedControlProps, ["class"])
+  const rest = omit(props as SegmentedControlProps, "class")
 
   return (
     <SegmentedControlPrimitive
@@ -41,9 +41,7 @@ export type SegmentedControlItemLabelProps<T extends ValidComponent = "label"> =
 export const SegmentedControlItemLabel = <T extends ValidComponent = "label">(
   props: SegmentedControlItemLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SegmentedControlItemLabelProps, [
-    "class",
-  ])
+  const rest = omit(props as SegmentedControlItemLabelProps, "class")
 
   return (
     <SegmentedControlPrimitive.ItemLabel
@@ -63,9 +61,7 @@ export type SegmentedControlIndicatorProps<T extends ValidComponent = "div"> =
 export const SegmentedControlIndicator = <T extends ValidComponent = "div">(
   props: SegmentedControlIndicatorProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SegmentedControlIndicatorProps, [
-    "class",
-  ])
+  const rest = omit(props as SegmentedControlIndicatorProps, "class")
 
   return (
     <SegmentedControlPrimitive.Indicator
@@ -86,7 +82,7 @@ export type SegmentedControlItemProps<T extends ValidComponent = "div"> =
 export const SegmentedControlItem = <T extends ValidComponent = "div">(
   props: SegmentedControlItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SegmentedControlItemProps, ["class"])
+  const rest = omit(props as SegmentedControlItemProps, "class")
 
   return (
     <SegmentedControlPrimitive.Item
@@ -107,7 +103,7 @@ export const SegmentedControlItem = <T extends ValidComponent = "div">(
 export type SegmentedControlListProps = ComponentProps<"div">
 
 export const SegmentedControlList = (props: SegmentedControlListProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -127,7 +123,7 @@ export const SegmentedControlList = (props: SegmentedControlListProps) => {
 export type SegmentedControlItemsProps = ComponentProps<"div">
 
 export const SegmentedControlItems = (props: SegmentedControlItemsProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -148,7 +144,7 @@ export type SegmentedControlLabelProps<T extends ValidComponent = "span"> =
 export const SegmentedControlLabel = <T extends ValidComponent = "span">(
   props: SegmentedControlLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SegmentedControlLabelProps, ["class"])
+  const rest = omit(props as SegmentedControlLabelProps, "class")
 
   return (
     <SegmentedControlPrimitive.Label
@@ -168,9 +164,7 @@ export type SegmentedControlDescriptionProps<T extends ValidComponent = "div"> =
 export const SegmentedControlDescription = <T extends ValidComponent = "div">(
   props: SegmentedControlDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SegmentedControlDescriptionProps, [
-    "class",
-  ])
+  const rest = omit(props as SegmentedControlDescriptionProps, "class")
 
   return (
     <SegmentedControlPrimitive.Description
@@ -190,9 +184,7 @@ export const SegmentedControlItemDescription = <
 >(
   props: SegmentedControlItemDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SegmentedControlItemDescriptionProps, [
-    "class",
-  ])
+  const rest = omit(props as SegmentedControlItemDescriptionProps, "class")
 
   return (
     <SegmentedControlPrimitive.ItemDescription
@@ -210,9 +202,7 @@ export type SegmentedControlErrorMessageProps<
 export const SegmentedControlErrorMessage = <T extends ValidComponent = "div">(
   props: SegmentedControlErrorMessageProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SegmentedControlErrorMessageProps, [
-    "class",
-  ])
+  const rest = omit(props as SegmentedControlErrorMessageProps, "class")
 
   return (
     <SegmentedControlPrimitive.ErrorMessage

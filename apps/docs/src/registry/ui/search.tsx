@@ -1,16 +1,15 @@
 import type { Accessor, JSX } from "solid-js"
 import {
   Show,
-  splitProps,
-  type ComponentProps,
-  type ValidComponent,
+  omit
 } from "solid-js"
 import {
   Search as SearchPrimitive,
   useSearchContext,
-} from "@kobalte/core/search"
+} from "@opencenter-cloud/kobalte-core/search"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const SearchPortal = SearchPrimitive.Portal
 
@@ -43,7 +42,7 @@ export type SearchIconProps<T extends ValidComponent = "span"> = ComponentProps<
 export const SearchIcon = <T extends ValidComponent = "span">(
   props: SearchIconProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SearchIconProps, ["class"])
+  const rest = omit(props as SearchIconProps, "class")
 
   return (
     <SearchPrimitive.Icon
@@ -63,7 +62,7 @@ export type SearchIndicatorProps<T extends ValidComponent = "div"> =
 export const SearchIndicator = <T extends ValidComponent = "div">(
   props: SearchIndicatorProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SearchIndicatorProps, ["class"])
+  const rest = omit(props as SearchIndicatorProps, "class")
 
   return (
     <SearchPrimitive.Indicator
@@ -83,11 +82,7 @@ export type SearchControlProps<T extends ValidComponent = "div"> =
 export const SearchControl = <T extends ValidComponent = "div">(
   props: SearchControlProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SearchControlProps, [
-    "class",
-    "leftIndicator",
-    "rightIndicator",
-  ])
+  const rest = omit(props as SearchControlProps, "class", "leftIndicator", "rightIndicator")
 
   return (
     <SearchPrimitive.Control
@@ -157,7 +152,7 @@ export type SearchContentProps<T extends ValidComponent = "div"> =
 export const SearchContent = <T extends ValidComponent = "div">(
   props: SearchContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SearchContentProps, ["class"])
+  const rest = omit(props as SearchContentProps, "class")
 
   return (
     <SearchPrimitive.Content
@@ -183,7 +178,7 @@ export type SearchNoResultProps<T extends ValidComponent = "span"> =
 export const SearchNoResult = <T extends ValidComponent = "span">(
   props: SearchNoResultProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SearchContentProps, ["class"])
+  const rest = omit(props as SearchContentProps, "class")
 
   return (
     <SearchPrimitive.NoResult
@@ -201,7 +196,7 @@ export type SearchItemProps<T extends ValidComponent = "li"> = ComponentProps<
 export const SearchItem = <T extends ValidComponent = "li">(
   props: SearchItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SearchItemProps, ["class"])
+  const rest = omit(props as SearchItemProps, "class")
 
   return (
     <SearchPrimitive.Item
@@ -221,7 +216,7 @@ export type SearchLabelProps<T extends ValidComponent = "label"> =
 export const SearchLabel = <T extends ValidComponent = "label">(
   props: SearchLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SearchLabelProps, ["class"])
+  const rest = omit(props as SearchLabelProps, "class")
 
   return (
     <SearchPrimitive.Label
@@ -243,7 +238,7 @@ export type SearchDescriptionProps<T extends ValidComponent = "div"> =
 export const SearchDescription = <T extends ValidComponent = "div">(
   props: SearchDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SearchDescriptionProps, ["class"])
+  const rest = omit(props as SearchDescriptionProps, "class")
 
   return (
     <SearchPrimitive.Description
@@ -260,7 +255,7 @@ export type SearchItemDescriptionProps<T extends ValidComponent = "div"> =
 export const SearchItemDescription = <T extends ValidComponent = "div">(
   props: SearchItemDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SearchItemDescriptionProps, ["class"])
+  const rest = omit(props as SearchItemDescriptionProps, "class")
 
   return (
     <SearchPrimitive.ItemDescription
@@ -293,7 +288,7 @@ export const SearchListbox = <
 >(
   props: SearchListboxProps<Option, OptGroup, T>,
 ) => {
-  const [, rest] = splitProps(props as SearchListboxProps<Option>, ["class"])
+  const rest = omit(props as SearchListboxProps<Option>, "class")
   const context = useSearchContext()
 
   return (

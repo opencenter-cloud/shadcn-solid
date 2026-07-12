@@ -1,19 +1,18 @@
 import {
-  mergeProps,
-  splitProps,
-  type ComponentProps,
-  type ValidComponent,
+  merge,
+  omit
 } from "solid-js"
-import { Popover as PopoverPrimitive } from "@kobalte/core/popover"
+import { Popover as PopoverPrimitive } from "@opencenter-cloud/kobalte-core/popover"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const PopoverPortal = PopoverPrimitive.Portal
 
 export type PopoverProps = ComponentProps<typeof PopoverPrimitive>
 
 export const Popover = (props: PopoverProps) => {
-  const merge = mergeProps<PopoverProps[]>(
+  const mergedProps = merge<PopoverProps[]>(
     {
       gutter: 4,
     },
@@ -38,7 +37,7 @@ export type PopoverContentProps<T extends ValidComponent = "div"> =
 export const PopoverContent = <T extends ValidComponent = "div">(
   props: PopoverContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as PopoverContentProps, ["class"])
+  const rest = omit(props as PopoverContentProps, "class")
 
   return (
     <PopoverPrimitive.Content

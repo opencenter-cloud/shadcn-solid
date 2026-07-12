@@ -1,13 +1,12 @@
 import type { VoidProps } from "solid-js"
 import {
   Show,
-  splitProps,
-  type ComponentProps,
-  type ValidComponent,
+  omit
 } from "solid-js"
-import OTPFieldPrimitive from "@corvu/otp-field"
+import OTPFieldPrimitive from "@corvu-next/otp-field"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type OTPFieldProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof OTPFieldPrimitive<T>
@@ -16,7 +15,7 @@ export type OTPFieldProps<T extends ValidComponent = "div"> = ComponentProps<
 export const OTPField = <T extends ValidComponent = "div">(
   props: OTPFieldProps<T>,
 ) => {
-  const [, rest] = splitProps(props as OTPFieldProps, ["class"])
+  const rest = omit(props as OTPFieldProps, "class")
 
   return (
     <OTPFieldPrimitive
@@ -30,7 +29,7 @@ export const OTPField = <T extends ValidComponent = "div">(
 export type OTPFieldGroupProps = ComponentProps<"div">
 
 export const OTPFieldGroup = (props: OTPFieldGroupProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -46,7 +45,7 @@ export type OTPFieldSlotProps = VoidProps<
 >
 
 export const OTPFieldSlot = (props: OTPFieldSlotProps) => {
-  const [, rest] = splitProps(props, ["class", "index"])
+  const rest = omit(props, "class", "index")
 
   const context = OTPFieldPrimitive.useContext()
 

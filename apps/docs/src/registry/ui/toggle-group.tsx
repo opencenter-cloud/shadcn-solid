@@ -1,14 +1,14 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { createContext, splitProps, useContext } from "solid-js"
-import { ToggleGroup as ToggleGroupPrimitive } from "@kobalte/core/toggle-group"
+import { createContext, omit, useContext } from "solid-js"
+import { ToggleGroup as ToggleGroupPrimitive } from "@opencenter-cloud/kobalte-core/toggle-group"
 import type { VariantProps } from "cva"
 
 import { cx } from "@/registry/lib/cva"
 
 import { toggleButtonVariants } from "./toggle-button"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 const ToggleGroupContext =
-  createContext<VariantProps<typeof toggleButtonVariants>>()
+  createContext<VariantProps<typeof toggleButtonVariants> | null>(null)
 
 export type ToggleGroupProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof ToggleGroupPrimitive<T>
@@ -18,12 +18,7 @@ export type ToggleGroupProps<T extends ValidComponent = "div"> = ComponentProps<
 export const ToggleGroup = <T extends ValidComponent = "div">(
   props: ToggleGroupProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ToggleGroupProps, [
-    "class",
-    "variant",
-    "size",
-    "children",
-  ])
+  const rest = omit(props as ToggleGroupProps, "class", "variant", "size", "children")
 
   return (
     <ToggleGroupPrimitive
@@ -36,7 +31,7 @@ export const ToggleGroup = <T extends ValidComponent = "div">(
       )}
       {...rest}
     >
-      <ToggleGroupContext.Provider
+      <ToggleGroupContext
         value={{
           get size() {
             return props.size
@@ -47,7 +42,7 @@ export const ToggleGroup = <T extends ValidComponent = "div">(
         }}
       >
         {props.children}
-      </ToggleGroupContext.Provider>
+      </ToggleGroupContext>
     </ToggleGroupPrimitive>
   )
 }
@@ -59,11 +54,7 @@ export type ToggleGroupItemProps<T extends ValidComponent = "button"> =
 export const ToggleGroupItem = <T extends ValidComponent = "button">(
   props: ToggleGroupItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ToggleGroupItemProps, [
-    "class",
-    "variant",
-    "size",
-  ])
+  const rest = omit(props as ToggleGroupItemProps, "class", "variant", "size")
   const context = useContext(ToggleGroupContext)
 
   return (

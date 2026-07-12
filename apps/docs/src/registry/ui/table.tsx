@@ -1,12 +1,12 @@
-import type { ComponentProps } from "solid-js"
-import { splitProps } from "solid-js"
+import { omit } from "solid-js"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps } from "@solidjs/web";
 
 export type TableProps = ComponentProps<"table">
 
 export const Table = (props: TableProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div data-slot="table-container" class="relative w-full overflow-x-auto">
@@ -22,7 +22,7 @@ export const Table = (props: TableProps) => {
 export type TableHeaderProps = ComponentProps<"thead">
 
 export const TableHeader = (props: TableHeaderProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <thead
@@ -36,7 +36,7 @@ export const TableHeader = (props: TableHeaderProps) => {
 export type TableBodyProps = ComponentProps<"tbody">
 
 export const TableBody = (props: TableBodyProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <tbody
@@ -50,7 +50,7 @@ export const TableBody = (props: TableBodyProps) => {
 export type TableFooterProps = ComponentProps<"tfoot">
 
 export const TableFooter = (props: TableFooterProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <tfoot
@@ -67,7 +67,7 @@ export const TableFooter = (props: TableFooterProps) => {
 export type TableRowProps = ComponentProps<"tr">
 
 export const TableRow = (props: TableRowProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <tr
@@ -84,7 +84,7 @@ export const TableRow = (props: TableRowProps) => {
 export type TableHeadProps = ComponentProps<"th">
 
 export const TableHead = (props: TableHeadProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <th
@@ -101,7 +101,7 @@ export const TableHead = (props: TableHeadProps) => {
 export type TableCellProps = ComponentProps<"td">
 
 export const TableCell = (props: TableCellProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <td
@@ -118,7 +118,7 @@ export const TableCell = (props: TableCellProps) => {
 export type TableCaptionProps = ComponentProps<"caption">
 
 export const TableCaption = (props: TableCaptionProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <caption

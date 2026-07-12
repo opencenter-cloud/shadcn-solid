@@ -1,15 +1,15 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
-import { Tabs as TabsPrimitive } from "@kobalte/core/tabs"
+import { omit } from "solid-js"
+import { Tabs as TabsPrimitive } from "@opencenter-cloud/kobalte-core/tabs"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type TabsProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof TabsPrimitive<T>
 >
 
 export const Tabs = <T extends ValidComponent = "div">(props: TabsProps<T>) => {
-  const [, rest] = splitProps(props as TabsProps, ["class"])
+  const rest = omit(props as TabsProps, "class")
 
   return (
     <TabsPrimitive
@@ -31,7 +31,7 @@ export type TabsListProps<T extends ValidComponent = "div"> = ComponentProps<
 export const TabsList = <T extends ValidComponent = "div">(
   props: TabsListProps<T>,
 ) => {
-  const [, rest] = splitProps(props as TabsListProps, ["class"])
+  const rest = omit(props as TabsListProps, "class")
 
   return (
     <TabsPrimitive.List
@@ -52,7 +52,7 @@ export type TabsTriggerProps<T extends ValidComponent = "button"> =
 export const TabsTrigger = <T extends ValidComponent = "button">(
   props: TabsTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as TabsTriggerProps, ["class"])
+  const rest = omit(props as TabsTriggerProps, "class")
 
   return (
     <TabsPrimitive.Trigger
@@ -73,7 +73,7 @@ export type TabsContentProps<T extends ValidComponent = "div"> = ComponentProps<
 export const TabsContent = <T extends ValidComponent = "div">(
   props: TabsContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as TabsContentProps, ["class"])
+  const rest = omit(props as TabsContentProps, "class")
 
   return (
     <TabsPrimitive.Content
@@ -90,7 +90,7 @@ export type TabsIndicatorProps<T extends ValidComponent = "div"> =
 export const TabsIndicator = <T extends ValidComponent = "div">(
   props: TabsIndicatorProps<T>,
 ) => {
-  const [, rest] = splitProps(props as TabsIndicatorProps, ["class"])
+  const rest = omit(props as TabsIndicatorProps, "class")
 
   return (
     <TabsPrimitive.Indicator

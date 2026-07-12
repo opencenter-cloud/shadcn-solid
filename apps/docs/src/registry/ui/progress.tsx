@@ -1,7 +1,8 @@
-import { splitProps, type ComponentProps, type ValidComponent } from "solid-js"
-import { Progress as ProgressPrimitive } from "@kobalte/core/progress"
+import { omit } from "solid-js"
+import { Progress as ProgressPrimitive } from "@opencenter-cloud/kobalte-core/progress"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type ProgressProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof ProgressPrimitive<T>
@@ -10,7 +11,7 @@ export type ProgressProps<T extends ValidComponent = "div"> = ComponentProps<
 export const Progress = <T extends ValidComponent = "div">(
   props: ProgressProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ProgressProps, ["class", "children"])
+  const rest = omit(props as ProgressProps, "class", "children")
 
   return (
     <ProgressPrimitive
@@ -35,7 +36,7 @@ export const Progress = <T extends ValidComponent = "div">(
 export type ProgressGroupProps = ComponentProps<"div">
 
 export const ProgressGroup = (props: ProgressGroupProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -52,7 +53,7 @@ export type ProgressLabelProps<T extends ValidComponent = "span"> =
 export const ProgressLabel = <T extends ValidComponent = "span">(
   props: ProgressLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ProgressLabelProps, ["class"])
+  const rest = omit(props as ProgressLabelProps, "class")
 
   return (
     <ProgressPrimitive.Label
@@ -69,7 +70,7 @@ export type ProgressValueLabelProps<T extends ValidComponent = "span"> =
 export const ProgressValueLabel = <T extends ValidComponent = "span">(
   props: ProgressValueLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ProgressValueLabelProps, ["class"])
+  const rest = omit(props as ProgressValueLabelProps, "class")
 
   return (
     <ProgressPrimitive.ValueLabel

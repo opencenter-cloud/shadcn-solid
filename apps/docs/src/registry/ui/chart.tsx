@@ -4,8 +4,8 @@ import {
   Show,
   Switch,
   createContext,
-  mergeProps,
-  splitProps,
+  merge,
+  omit,
   useContext,
   type JSX,
 } from "solid-js"
@@ -39,7 +39,7 @@ interface ChartContextProps {
   config: ChartConfig
 }
 
-const ChartContext = createContext<ChartContextProps>()
+const ChartContext = createContext<ChartContextProps | null>(null)
 
 const useChart = () => {
   const context = useContext(ChartContext)
@@ -66,10 +66,10 @@ export type ChartContainerProps<T> = (
   ChartContextProps
 
 export const ChartContainer = <T,>(props: ChartContainerProps<T>) => {
-  const [, rest] = splitProps(props, ["config", "children", "type", "class"])
+  const rest = omit(props, "config", "children", "type", "class")
 
   return (
-    <ChartContext.Provider
+    <ChartContext
       value={{
         get config() {
           return props.config
@@ -98,7 +98,7 @@ export const ChartContainer = <T,>(props: ChartContainerProps<T>) => {
           </Match>
         </Switch>
       </div>
-    </ChartContext.Provider>
+    </ChartContext>
   )
 }
 
@@ -144,7 +144,7 @@ export type ChartCrosshairProps<T> = Omit<VisCrosshairProps<T>, "template"> & {
 }
 
 export const ChartCrosshair = <T,>(props: ChartCrosshairProps<T>) => {
-  const [, rest] = splitProps(props, ["template"])
+  const rest = omit(props, "template")
   const { config } = useChart()
 
   const template = (d: T, x: number | Date) => {
@@ -234,7 +234,7 @@ export type ChartTooltipContentProps<T, C extends ChartConfig = ChartConfig> = {
 export const ChartTooltipContent = <T, C extends ChartConfig = ChartConfig>(
   props: ChartTooltipContentProps<T, C>,
 ) => {
-  const merge = mergeProps(
+  const mergedProps = merge(
     {
       hideLabel: false,
       hideIndicator: false,
@@ -246,23 +246,23 @@ export const ChartTooltipContent = <T, C extends ChartConfig = ChartConfig>(
 
   const value = () =>
     getConfigFromData<T, C>(
-      merge.data,
-      merge.config,
-      merge.labelKey,
-      merge.nameKey,
+      mergedProps.data,
+      mergedProps.config,
+      mergedProps.labelKey,
+      mergedProps.nameKey,
     )
 
   const tooltipLabel = () => {
-    if (merge.hideLabel || !value().items.length) {
+    if (mergedProps.hideLabel || !value().items.length) {
       return null
     }
 
     return (
       <div class="font-medium capitalize">
         <Show
-          when={!merge.labelFormatter}
-          fallback={merge.labelFormatter!(
-            typeof merge.x === "number" ? Math.round(merge.x) : merge.x,
+          when={!mergedProps.labelFormatter}
+          fallback={mergedProps.labelFormatter!(
+            typeof mergedProps.x === "number" ? Math.round(mergedProps.x) : mergedProps.x,
           )}
         >
           {value().label as JSX.Element}
@@ -272,11 +272,11 @@ export const ChartTooltipContent = <T, C extends ChartConfig = ChartConfig>(
   }
 
   const nestLabel = () =>
-    value().items.length === 1 && merge.indicator !== "dot"
+    value().items.length === 1 && mergedProps.indicator !== "dot"
 
   return (
     <div
-      class={cx("grid min-w-[8rem] items-start gap-1.5 text-xs", merge.class)}
+      class={cx("grid min-w-[8rem] items-start gap-1.5 text-xs", mergedProps.class)}
     >
       <Show when={!nestLabel()}>{tooltipLabel()}</Show>
       <div class="grid gap-1.5">
@@ -285,29 +285,29 @@ export const ChartTooltipContent = <T, C extends ChartConfig = ChartConfig>(
             <div
               class={cx(
                 "[&>svg]:text-muted-foreground flex w-full flex-wrap items-stretch gap-2 [&>svg]:size-2.5",
-                merge.indicator === "dot" && "items-center",
+                mergedProps.indicator === "dot" && "items-center",
               )}
             >
               <Show
-                when={!merge.formatter}
-                fallback={merge.formatter!(
+                when={!mergedProps.formatter}
+                fallback={mergedProps.formatter!(
                   item.value!,
                   item.key,
-                  merge.data,
+                  mergedProps.data,
                   index(),
                 )}
               >
                 <Show when={item.icon}>{item.icon}</Show>
-                <Show when={!item.icon && !merge.hideIndicator}>
+                <Show when={!item.icon && !mergedProps.hideIndicator}>
                   <div
                     class={cx(
                       "shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)",
                       {
-                        "size-2.5": merge.indicator === "dot",
-                        "w-1": merge.indicator === "line",
+                        "size-2.5": mergedProps.indicator === "dot",
+                        "w-1": mergedProps.indicator === "line",
                         "w-0 border-[1.5px] border-dashed bg-transparent":
-                          merge.indicator === "dashed",
-                        "my-0.5": nestLabel() && merge.indicator === "dashed",
+                          mergedProps.indicator === "dashed",
+                        "my-0.5": nestLabel() && mergedProps.indicator === "dashed",
                       },
                     )}
                     style={{
@@ -326,7 +326,7 @@ export const ChartTooltipContent = <T, C extends ChartConfig = ChartConfig>(
                     <Show when={nestLabel()}>{tooltipLabel()}</Show>
                     <span class="text-muted-foreground capitalize">
                       <Show
-                        when={!merge.labelAsKey}
+                        when={!mergedProps.labelAsKey}
                         fallback={value().label as string}
                       >
                         {item.key}

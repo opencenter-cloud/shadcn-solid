@@ -1,8 +1,8 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
-import { Collapsible as CollapsiblePrimitive } from "@kobalte/core/collapsible"
+import { omit } from "solid-js"
+import { Collapsible as CollapsiblePrimitive } from "@opencenter-cloud/kobalte-core/collapsible"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type CollapsibleProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof CollapsiblePrimitive<T>
@@ -31,7 +31,7 @@ export type CollapsibleContentProps<T extends ValidComponent = "button"> =
 export const CollapsibleContent = <T extends ValidComponent = "button">(
   props: CollapsibleContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as CollapsibleContentProps, ["class"])
+  const rest = omit(props as CollapsibleContentProps, "class")
 
   return (
     <CollapsiblePrimitive.Content

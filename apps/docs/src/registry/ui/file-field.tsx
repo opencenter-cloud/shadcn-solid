@@ -1,11 +1,11 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { Show, splitProps } from "solid-js"
-import { FileField as FileFieldPrimitive } from "@kobalte/core/file-field"
+import { Show, omit } from "solid-js"
+import { FileField as FileFieldPrimitive } from "@opencenter-cloud/kobalte-core/file-field"
 import type { VariantProps } from "cva"
 
 import { cx } from "@/registry/lib/cva"
 
 import { buttonVariants } from "./button"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const FileFieldHiddenInput = FileFieldPrimitive.HiddenInput
 
@@ -16,7 +16,7 @@ export type FileFieldProps<T extends ValidComponent = "div"> = ComponentProps<
 export const FileField = <T extends ValidComponent = "div">(
   props: FileFieldProps<T>,
 ) => {
-  const [, rest] = splitProps(props as FileFieldProps, ["class"])
+  const rest = omit(props as FileFieldProps, "class")
 
   return (
     <FileFieldPrimitive
@@ -36,7 +36,7 @@ export type FileFieldDropzoneProps<T extends ValidComponent = "div"> =
 export const FileFieldDropzone = <T extends ValidComponent = "div">(
   props: FileFieldDropzoneProps<T>,
 ) => {
-  const [, rest] = splitProps(props as FileFieldDropzoneProps, ["class"])
+  const rest = omit(props as FileFieldDropzoneProps, "class")
 
   return (
     <FileFieldPrimitive.Dropzone
@@ -60,11 +60,7 @@ export type FileFieldTriggerProps<T extends ValidComponent = "button"> =
 export const FileFieldTrigger = <T extends ValidComponent = "button">(
   props: FileFieldTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as FileFieldTriggerProps, [
-    "class",
-    "variant",
-    "size",
-  ])
+  const rest = omit(props as FileFieldTriggerProps, "class", "variant", "size")
 
   return (
     <FileFieldPrimitive.Trigger
@@ -85,7 +81,7 @@ export type FileFieldItemListProps<T extends ValidComponent = "ul"> =
 export const FileFieldItemList = <T extends ValidComponent = "ul">(
   props: FileFieldItemListProps<T>,
 ) => {
-  const [, rest] = splitProps(props as FileFieldItemListProps, ["class"])
+  const rest = omit(props as FileFieldItemListProps, "class")
 
   return (
     <FileFieldPrimitive.ItemList
@@ -102,7 +98,7 @@ export type FileFieldItemProps<T extends ValidComponent = "li"> =
 export const FileFieldItem = <T extends ValidComponent = "li">(
   props: FileFieldItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as FileFieldItemProps, ["class"])
+  const rest = omit(props as FileFieldItemProps, "class")
 
   return (
     <FileFieldPrimitive.Item
@@ -123,9 +119,7 @@ export type FileFieldItemPreviewImageProps<T extends ValidComponent = "img"> =
 export const FileFieldItemPreviewImage = <T extends ValidComponent = "img">(
   props: FileFieldItemPreviewImageProps<T>,
 ) => {
-  const [, rest] = splitProps(props as FileFieldItemPreviewImageProps, [
-    "class",
-  ])
+  const rest = omit(props as FileFieldItemPreviewImageProps, "class")
 
   return (
     <FileFieldPrimitive.ItemPreviewImage
@@ -145,7 +139,7 @@ export type FileFieldItemSizeProps<T extends ValidComponent = "span"> =
 export const FileFieldItemSize = <T extends ValidComponent = "span">(
   props: FileFieldItemSizeProps<T>,
 ) => {
-  const [, rest] = splitProps(props as FileFieldItemSizeProps, ["class"])
+  const rest = omit(props as FileFieldItemSizeProps, "class")
 
   return (
     <FileFieldPrimitive.ItemSize
@@ -162,7 +156,7 @@ export type FileFieldItemNameProps<T extends ValidComponent = "span"> =
 export const FileFieldItemName = <T extends ValidComponent = "span">(
   props: FileFieldItemNameProps<T>,
 ) => {
-  const [, rest] = splitProps(props as FileFieldItemNameProps, ["class"])
+  const rest = omit(props as FileFieldItemNameProps, "class")
 
   return (
     <FileFieldPrimitive.ItemName
@@ -180,10 +174,7 @@ export type FileFieldItemDeleteTriggerProps<
 export const FileFieldItemDeleteTrigger = <T extends ValidComponent = "button">(
   props: FileFieldItemDeleteTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as FileFieldItemDeleteTriggerProps, [
-    "class",
-    "children",
-  ])
+  const rest = omit(props as FileFieldItemDeleteTriggerProps, "class", "children")
 
   return (
     <FileFieldPrimitive.ItemDeleteTrigger
@@ -220,7 +211,7 @@ export type FileFieldLabelProps<T extends ValidComponent = "label"> =
 export const FileFieldLabel = <T extends ValidComponent = "label">(
   props: FileFieldLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as FileFieldLabelProps, ["class"])
+  const rest = omit(props as FileFieldLabelProps, "class")
 
   return (
     <FileFieldPrimitive.Label
@@ -242,7 +233,7 @@ export type FileFieldDescriptionProps<T extends ValidComponent = "div"> =
 export const FileFieldDescription = <T extends ValidComponent = "div">(
   props: FileFieldDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as FileFieldDescriptionProps, ["class"])
+  const rest = omit(props as FileFieldDescriptionProps, "class")
 
   return (
     <FileFieldPrimitive.Description
@@ -259,7 +250,7 @@ export type FileFieldErrorMessageProps<T extends ValidComponent = "div"> =
 export const FileFieldErrorMessage = <T extends ValidComponent = "div">(
   props: FileFieldErrorMessageProps<T>,
 ) => {
-  const [, rest] = splitProps(props as FileFieldErrorMessageProps, ["class"])
+  const rest = omit(props as FileFieldErrorMessageProps, "class")
 
   return (
     <FileFieldPrimitive.ErrorMessage

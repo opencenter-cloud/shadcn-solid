@@ -1,8 +1,8 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
-import { Combobox as ComboboxPrimitive } from "@kobalte/core/combobox"
+import { omit } from "solid-js"
+import { Combobox as ComboboxPrimitive } from "@opencenter-cloud/kobalte-core/combobox"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const ComboboxPortal = ComboboxPrimitive.Portal
 
@@ -19,7 +19,7 @@ export const Combobox = <
 >(
   props: ComboboxProps<Option, Group, T>,
 ) => {
-  const [, rest] = splitProps(props as ComboboxProps<Option, Group>, ["class"])
+  const rest = omit(props as ComboboxProps<Option, Group>, "class")
 
   return (
     <ComboboxPrimitive
@@ -36,7 +36,7 @@ export type ComboboxInputProps<T extends ValidComponent = "input"> =
 export const ComboboxInput = <T extends ValidComponent = "input">(
   props: ComboboxInputProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ComboboxInputProps, ["class"])
+  const rest = omit(props as ComboboxInputProps, "class")
 
   return (
     <ComboboxPrimitive.Input
@@ -56,7 +56,7 @@ export type ComboboxTriggerProps<T extends ValidComponent = "button"> =
 export const ComboboxTrigger = <T extends ValidComponent = "button">(
   props: ComboboxTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ComboboxTriggerProps, ["class"])
+  const rest = omit(props as ComboboxTriggerProps, "class")
 
   return (
     <ComboboxPrimitive.Trigger
@@ -90,7 +90,7 @@ export type ComboboxControlProps<
 export const ComboboxControl = <Option, T extends ValidComponent = "div">(
   props: ComboboxControlProps<Option, T>,
 ) => {
-  const [, rest] = splitProps(props as ComboboxControlProps<Option>, ["class"])
+  const rest = omit(props as ComboboxControlProps<Option>, "class")
 
   return (
     <ComboboxPrimitive.Control
@@ -111,7 +111,7 @@ export type ComboboxContentProps<T extends ValidComponent = "div"> =
 export const ComboboxContent = <T extends ValidComponent = "div">(
   props: ComboboxContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ComboboxContentProps, ["class"])
+  const rest = omit(props as ComboboxContentProps, "class")
 
   return (
     <ComboboxPrimitive.Content
@@ -134,7 +134,7 @@ export type ComboboxItemProps<T extends ValidComponent = "div"> =
 export const ComboboxItem = <T extends ValidComponent = "div">(
   props: ComboboxItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ComboboxItemProps, ["class", "children"])
+  const rest = omit(props as ComboboxItemProps, "class", "children")
 
   return (
     <ComboboxPrimitive.Item
@@ -183,7 +183,7 @@ export type ComboboxDescriptionProps<T extends ValidComponent = "div"> =
 export const ComboboxDescription = <T extends ValidComponent = "div">(
   props: ComboboxDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ComboboxDescriptionProps, ["class"])
+  const rest = omit(props as ComboboxDescriptionProps, "class")
 
   return (
     <ComboboxPrimitive.Description
@@ -203,7 +203,7 @@ export type ComboboxLabelProps<T extends ValidComponent = "label"> =
 export const ComboboxLabel = <T extends ValidComponent = "label">(
   props: ComboboxLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ComboboxLabelProps, ["class"])
+  const rest = omit(props as ComboboxLabelProps, "class")
 
   return (
     <ComboboxPrimitive.Label
@@ -223,7 +223,7 @@ export type ComboboxErrorMessageProps<T extends ValidComponent = "div"> =
 export const ComboboxErrorMessage = <T extends ValidComponent = "div">(
   props: ComboboxErrorMessageProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ComboboxErrorMessageProps, ["class"])
+  const rest = omit(props as ComboboxErrorMessageProps, "class")
 
   return (
     <ComboboxPrimitive.ErrorMessage
@@ -243,7 +243,7 @@ export type ComboboxSectionProps<T extends ValidComponent = "li"> =
 export const ComboboxSection = <T extends ValidComponent = "li">(
   props: ComboboxSectionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ComboboxSectionProps, ["class"])
+  const rest = omit(props as ComboboxSectionProps, "class")
 
   return (
     <ComboboxPrimitive.Section

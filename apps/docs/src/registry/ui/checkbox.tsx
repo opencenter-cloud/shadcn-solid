@@ -1,8 +1,8 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
-import { Checkbox as CheckboxPrimitive } from "@kobalte/core/checkbox"
+import { omit } from "solid-js"
+import { Checkbox as CheckboxPrimitive } from "@opencenter-cloud/kobalte-core/checkbox"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type CheckboxProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof CheckboxPrimitive<T>
@@ -20,7 +20,7 @@ export type CheckboxLabelProps<T extends ValidComponent = "label"> =
 export const CheckboxLabel = <T extends ValidComponent = "label">(
   props: CheckboxLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as CheckboxLabelProps, ["class"])
+  const rest = omit(props as CheckboxLabelProps, "class")
 
   return (
     <CheckboxPrimitive.Label
@@ -41,7 +41,7 @@ export type CheckboxDescriptionProps<T extends ValidComponent = "div"> =
 export const CheckboxDescription = <T extends ValidComponent = "div">(
   props: CheckboxDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as CheckboxDescriptionProps, ["class"])
+  const rest = omit(props as CheckboxDescriptionProps, "class")
 
   return (
     <CheckboxPrimitive.Description
@@ -61,7 +61,7 @@ export type CheckboxInputProps<T extends ValidComponent = "input"> =
 export const CheckboxInput = <T extends ValidComponent = "input">(
   props: CheckboxInputProps<T>,
 ) => {
-  const [, rest] = splitProps(props as CheckboxInputProps, ["class"])
+  const rest = omit(props as CheckboxInputProps, "class")
 
   return (
     <CheckboxPrimitive.Input
@@ -81,7 +81,7 @@ export type CheckboxControlProps<T extends ValidComponent = "div"> =
 export const CheckboxControl = <T extends ValidComponent = "div">(
   props: CheckboxControlProps<T>,
 ) => {
-  const [, rest] = splitProps(props as CheckboxControlProps, ["class"])
+  const rest = omit(props as CheckboxControlProps, "class")
 
   return (
     <CheckboxPrimitive.Control

@@ -1,19 +1,18 @@
 import type { VoidProps } from "solid-js"
 import {
-  mergeProps,
-  splitProps,
-  type ComponentProps,
-  type ValidComponent,
+  merge,
+  omit
 } from "solid-js"
 import {
   Pagination as PaginationPrimitive,
   usePaginationContext,
-} from "@kobalte/core/pagination"
+} from "@opencenter-cloud/kobalte-core/pagination"
 
 import { cx } from "@/registry/lib/cva"
 
 import type { ButtonProps } from "./button"
 import { buttonVariants } from "./button"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const PaginationItems = PaginationPrimitive.Items
 
@@ -24,7 +23,7 @@ export type PaginationProps<T extends ValidComponent = "nav"> = ComponentProps<
 export const Pagination = <T extends ValidComponent = "nav">(
   props: PaginationProps<T>,
 ) => {
-  const [, rest] = splitProps(props as PaginationProps, ["class"])
+  const rest = omit(props as PaginationProps, "class")
 
   return (
     <PaginationPrimitive
@@ -44,7 +43,7 @@ export type PaginationEllipsisProps<T extends ValidComponent = "div"> =
 export const PaginationEllipsis = <T extends ValidComponent = "div">(
   props: PaginationEllipsisProps<T>,
 ) => {
-  const [, rest] = splitProps(props as PaginationEllipsisProps, ["class"])
+  const rest = omit(props as PaginationEllipsisProps, "class")
 
   return (
     <PaginationPrimitive.Ellipsis
@@ -79,8 +78,8 @@ export type PaginationItemProps<T extends ValidComponent = "button"> =
 export const PaginationItem = <T extends ValidComponent = "button">(
   props: PaginationItemProps<T>,
 ) => {
-  const merge = mergeProps({ size: "icon" } as PaginationItemProps, props)
-  const [, rest] = splitProps(merge, ["class", "page", "size"])
+  const mergedProps = merge({ size: "icon" } as PaginationItemProps, props)
+  const rest = omit(mergedProps, "class", "page", "size")
 
   const context = usePaginationContext()
 
@@ -106,7 +105,7 @@ export type PaginationNextProps<T extends ValidComponent = "button"> =
 export const PaginationNext = <T extends ValidComponent = "button">(
   props: PaginationNextProps<T>,
 ) => {
-  const [, rest] = splitProps(props as PaginationNextProps, ["class"])
+  const rest = omit(props as PaginationNextProps, "class")
 
   return (
     <PaginationPrimitive.Next
@@ -144,7 +143,7 @@ export type PaginationPreviousProps<T extends ValidComponent = "button"> =
 export const PaginationPrevious = <T extends ValidComponent = "button">(
   props: PaginationPreviousProps<T>,
 ) => {
-  const [, rest] = splitProps(props as PaginationPreviousProps, ["class"])
+  const rest = omit(props as PaginationPreviousProps, "class")
 
   return (
     <PaginationPrimitive.Previous

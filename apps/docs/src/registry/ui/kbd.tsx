@@ -1,11 +1,12 @@
-import { splitProps, type ComponentProps } from "solid-js"
+import { omit } from "solid-js"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps } from "@solidjs/web";
 
 export type KbdProps = ComponentProps<"kbd">
 
 export const Kbd = (props: KbdProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <kbd
@@ -24,7 +25,7 @@ export const Kbd = (props: KbdProps) => {
 export type KbdGroupProps = ComponentProps<"div">
 
 export const KbdGroup = (props: KbdGroupProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div

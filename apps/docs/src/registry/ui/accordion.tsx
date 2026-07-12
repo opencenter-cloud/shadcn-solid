@@ -1,8 +1,8 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
-import { Accordion as AccordionPrimitive } from "@kobalte/core/accordion"
+import { omit } from "solid-js"
+import { Accordion as AccordionPrimitive } from "@opencenter-cloud/kobalte-core/accordion"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type AccordionProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof AccordionPrimitive<T>
@@ -20,7 +20,7 @@ export type AccordionItemProps<T extends ValidComponent = "div"> =
 export const AccordionItem = <T extends ValidComponent = "div">(
   props: AccordionItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as AccordionItemProps, ["class"])
+  const rest = omit(props as AccordionItemProps, "class")
 
   return (
     <AccordionPrimitive.Item
@@ -37,10 +37,7 @@ export type AccordionTriggerProps<T extends ValidComponent = "button"> =
 export const AccordionTrigger = <T extends ValidComponent = "button">(
   props: AccordionTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as AccordionTriggerProps, [
-    "class",
-    "children",
-  ])
+  const rest = omit(props as AccordionTriggerProps, "class", "children")
 
   return (
     <AccordionPrimitive.Header class="flex">
@@ -78,10 +75,7 @@ export type AccordionContentProps<T extends ValidComponent = "div"> =
 export const AccordionContent = <T extends ValidComponent = "div">(
   props: AccordionContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as AccordionContentProps, [
-    "class",
-    "children",
-  ])
+  const rest = omit(props as AccordionContentProps, "class", "children")
 
   return (
     <AccordionPrimitive.Content

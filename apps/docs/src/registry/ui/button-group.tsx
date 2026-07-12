@@ -1,15 +1,15 @@
-import type { ValidComponent } from "solid-js"
-import { mergeProps, splitProps, type ComponentProps } from "solid-js"
+import { merge, omit } from "solid-js"
 import {
   Polymorphic,
   type ElementOf,
   type PolymorphicProps,
-} from "@kobalte/core"
+} from "@opencenter-cloud/kobalte-core"
 import type { VariantProps } from "cva"
 
 import { cva, cx } from "@/registry/lib/cva"
 
 import { Separator, type SeparatorProps } from "./separator"
+import type { ValidComponent, ComponentProps } from "@solidjs/web";
 
 export const buttonGroupVariants = cva({
   base: [
@@ -32,7 +32,7 @@ export type ButtonGroupProps = ComponentProps<"div"> &
   VariantProps<typeof buttonGroupVariants>
 
 export const ButtonGroup = (props: ButtonGroupProps) => {
-  const [, rest] = splitProps(props, ["class", "orientation"])
+  const rest = omit(props, "class", "orientation")
 
   return (
     <div
@@ -55,15 +55,15 @@ export type ButtonTextProps<T extends ValidComponent = "div"> = Partial<
 export const ButtonText = <T extends ValidComponent = "div">(
   props: PolymorphicProps<T, ButtonTextProps<T>>,
 ) => {
-  const merge = mergeProps({ as: "div" }, props)
-  const [, rest] = splitProps(merge, ["as", "class"])
+  const mergedProps = merge({ as: "div" }, props)
+  const rest = omit(mergedProps, "as", "class")
 
   return (
     <Polymorphic
-      as={merge.as}
+      as={mergedProps.as}
       class={cx(
         "bg-muted flex items-center gap-2 rounded-md border px-4 text-sm font-medium shadow-xs [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4",
-        merge.class,
+        mergedProps.class,
       )}
       {...rest}
     />
@@ -76,7 +76,7 @@ export type ButtonSeparatorProps<T extends ValidComponent = "hr"> =
 export const ButtonSeparator = <T extends ValidComponent = "hr">(
   props: ButtonSeparatorProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ButtonSeparatorProps, ["class"])
+  const rest = omit(props as ButtonSeparatorProps, "class")
 
   return (
     <Separator

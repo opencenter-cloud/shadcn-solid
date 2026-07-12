@@ -1,8 +1,8 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
-import { Root as SeparatorPrimitive } from "@kobalte/core/separator"
+import { omit } from "solid-js"
+import { Root as SeparatorPrimitive } from "@opencenter-cloud/kobalte-core/separator"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type SeparatorProps<T extends ValidComponent = "hr"> = ComponentProps<
   typeof SeparatorPrimitive<T>
@@ -11,7 +11,7 @@ export type SeparatorProps<T extends ValidComponent = "hr"> = ComponentProps<
 export const Separator = <T extends ValidComponent = "hr">(
   props: SeparatorProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SeparatorProps, ["class"])
+  const rest = omit(props as SeparatorProps, "class")
 
   return (
     <SeparatorPrimitive

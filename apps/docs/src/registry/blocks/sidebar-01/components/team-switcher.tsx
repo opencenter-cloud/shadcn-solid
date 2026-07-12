@@ -1,5 +1,5 @@
 import { For, createSignal, type Accessor, type JSX } from "solid-js"
-import type { DropdownMenuTriggerProps } from "@kobalte/core/dropdown-menu"
+import type { DropdownMenuTriggerProps } from "@opencenter-cloud/kobalte-core/dropdown-menu"
 
 import {
   DropdownMenu,

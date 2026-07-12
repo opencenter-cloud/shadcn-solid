@@ -15,7 +15,7 @@ import {
   type Column,
   type ColumnDef,
 } from "@tanstack/solid-table"
-import type { DropdownMenuTriggerProps } from "@kobalte/core/dropdown-menu"
+import type { DropdownMenuTriggerProps } from "@opencenter-cloud/kobalte-core/dropdown-menu"
 
 import { Badge } from "@/registry/ui/badge"
 import { Button } from "@/registry/ui/button"

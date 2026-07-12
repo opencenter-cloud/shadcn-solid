@@ -1,8 +1,9 @@
 import type { VoidProps } from "solid-js"
-import { splitProps, type ComponentProps, type ValidComponent } from "solid-js"
-import { RadioGroup as RadioGroupPrimitive } from "@kobalte/core/radio-group"
+import { omit } from "solid-js"
+import { RadioGroup as RadioGroupPrimitive } from "@opencenter-cloud/kobalte-core/radio-group"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type RadioGroupProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof RadioGroupPrimitive<T>
@@ -11,7 +12,7 @@ export type RadioGroupProps<T extends ValidComponent = "div"> = ComponentProps<
 export const RadioGroup = <T extends ValidComponent = "div">(
   props: RadioGroupProps<T>,
 ) => {
-  const [, rest] = splitProps(props as RadioGroupProps, ["class"])
+  const rest = omit(props as RadioGroupProps, "class")
 
   return (
     <RadioGroupPrimitive
@@ -25,7 +26,7 @@ export const RadioGroup = <T extends ValidComponent = "div">(
 export type RadioGroupItemsProps = ComponentProps<"div">
 
 export const RadioGroupItems = (props: RadioGroupItemsProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -43,7 +44,7 @@ export type RadioGroupItemInputProps<T extends ValidComponent = "input"> =
 export const RadioGroupItemInput = <T extends ValidComponent = "input">(
   props: RadioGroupItemInputProps<T>,
 ) => {
-  const [, rest] = splitProps(props as RadioGroupItemInputProps, ["class"])
+  const rest = omit(props as RadioGroupItemInputProps, "class")
 
   return (
     <RadioGroupPrimitive.ItemInput
@@ -60,10 +61,7 @@ export type RadioGroupItemProps<T extends ValidComponent = "div"> =
 export const RadioGroupItem = <T extends ValidComponent = "div">(
   props: RadioGroupItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as RadioGroupItemProps, [
-    "class",
-    "children",
-  ])
+  const rest = omit(props as RadioGroupItemProps, "class", "children")
 
   return (
     <RadioGroupPrimitive.Item
@@ -82,7 +80,7 @@ export type RadioGroupItemControlProps<T extends ValidComponent = "div"> =
 export const RadioGroupItemControl = <T extends ValidComponent = "div">(
   props: RadioGroupItemControlProps<T>,
 ) => {
-  const [, rest] = splitProps(props as RadioGroupItemControlProps, ["class"])
+  const rest = omit(props as RadioGroupItemControlProps, "class")
 
   return (
     <RadioGroupPrimitive.ItemControl
@@ -104,7 +102,7 @@ export type RadioGroupItemIndicatorProps<T extends ValidComponent = "div"> =
 export const RadioGroupItemIndicator = <T extends ValidComponent = "div">(
   props: RadioGroupItemIndicatorProps<T>,
 ) => {
-  const [, rest] = splitProps(props as RadioGroupItemIndicatorProps, ["class"])
+  const rest = omit(props as RadioGroupItemIndicatorProps, "class")
 
   return (
     <RadioGroupPrimitive.ItemIndicator
@@ -122,7 +120,7 @@ export type RadioGroupLabelProps<T extends ValidComponent = "span"> =
 export const RadioGroupLabel = <T extends ValidComponent = "span">(
   props: RadioGroupLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as RadioGroupLabelProps, ["class"])
+  const rest = omit(props as RadioGroupLabelProps, "class")
 
   return (
     <RadioGroupPrimitive.Label
@@ -140,7 +138,7 @@ export type RadioGroupItemLabelProps<T extends ValidComponent = "span"> =
 export const RadioGroupItemLabel = <T extends ValidComponent = "span">(
   props: RadioGroupItemLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as RadioGroupItemLabelProps, ["class"])
+  const rest = omit(props as RadioGroupItemLabelProps, "class")
 
   return (
     <RadioGroupPrimitive.ItemLabel
@@ -161,7 +159,7 @@ export type RadioGroupDescriptionProps<T extends ValidComponent = "span"> =
 export const RadioGroupDescription = <T extends ValidComponent = "span">(
   props: RadioGroupDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as RadioGroupDescriptionProps, ["class"])
+  const rest = omit(props as RadioGroupDescriptionProps, "class")
 
   return (
     <RadioGroupPrimitive.Description
@@ -179,7 +177,7 @@ export type RadioGroupErrorMessageProps<T extends ValidComponent = "span"> =
 export const RadioGroupErrorMessage = <T extends ValidComponent = "span">(
   props: RadioGroupErrorMessageProps<T>,
 ) => {
-  const [, rest] = splitProps(props as RadioGroupErrorMessageProps, ["class"])
+  const rest = omit(props as RadioGroupErrorMessageProps, "class")
 
   return (
     <RadioGroupPrimitive.ErrorMessage

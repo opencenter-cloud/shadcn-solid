@@ -1,7 +1,7 @@
-import type { ComponentProps } from "solid-js"
-import { For, Show, mergeProps } from "solid-js"
+import { For, Show, merge } from "solid-js"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps } from "@solidjs/web";
 
 type Props = {
   label: string
@@ -18,25 +18,25 @@ type Props = {
 } & ComponentProps<"div">
 
 const TooltipDemo = (props: Props) => {
-  const merge = mergeProps({ indicator: "dot" } satisfies Partial<Props>, props)
+  const mergedProps = merge({ indicator: "dot" } satisfies Partial<Props>, props)
 
   const tooltipLabel = () =>
-    merge.hideLabel ? null : <div class="font-medium">{merge.label}</div>
+    mergedProps.hideLabel ? null : <div class="font-medium">{mergedProps.label}</div>
 
   const nestLabel = () =>
-    merge.payload.length === 1 && merge.indicator !== "dot"
+    mergedProps.payload.length === 1 && mergedProps.indicator !== "dot"
 
   return (
-    <Show when={merge.payload.length}>
+    <Show when={mergedProps.payload.length}>
       <div
         class={cx(
           "border-border/50 bg-background grid min-w-32 items-start gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs shadow-xl transition-all ease-in-out hover:-translate-y-0.5",
-          merge.class,
+          mergedProps.class,
         )}
       >
         <Show when={!nestLabel()}>{tooltipLabel()}</Show>
         <div class="grid gap-1.5">
-          <For each={merge.payload}>
+          <For each={mergedProps.payload}>
             {(item) => {
               const indicatorColor = item.fill
 
@@ -44,19 +44,19 @@ const TooltipDemo = (props: Props) => {
                 <div
                   class={cx(
                     "[&>svg]:text-muted-foreground flex w-full items-stretch gap-2 [&>svg]:h-2.5 [&>svg]:w-2.5",
-                    merge.indicator === "dot" && "items-center",
+                    mergedProps.indicator === "dot" && "items-center",
                   )}
                 >
-                  <Show when={!merge.hideIndicator}>
+                  <Show when={!mergedProps.hideIndicator}>
                     <div
                       class={cx(
                         "shrink-0 rounded-[2px] border-(--color-border) bg-(--color-bg)",
                         {
-                          "h-2.5 w-2.5": merge.indicator === "dot",
-                          "w-1": merge.indicator === "line",
+                          "h-2.5 w-2.5": mergedProps.indicator === "dot",
+                          "w-1": mergedProps.indicator === "line",
                           "w-0 border-[1.5px] border-dashed bg-transparent":
-                            merge.indicator === "dashed",
-                          "my-0.5": nestLabel() && merge.indicator === "dashed",
+                            mergedProps.indicator === "dashed",
+                          "my-0.5": nestLabel() && mergedProps.indicator === "dashed",
                         },
                       )}
                       style={{

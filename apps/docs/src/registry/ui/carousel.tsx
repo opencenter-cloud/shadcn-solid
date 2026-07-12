@@ -1,21 +1,18 @@
 import type {
   Accessor,
-  ComponentProps,
   Setter,
-  ValidComponent,
   VoidProps,
 } from "solid-js"
 import {
   createContext,
   createEffect,
-  mergeProps,
-  onCleanup,
-  onMount,
-  splitProps,
+  merge,
+  onSettled,
+  omit,
   useContext,
 } from "solid-js"
-import { createStore } from "solid-js/store"
-import type { PolymorphicProps } from "@kobalte/core/polymorphic"
+import { createStore } from "solid-js"
+import type { PolymorphicProps } from "@opencenter-cloud/kobalte-core/polymorphic"
 import type { CreateEmblaCarouselType } from "embla-carousel-solid"
 import createEmblaCarousel from "embla-carousel-solid"
 
@@ -23,6 +20,7 @@ import { cx } from "@/registry/lib/cva"
 
 import type { ButtonProps } from "./button"
 import { Button } from "./button"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 type CarouselAPI = CreateEmblaCarouselType[1]
 type CreateCarouselParameters = Parameters<typeof createEmblaCarousel>
@@ -60,27 +58,20 @@ const useCarousel = () => {
 }
 
 export const Carousel = (props: CarouselProps) => {
-  const merge = mergeProps<CarouselProps[]>(
+  const mergedProps = merge<CarouselProps[]>(
     {
       orientation: "horizontal",
     },
     props,
   )
-  const [, rest] = splitProps(merge, [
-    "orientation",
-    "options",
-    "setAPI",
-    "plugins",
-    "class",
-    "children",
-  ])
+  const rest = omit(mergedProps, "orientation", "options", "setAPI", "plugins", "class", "children")
 
   const [ref, api] = createEmblaCarousel(
     () => ({
       ...merge.options?.(),
-      axis: merge.orientation === "horizontal" ? "x" : "y",
+      axis: mergedProps.orientation === "horizontal" ? "x" : "y",
     }),
-    () => merge.plugins?.() ?? [],
+    () => mergedProps.plugins?.() ?? [],
   )
 
   const [store, setStore] = createStore({
@@ -114,66 +105,69 @@ export const Carousel = (props: CarouselProps) => {
     }
   }
 
-  onMount(() => {
-    if (!api() || !merge.setAPI) return
+  onSettled(() => {
+    if (!api() || !mergedProps.setAPI) return
     // @ts-expect-error - api should be defined
-    merge.setAPI(api)
+    mergedProps.setAPI(api)
   })
 
-  createEffect(() => {
-    if (!api()) return
-    onSelect(api)
-    api()!.on("reInit", (api) => {
-      onSelect(() => api)
-    })
-    api()!.on("select", (api) => {
-      onSelect(() => api)
-    })
-
-    onCleanup(() => {
-      api()!.off("select", (api) => {
+  createEffect(
+    () => api(),
+    (currentApi) => {
+      if (!currentApi) return
+      onSelect(() => currentApi)
+      currentApi.on("reInit", (api) => {
         onSelect(() => api)
       })
-    })
-  })
+      currentApi.on("select", (api) => {
+        onSelect(() => api)
+      })
+
+      return () => {
+        currentApi.off("select", (api) => {
+          onSelect(() => api)
+        })
+      }
+    }
+  )
 
   const value: CarouselContextProps = {
     ref,
     api,
     canScrollPrev: () => store.canScrollPrev,
     get options() {
-      return merge.options
+      return mergedProps.options
     },
     canScrollNext: () => store.canScrollNext,
     get orientation() {
       return (
-        merge.orientation ??
-        (merge.options?.().axis === "y" ? "vertical" : "horizontal")
+        mergedProps.orientation ??
+        (mergedProps.options?.().axis === "y" ? "vertical" : "horizontal")
       )
     },
     get plugins() {
-      return merge.plugins
+      return mergedProps.plugins
     },
     scrollNext,
     scrollPrev,
     get setAPI() {
-      return merge.setAPI
+      return mergedProps.setAPI
     },
   }
 
   return (
-    <CarouselContext.Provider value={value}>
+    <CarouselContext value={value}>
       <div
         onKeyDown={handleKeyDown}
-        class={cx("relative", merge.class)}
+        class={cx("relative", mergedProps.class)}
         role="region"
         aria-roledescription="carousel"
         data-slot="carousel"
         {...rest}
       >
-        {merge.children}
+        {mergedProps.children}
       </div>
-    </CarouselContext.Provider>
+    </CarouselContext>
   )
 }
 
@@ -181,7 +175,7 @@ export type CarouselContentProps = ComponentProps<"div">
 
 export const CarouselContent = (props: CarouselContentProps) => {
   const { ref, orientation } = useCarousel()
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div ref={ref} class="overflow-hidden" data-slot="carousel-content">
@@ -201,7 +195,7 @@ export type CarouselItemProps = ComponentProps<"div">
 
 export const CarouselItem = (props: CarouselItemProps) => {
   const { orientation } = useCarousel()
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -226,26 +220,26 @@ export const CarouselNext = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, CarouselNextProps<T>>,
 ) => {
   const { orientation, scrollNext, canScrollNext } = useCarousel()
-  const merge = mergeProps<CarouselNextProps[]>(
+  const mergedProps = merge<CarouselNextProps[]>(
     {
       variant: "outline",
       size: "icon",
     },
     props as CarouselNextProps,
   )
-  const [, rest] = splitProps(merge, ["class", "variant", "size"])
+  const rest = omit(mergedProps, "class", "variant", "size")
 
   return (
     <Button
       data-slot="carousel-next"
-      variant={merge.variant}
-      size={merge.size}
+      variant={mergedProps.variant}
+      size={mergedProps.size}
       class={cx(
         "absolute size-8 rounded-full",
         orientation === "horizontal"
           ? "top-1/2 -right-12 -translate-y-1/2"
           : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
-        merge.class,
+        mergedProps.class,
       )}
       disabled={!canScrollNext()}
       onClick={scrollNext}
@@ -276,26 +270,26 @@ export const CarouselPrevious = <T extends ValidComponent = "button">(
   props: PolymorphicProps<T, CarouselPreviousProps<T>>,
 ) => {
   const { orientation, scrollPrev, canScrollPrev } = useCarousel()
-  const merge = mergeProps<CarouselPreviousProps[]>(
+  const mergedProps = merge<CarouselPreviousProps[]>(
     {
       variant: "outline",
       size: "icon",
     },
     props as CarouselPreviousProps,
   )
-  const [, rest] = splitProps(merge, ["class", "variant", "size"])
+  const rest = omit(mergedProps, "class", "variant", "size")
 
   return (
     <Button
       data-slot="carousel-previous"
-      variant={merge.variant}
-      size={merge.size}
+      variant={mergedProps.variant}
+      size={mergedProps.size}
       class={cx(
         "absolute size-8 rounded-full",
         orientation === "horizontal"
           ? "top-1/2 -left-12 -translate-y-1/2"
           : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
-        merge.class,
+        mergedProps.class,
       )}
       disabled={!canScrollPrev()}
       onClick={scrollPrev}

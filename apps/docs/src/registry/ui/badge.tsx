@@ -1,9 +1,9 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
-import { Badge as BadgePrimitive } from "@kobalte/core/badge"
+import { omit } from "solid-js"
+import { Badge as BadgePrimitive } from "@opencenter-cloud/kobalte-core/badge"
 import type { VariantProps } from "cva"
 
 import { cva } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const badgeVariants = cva({
   base: "inline-flex items-center justify-center rounded-md border px-2 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive transition-[color,box-shadow] overflow-hidden",
@@ -32,7 +32,7 @@ export type BadgeProps<T extends ValidComponent = "span"> = ComponentProps<
 export const Badge = <T extends ValidComponent = "span">(
   props: BadgeProps<T>,
 ) => {
-  const [, rest] = splitProps(props as BadgeProps, ["class", "variant"])
+  const rest = omit(props as BadgeProps, "class", "variant")
 
   return (
     <BadgePrimitive

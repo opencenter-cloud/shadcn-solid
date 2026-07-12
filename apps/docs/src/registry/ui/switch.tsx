@@ -1,7 +1,8 @@
-import { splitProps, type ComponentProps, type ValidComponent } from "solid-js"
-import { Switch as SwitchPrimitive } from "@kobalte/core/switch"
+import { omit } from "solid-js"
+import { Switch as SwitchPrimitive } from "@opencenter-cloud/kobalte-core/switch"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type SwitchProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof SwitchPrimitive<T>
@@ -19,7 +20,7 @@ export type SwitchControlProps<T extends ValidComponent = "div"> =
 export const SwitchControl = <T extends ValidComponent = "div">(
   props: SwitchControlProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SwitchControlProps, ["class"])
+  const rest = omit(props as SwitchControlProps, "class")
 
   return (
     <SwitchPrimitive.Control
@@ -43,7 +44,7 @@ export type SwitchThumbProps<T extends ValidComponent = "div"> = ComponentProps<
 export const SwitchThumb = <T extends ValidComponent = "div">(
   props: SwitchThumbProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SwitchThumbProps, ["class"])
+  const rest = omit(props as SwitchThumbProps, "class")
 
   return (
     <SwitchPrimitive.Thumb
@@ -64,7 +65,7 @@ export type SwitchInputProps<T extends ValidComponent = "input"> =
 export const SwitchInput = <T extends ValidComponent = "input">(
   props: SwitchInputProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SwitchInputProps, ["class"])
+  const rest = omit(props as SwitchInputProps, "class")
 
   return (
     <SwitchPrimitive.Input
@@ -81,7 +82,7 @@ export type SwitchLabelProps<T extends ValidComponent = "label"> =
 export const SwitchLabel = <T extends ValidComponent = "label">(
   props: SwitchLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SwitchLabelProps, ["class"])
+  const rest = omit(props as SwitchLabelProps, "class")
 
   return (
     <SwitchPrimitive.Label
@@ -103,7 +104,7 @@ export type SwitchErrorMessageProps<T extends ValidComponent = "div"> =
 export const SwitchErrorMessage = <T extends ValidComponent = "div">(
   props: SwitchErrorMessageProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SwitchErrorMessageProps, ["class"])
+  const rest = omit(props as SwitchErrorMessageProps, "class")
 
   return (
     <SwitchPrimitive.ErrorMessage
@@ -120,7 +121,7 @@ export type SwitchDescriptionProps<T extends ValidComponent = "div"> =
 export const SwitchDescription = <T extends ValidComponent = "div">(
   props: SwitchDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SwitchDescriptionProps, ["class"])
+  const rest = omit(props as SwitchDescriptionProps, "class")
 
   return (
     <SwitchPrimitive.Description

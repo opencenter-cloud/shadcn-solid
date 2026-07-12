@@ -1,8 +1,9 @@
 import type { VoidProps } from "solid-js"
-import { splitProps, type ComponentProps, type ValidComponent } from "solid-js"
-import { Breadcrumbs as BreadcrumbsPrimitive } from "@kobalte/core/breadcrumbs"
+import { omit } from "solid-js"
+import { Breadcrumbs as BreadcrumbsPrimitive } from "@opencenter-cloud/kobalte-core/breadcrumbs"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type BreadcrumbsProps<T extends ValidComponent = "nav"> = ComponentProps<
   typeof BreadcrumbsPrimitive<T>
@@ -38,7 +39,7 @@ export const Breadcrumbs = <T extends ValidComponent = "nav">(
 export type BreadcrumbListProps = ComponentProps<"ol">
 
 export const BreadcrumbList = (props: BreadcrumbListProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <ol
@@ -55,7 +56,7 @@ export const BreadcrumbList = (props: BreadcrumbListProps) => {
 export type BreadcrumbsItemProps = ComponentProps<"li">
 
 export const BreadcrumbsItem = (props: BreadcrumbsItemProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <li
@@ -72,7 +73,7 @@ export type BreadcrumbsLinkProps<T extends ValidComponent = "a"> =
 export const BreadcrumbsLink = <T extends ValidComponent = "a">(
   props: BreadcrumbsLinkProps<T>,
 ) => {
-  const [, rest] = splitProps(props as BreadcrumbsLinkProps, ["class"])
+  const rest = omit(props as BreadcrumbsLinkProps, "class")
 
   return (
     <BreadcrumbsPrimitive.Link
@@ -92,7 +93,7 @@ export type BreadcrumbsSeparatorProps<T extends ValidComponent = "span"> =
 export const BreadcrumbsSeparator = <T extends ValidComponent = "span">(
   props: BreadcrumbsSeparatorProps<T>,
 ) => {
-  const [, rest] = splitProps(props as BreadcrumbsSeparatorProps, ["class"])
+  const rest = omit(props as BreadcrumbsSeparatorProps, "class")
 
   return (
     <BreadcrumbsPrimitive.Separator
@@ -106,7 +107,7 @@ export const BreadcrumbsSeparator = <T extends ValidComponent = "span">(
 export type BreadcrumbsEllipsisProps = VoidProps<ComponentProps<"span">>
 
 export const BreadcrumbsEllipsis = (props: BreadcrumbsEllipsisProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <span

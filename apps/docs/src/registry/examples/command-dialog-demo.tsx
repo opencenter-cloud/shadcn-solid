@@ -1,5 +1,5 @@
 import type { Accessor, JSX } from "solid-js"
-import { For, Show, createEffect, createSignal, onCleanup } from "solid-js"
+import { For, Show, createSignal, onCleanup } from "solid-js"
 
 import {
   CommandDialog,
@@ -178,12 +178,9 @@ const CommandDialogDemo = () => {
     }
   }
 
-  createEffect(() => {
-    document.addEventListener("keydown", down)
-
-    onCleanup(() => {
-      document.removeEventListener("keydown", down)
-    })
+  document.addEventListener("keydown", down)
+  onCleanup(() => {
+    document.removeEventListener("keydown", down)
   })
 
   return (

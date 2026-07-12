@@ -1,15 +1,15 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { mergeProps, splitProps } from "solid-js"
-import { DropdownMenu as DropdownMenuPrimitive } from "@kobalte/core/dropdown-menu"
+import { merge, omit } from "solid-js"
+import { DropdownMenu as DropdownMenuPrimitive } from "@opencenter-cloud/kobalte-core/dropdown-menu"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const DropdownMenuPortal = DropdownMenuPrimitive.Portal
 
 export type DropdownMenuProps = ComponentProps<typeof DropdownMenuPrimitive>
 
 export const DropdownMenu = (props: DropdownMenuProps) => {
-  const merge = mergeProps<DropdownMenuProps[]>(
+  const mergedProps = merge<DropdownMenuProps[]>(
     {
       gutter: 4,
     },
@@ -74,11 +74,7 @@ export type DropdownMenuSubTriggerProps<T extends ValidComponent = "div"> =
 export const DropdownMenuSubTrigger = <T extends ValidComponent = "div">(
   props: DropdownMenuSubTriggerProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DropdownMenuSubTriggerProps, [
-    "class",
-    "children",
-    "inset",
-  ])
+  const rest = omit(props as DropdownMenuSubTriggerProps, "class", "children", "inset")
 
   return (
     <DropdownMenuPrimitive.SubTrigger
@@ -115,7 +111,7 @@ export type DropdownMenuSubContentProps<T extends ValidComponent = "div"> =
 export const DropdownMenuSubContent = <T extends ValidComponent = "div">(
   props: DropdownMenuSubContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DropdownMenuSubContentProps, ["class"])
+  const rest = omit(props as DropdownMenuSubContentProps, "class")
 
   return (
     <DropdownMenuPrimitive.SubContent
@@ -136,7 +132,7 @@ export type DropdownMenuContentProps<T extends ValidComponent = "div"> =
 export const DropdownMenuContent = <T extends ValidComponent = "div">(
   props: DropdownMenuContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DropdownMenuContentProps, ["class"])
+  const rest = omit(props as DropdownMenuContentProps, "class")
 
   return (
     <DropdownMenuPrimitive.Content
@@ -160,11 +156,7 @@ export type DropdownMenuItemProps<T extends ValidComponent = "div"> =
 export const DropdownMenuItem = <T extends ValidComponent = "div">(
   props: DropdownMenuItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DropdownMenuItemProps, [
-    "class",
-    "inset",
-    "variant",
-  ])
+  const rest = omit(props as DropdownMenuItemProps, "class", "inset", "variant")
 
   return (
     <DropdownMenuPrimitive.Item
@@ -186,10 +178,7 @@ export type DropdownMenuCheckboxItemProps<T extends ValidComponent = "div"> =
 export const DropdownMenuCheckboxItem = <T extends ValidComponent = "div">(
   props: DropdownMenuCheckboxItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DropdownMenuCheckboxItemProps, [
-    "class",
-    "children",
-  ])
+  const rest = omit(props as DropdownMenuCheckboxItemProps, "class", "children")
 
   return (
     <DropdownMenuPrimitive.CheckboxItem
@@ -228,10 +217,7 @@ export type DropdownMenuRadioItemProps<T extends ValidComponent = "div"> =
 export const DropdownMenuRadioItem = <T extends ValidComponent = "div">(
   props: DropdownMenuRadioItemProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DropdownMenuRadioItemProps, [
-    "class",
-    "children",
-  ])
+  const rest = omit(props as DropdownMenuRadioItemProps, "class", "children")
 
   return (
     <DropdownMenuPrimitive.RadioItem
@@ -274,10 +260,7 @@ export type DropdownMenuGroupLabelProps<T extends ValidComponent = "span"> =
 export const DropdownMenuGroupLabel = <T extends ValidComponent = "span">(
   props: DropdownMenuGroupLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DropdownMenuGroupLabelProps, [
-    "class",
-    "inset",
-  ])
+  const rest = omit(props as DropdownMenuGroupLabelProps, "class", "inset")
 
   return (
     <DropdownMenuPrimitive.GroupLabel
@@ -301,10 +284,7 @@ export type DropdownMenuItemLabelProps<T extends ValidComponent = "div"> =
 export const DropdownMenuItemLabel = <T extends ValidComponent = "div">(
   props: DropdownMenuItemLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DropdownMenuItemLabelProps, [
-    "class",
-    "inset",
-  ])
+  const rest = omit(props as DropdownMenuItemLabelProps, "class", "inset")
 
   return (
     <DropdownMenuPrimitive.ItemLabel
@@ -325,7 +305,7 @@ export type DropdownMenuSeparatorProps<T extends ValidComponent = "hr"> =
 export const DropdownMenuSeparator = <T extends ValidComponent = "hr">(
   props: DropdownMenuSeparatorProps<T>,
 ) => {
-  const [, rest] = splitProps(props as DropdownMenuSeparatorProps, ["class"])
+  const rest = omit(props as DropdownMenuSeparatorProps, "class")
 
   return (
     <DropdownMenuPrimitive.Separator
@@ -339,7 +319,7 @@ export const DropdownMenuSeparator = <T extends ValidComponent = "hr">(
 export type DropdownMenuShortcutProps = ComponentProps<"span">
 
 export const DropdownMenuShortcut = (props: DropdownMenuShortcutProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <span

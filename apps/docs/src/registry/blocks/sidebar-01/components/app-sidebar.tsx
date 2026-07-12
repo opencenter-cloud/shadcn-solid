@@ -1,5 +1,3 @@
-import type { ComponentProps } from "solid-js"
-
 import {
   Sidebar,
   SidebarContent,
@@ -12,6 +10,7 @@ import NavMain from "./nav-main"
 import NavProjects from "./nav-projects"
 import NavUser from "./nav-user"
 import TeamSwitcher from "./team-switcher"
+import type { ComponentProps } from "@solidjs/web";
 
 // This is sample data.
 const data = {

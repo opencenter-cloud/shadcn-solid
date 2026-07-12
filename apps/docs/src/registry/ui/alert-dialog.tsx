@@ -1,10 +1,10 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { splitProps } from "solid-js"
-import { AlertDialog as AlertDialogPrimitive } from "@kobalte/core/alert-dialog"
+import { omit } from "solid-js"
+import { AlertDialog as AlertDialogPrimitive } from "@opencenter-cloud/kobalte-core/alert-dialog"
 
 import { cx } from "@/registry/lib/cva"
 
 import { buttonVariants } from "./button"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export const AlertDialogPortal = AlertDialogPrimitive.Portal
 
@@ -31,7 +31,7 @@ export type AlertDialogOverlayProps<T extends ValidComponent = "div"> =
 export const AlertDialogOverlay = <T extends ValidComponent = "div">(
   props: AlertDialogOverlayProps<T>,
 ) => {
-  const [, rest] = splitProps(props as AlertDialogOverlayProps, ["class"])
+  const rest = omit(props as AlertDialogOverlayProps, "class")
 
   return (
     <AlertDialogPrimitive.Overlay
@@ -51,7 +51,7 @@ export type AlertDialogContentProps<T extends ValidComponent = "div"> =
 export const AlertDialogContent = <T extends ValidComponent = "div">(
   props: AlertDialogContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as AlertDialogContentProps, ["class"])
+  const rest = omit(props as AlertDialogContentProps, "class")
 
   return (
     <>
@@ -71,7 +71,7 @@ export const AlertDialogContent = <T extends ValidComponent = "div">(
 export type AlertDialogHeaderProps = ComponentProps<"div">
 
 export const AlertDialogHeader = (props: AlertDialogHeaderProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -85,7 +85,7 @@ export const AlertDialogHeader = (props: AlertDialogHeaderProps) => {
 export type AlertDialogFooterProps = ComponentProps<"div">
 
 export const AlertDialogFooter = (props: AlertDialogFooterProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -105,7 +105,7 @@ export type AlertDialogTitleProps<T extends ValidComponent = "h2"> =
 export const AlertDialogTitle = <T extends ValidComponent = "h2">(
   props: AlertDialogTitleProps<T>,
 ) => {
-  const [, rest] = splitProps(props as AlertDialogTitleProps, ["class"])
+  const rest = omit(props as AlertDialogTitleProps, "class")
 
   return (
     <AlertDialogPrimitive.Title
@@ -122,7 +122,7 @@ export type AlertDialogDescriptionProps<T extends ValidComponent = "p"> =
 export const AlertDialogDescription = <T extends ValidComponent = "p">(
   props: AlertDialogDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as AlertDialogDescriptionProps, ["class"])
+  const rest = omit(props as AlertDialogDescriptionProps, "class")
 
   return (
     <AlertDialogPrimitive.Description
@@ -139,7 +139,7 @@ export type AlertDialogActionProps<T extends ValidComponent = "button"> =
 export const AlertDialogAction = <T extends ValidComponent = "button">(
   props: AlertDialogActionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as AlertDialogActionProps, ["class"])
+  const rest = omit(props as AlertDialogActionProps, "class")
 
   return (
     <AlertDialogPrimitive.CloseButton
@@ -157,7 +157,7 @@ export type AlertDialogCancelProps<T extends ValidComponent = "button"> =
 export const AlertDialogCancel = <T extends ValidComponent = "button">(
   props: AlertDialogCancelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as AlertDialogCancelProps, ["class"])
+  const rest = omit(props as AlertDialogCancelProps, "class")
 
   return (
     <AlertDialogPrimitive.CloseButton

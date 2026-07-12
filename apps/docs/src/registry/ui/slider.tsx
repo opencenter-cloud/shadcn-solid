@@ -1,8 +1,9 @@
 import type { VoidProps } from "solid-js"
-import { splitProps, type ComponentProps, type ValidComponent } from "solid-js"
-import { Slider as SliderPrimitive } from "@kobalte/core/slider"
+import { omit } from "solid-js"
+import { Slider as SliderPrimitive } from "@opencenter-cloud/kobalte-core/slider"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type SliderProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof SliderPrimitive<T>
@@ -11,7 +12,7 @@ export type SliderProps<T extends ValidComponent = "div"> = ComponentProps<
 export const Slider = <T extends ValidComponent = "div">(
   props: SliderProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SliderProps, ["class"])
+  const rest = omit(props as SliderProps, "class")
 
   return (
     <SliderPrimitive
@@ -32,7 +33,7 @@ export type SliderTrackProps<T extends ValidComponent = "div"> = ComponentProps<
 export const SliderTrack = <T extends ValidComponent = "div">(
   props: SliderTrackProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SliderTrackProps, ["class"])
+  const rest = omit(props as SliderTrackProps, "class")
 
   return (
     <SliderPrimitive.Track
@@ -53,7 +54,7 @@ export type SliderFillProps<T extends ValidComponent = "div"> = VoidProps<
 export const SliderFill = <T extends ValidComponent = "div">(
   props: SliderFillProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SliderFillProps, ["class"])
+  const rest = omit(props as SliderFillProps, "class")
 
   return (
     <SliderPrimitive.Fill
@@ -74,7 +75,7 @@ export type SliderThumbProps<T extends ValidComponent = "span"> = VoidProps<
 export const SliderThumb = <T extends ValidComponent = "span">(
   props: SliderThumbProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SliderThumbProps, ["class"])
+  const rest = omit(props as SliderThumbProps, "class")
 
   return (
     <SliderPrimitive.Thumb
@@ -93,7 +94,7 @@ export const SliderThumb = <T extends ValidComponent = "span">(
 export type SliderGroupProps = ComponentProps<"div">
 
 export const SliderGroup = (props: SliderGroupProps) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div
@@ -110,7 +111,7 @@ export type SliderLabelProps<T extends ValidComponent = "label"> =
 export const SliderLabel = <T extends ValidComponent = "label">(
   props: SliderLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SliderLabelProps, ["class"])
+  const rest = omit(props as SliderLabelProps, "class")
 
   return (
     <SliderPrimitive.Label
@@ -127,7 +128,7 @@ export type SliderValueLabelProps<T extends ValidComponent = "div"> =
 export const SliderValueLabel = <T extends ValidComponent = "div">(
   props: SliderValueLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SliderValueLabelProps, ["class"])
+  const rest = omit(props as SliderValueLabelProps, "class")
 
   return (
     <SliderPrimitive.ValueLabel
@@ -144,7 +145,7 @@ export type SliderDescriptionProps<T extends ValidComponent = "div"> =
 export const SliderDescription = <T extends ValidComponent = "div">(
   props: SliderDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SliderDescriptionProps, ["class"])
+  const rest = omit(props as SliderDescriptionProps, "class")
 
   return (
     <SliderPrimitive.Description
@@ -161,7 +162,7 @@ export type SliderErrorMessageProps<T extends ValidComponent = "div"> =
 export const SliderErrorMessage = <T extends ValidComponent = "div">(
   props: SliderErrorMessageProps<T>,
 ) => {
-  const [, rest] = splitProps(props as SliderErrorMessageProps, ["class"])
+  const rest = omit(props as SliderErrorMessageProps, "class")
 
   return (
     <SliderPrimitive.ErrorMessage

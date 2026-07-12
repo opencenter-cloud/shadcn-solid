@@ -1,13 +1,12 @@
 import {
   Show,
-  mergeProps,
-  splitProps,
-  type ComponentProps,
-  type ValidComponent,
+  merge,
+  omit
 } from "solid-js"
-import ResizablePrimitive from "@corvu/resizable"
+import ResizablePrimitive from "@corvu-next/resizable"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type ResizableProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof ResizablePrimitive<T>
@@ -16,7 +15,7 @@ export type ResizableProps<T extends ValidComponent = "div"> = ComponentProps<
 export const Resizable = <T extends ValidComponent>(
   props: ResizableProps<T>,
 ) => {
-  const [, rest] = splitProps(props as ResizableProps, ["class"])
+  const rest = omit(props as ResizableProps, "class")
 
   return (
     <ResizablePrimitive
@@ -44,8 +43,8 @@ export type ResizableHandleProps<T extends ValidComponent = "div"> =
 export const ResizableHandle = <T extends ValidComponent>(
   props: ResizableHandleProps<T>,
 ) => {
-  const merge = mergeProps({ withHandle: false } as ResizableHandleProps, props)
-  const [, rest] = splitProps(merge, ["class", "withHandle"])
+  const mergedProps = merge({ withHandle: false } as ResizableHandleProps, props)
+  const rest = omit(mergedProps, "class", "withHandle")
 
   return (
     <ResizablePrimitive.Handle

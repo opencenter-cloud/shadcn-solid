@@ -1,8 +1,8 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { For, Match, Switch, splitProps } from "solid-js"
-import { TextField as TextFieldPrimitive } from "@kobalte/core/text-field"
+import { For, Match, Switch, omit } from "solid-js"
+import { TextField as TextFieldPrimitive } from "@opencenter-cloud/kobalte-core/text-field"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type TextFieldProps<T extends ValidComponent = "div"> = ComponentProps<
   typeof TextFieldPrimitive<T>
@@ -11,7 +11,7 @@ export type TextFieldProps<T extends ValidComponent = "div"> = ComponentProps<
 export const TextField = <T extends ValidComponent = "div">(
   props: TextFieldProps<T>,
 ) => {
-  const [, rest] = splitProps(props as TextFieldProps, ["class"])
+  const rest = omit(props as TextFieldProps, "class")
 
   return (
     <TextFieldPrimitive
@@ -28,7 +28,7 @@ export type TextFieldInputProps<T extends ValidComponent = "input"> =
 export const TextFieldInput = <T extends ValidComponent = "input">(
   props: TextFieldInputProps<T>,
 ) => {
-  const [, rest] = splitProps(props as TextFieldInputProps, ["class"])
+  const rest = omit(props as TextFieldInputProps, "class")
 
   return (
     <TextFieldPrimitive.Input
@@ -51,7 +51,7 @@ export type TextFieldTextAreaProps<T extends ValidComponent = "textarea"> =
 export const TextFieldTextArea = <T extends ValidComponent = "textarea">(
   props: TextFieldTextAreaProps<T>,
 ) => {
-  const [, rest] = splitProps(props as TextFieldTextAreaProps, ["class"])
+  const rest = omit(props as TextFieldTextAreaProps, "class")
 
   return (
     <TextFieldPrimitive.TextArea
@@ -73,7 +73,7 @@ export type TextFieldLabelProps<T extends ValidComponent = "label"> =
 export const TextFieldLabel = <T extends ValidComponent = "label">(
   props: TextFieldLabelProps<T>,
 ) => {
-  const [, rest] = splitProps(props as TextFieldLabelProps, ["class"])
+  const rest = omit(props as TextFieldLabelProps, "class")
 
   return (
     <TextFieldPrimitive.Label
@@ -97,11 +97,7 @@ export type TextFieldErrorMessageProps<T extends ValidComponent = "div"> =
 export const TextFieldErrorMessage = <T extends ValidComponent = "div">(
   props: TextFieldErrorMessageProps<T>,
 ) => {
-  const [, rest] = splitProps(props as TextFieldErrorMessageProps, [
-    "class",
-    "errors",
-    "children",
-  ])
+  const rest = omit(props as TextFieldErrorMessageProps, "class", "errors", "children")
 
   const uniqueErrors = () => [
     ...new Map(props.errors?.map((error) => [error?.message, error])).values(),
@@ -138,7 +134,7 @@ export type TextFieldDescriptionProps<T extends ValidComponent = "div"> =
 export const TextFieldDescription = <T extends ValidComponent = "div">(
   props: TextFieldDescriptionProps<T>,
 ) => {
-  const [, rest] = splitProps(props as TextFieldDescriptionProps, ["class"])
+  const rest = omit(props as TextFieldDescriptionProps, "class")
 
   return (
     <TextFieldPrimitive.Description

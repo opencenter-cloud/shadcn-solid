@@ -1,15 +1,15 @@
-import type { ComponentProps, ValidComponent } from "solid-js"
-import { mergeProps, splitProps } from "solid-js"
-import { Tooltip as TooltipPrimitive } from "@kobalte/core/tooltip"
+import { merge, omit } from "solid-js"
+import { Tooltip as TooltipPrimitive } from "@opencenter-cloud/kobalte-core/tooltip"
 
 import { cx } from "@/registry/lib/cva"
+import type { ComponentProps, ValidComponent } from "@solidjs/web";
 
 export type TooltipProps = ComponentProps<typeof TooltipPrimitive>
 
 export const TooltipPortal = TooltipPrimitive.Portal
 
 export const Tooltip = (props: TooltipProps) => {
-  const merge = mergeProps<TooltipProps[]>(
+  const mergedProps = merge<TooltipProps[]>(
     {
       closeDelay: 0,
       openDelay: 0,
@@ -36,10 +36,7 @@ export type TooltipContentProps<T extends ValidComponent = "button"> =
 export const TooltipContent = <T extends ValidComponent = "button">(
   props: TooltipContentProps<T>,
 ) => {
-  const [, rest] = splitProps(props as TooltipContentProps, [
-    "class",
-    "children",
-  ])
+  const rest = omit(props as TooltipContentProps, "class", "children")
 
   return (
     <TooltipPrimitive.Content
