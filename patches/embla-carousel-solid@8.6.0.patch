@@ -1,0 +1,149 @@
+diff --git a/cjs/embla-carousel-solid.cjs.js b/cjs/embla-carousel-solid.cjs.js
+index 1576736c122d97905c7b9325e0aad14573bc75ba..a9713ee555320d659f3d8bd457366abd521eca42 100644
+--- a/cjs/embla-carousel-solid.cjs.js
++++ b/cjs/embla-carousel-solid.cjs.js
+@@ -7,36 +7,43 @@ var solidJs = require('solid-js');
+ function createEmblaCarousel(options, plugins) {
+   let storedOptions = options ? options() : {};
+   let storedPlugins = plugins ? plugins() : [];
+-  const [emblaApi, setEmblaApi] = solidJs.createSignal();
++  const [emblaApi, setEmblaApi] = solidJs.createSignal(undefined, { ownedWrite: true });
+   const [viewport, setViewport] = solidJs.createSignal();
+   function reInit() {
+     const api = emblaApi();
+     if (api) api.reInit(storedOptions, storedPlugins);
+   }
+-  solidJs.createEffect(solidJs.on(viewport, viewport => {
+-    if (emblaCarouselReactiveUtils.canUseDOM() && viewport) {
+-      EmblaCarousel.globalOptions = createEmblaCarousel.globalOptions;
+-      const newEmblaApi = EmblaCarousel(viewport, storedOptions, storedPlugins);
+-      setEmblaApi(newEmblaApi);
+-      solidJs.onCleanup(() => newEmblaApi.destroy());
+-    } else {
+-      setEmblaApi(undefined);
++  solidJs.createEffect(
++    () => viewport(),
++    (viewport) => {
++      if (emblaCarouselReactiveUtils.canUseDOM() && viewport) {
++        EmblaCarousel.globalOptions = createEmblaCarousel.globalOptions;
++        const newEmblaApi = EmblaCarousel(viewport, storedOptions, storedPlugins);
++        setEmblaApi(newEmblaApi);
++        return () => newEmblaApi.destroy();
++      } else {
++        setEmblaApi(undefined);
++      }
+     }
+-  }));
+-  solidJs.createEffect(() => {
+-    if (!emblaCarouselReactiveUtils.canUseDOM()) return;
+-    const newOptions = options ? options() : {};
+-    if (emblaCarouselReactiveUtils.areOptionsEqual(storedOptions, newOptions)) return;
+-    storedOptions = newOptions;
+-    reInit();
+-  });
+-  solidJs.createEffect(() => {
+-    if (!emblaCarouselReactiveUtils.canUseDOM()) return;
+-    const newPlugins = plugins ? plugins() : [];
+-    if (emblaCarouselReactiveUtils.arePluginsEqual(storedPlugins, newPlugins)) return;
+-    storedPlugins = newPlugins;
+-    reInit();
+-  });
++  );
++  solidJs.createEffect(
++    () => options ? options() : {},
++    (newOptions) => {
++      if (!emblaCarouselReactiveUtils.canUseDOM()) return;
++      if (emblaCarouselReactiveUtils.areOptionsEqual(storedOptions, newOptions)) return;
++      storedOptions = newOptions;
++      reInit();
++    }
++  );
++  solidJs.createEffect(
++    () => plugins ? plugins() : [],
++    (newPlugins) => {
++      if (!emblaCarouselReactiveUtils.canUseDOM()) return;
++      if (emblaCarouselReactiveUtils.arePluginsEqual(storedPlugins, newPlugins)) return;
++      storedPlugins = newPlugins;
++      reInit();
++    }
++  );
+   return [setViewport, emblaApi];
+ }
+ createEmblaCarousel.globalOptions = undefined;
+diff --git a/esm/embla-carousel-solid.esm.js b/esm/embla-carousel-solid.esm.js
+index 4e8d7bd1176cadafb8de6cd6d8aa91fd3b328ee8..5f3fc241b98405e24717a5c71c1521cf48030caf 100644
+--- a/esm/embla-carousel-solid.esm.js
++++ b/esm/embla-carousel-solid.esm.js
+@@ -1,40 +1,47 @@
+ import EmblaCarousel from 'embla-carousel';
+ import { canUseDOM, areOptionsEqual, arePluginsEqual } from 'embla-carousel-reactive-utils';
+-import { createSignal, createEffect, on, onCleanup } from 'solid-js';
++import { createSignal, createEffect, onCleanup } from 'solid-js';
+ 
+ function createEmblaCarousel(options, plugins) {
+   let storedOptions = options ? options() : {};
+   let storedPlugins = plugins ? plugins() : [];
+-  const [emblaApi, setEmblaApi] = createSignal();
++  const [emblaApi, setEmblaApi] = createSignal(undefined, { ownedWrite: true });
+   const [viewport, setViewport] = createSignal();
+   function reInit() {
+     const api = emblaApi();
+     if (api) api.reInit(storedOptions, storedPlugins);
+   }
+-  createEffect(on(viewport, viewport => {
+-    if (canUseDOM() && viewport) {
+-      EmblaCarousel.globalOptions = createEmblaCarousel.globalOptions;
+-      const newEmblaApi = EmblaCarousel(viewport, storedOptions, storedPlugins);
+-      setEmblaApi(newEmblaApi);
+-      onCleanup(() => newEmblaApi.destroy());
+-    } else {
+-      setEmblaApi(undefined);
++  createEffect(
++    () => viewport(),
++    (viewport) => {
++      if (canUseDOM() && viewport) {
++        EmblaCarousel.globalOptions = createEmblaCarousel.globalOptions;
++        const newEmblaApi = EmblaCarousel(viewport, storedOptions, storedPlugins);
++        setEmblaApi(newEmblaApi);
++        return () => newEmblaApi.destroy();
++      } else {
++        setEmblaApi(undefined);
++      }
+     }
+-  }));
+-  createEffect(() => {
+-    if (!canUseDOM()) return;
+-    const newOptions = options ? options() : {};
+-    if (areOptionsEqual(storedOptions, newOptions)) return;
+-    storedOptions = newOptions;
+-    reInit();
+-  });
+-  createEffect(() => {
+-    if (!canUseDOM()) return;
+-    const newPlugins = plugins ? plugins() : [];
+-    if (arePluginsEqual(storedPlugins, newPlugins)) return;
+-    storedPlugins = newPlugins;
+-    reInit();
+-  });
++  );
++  createEffect(
++    () => options ? options() : {},
++    (newOptions) => {
++      if (!canUseDOM()) return;
++      if (areOptionsEqual(storedOptions, newOptions)) return;
++      storedOptions = newOptions;
++      reInit();
++    }
++  );
++  createEffect(
++    () => plugins ? plugins() : [],
++    (newPlugins) => {
++      if (!canUseDOM()) return;
++      if (arePluginsEqual(storedPlugins, newPlugins)) return;
++      storedPlugins = newPlugins;
++      reInit();
++    }
++  );
+   return [setViewport, emblaApi];
+ }
+ createEmblaCarousel.globalOptions = undefined;

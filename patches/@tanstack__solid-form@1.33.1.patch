@@ -1,0 +1,483 @@
+diff --git a/dist/cjs/createField.cjs b/dist/cjs/createField.cjs
+index c33093e2d2bb5571ec033a9ae380125004dfe93a..6b5770a27084dd755a9d8657285e218339b05d72 100644
+--- a/dist/cjs/createField.cjs
++++ b/dist/cjs/createField.cjs
+@@ -1,6 +1,6 @@
+ "use strict";
+ Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+-const web = require("solid-js/web");
++const web = require("@solidjs/web");
+ const formCore = require("@tanstack/form-core");
+ const solidJs = require("solid-js");
+ const solidStore = require("@tanstack/solid-store");
+@@ -8,7 +8,8 @@ function makeFieldReactive(fieldApi, {
+   mode
+ }) {
+   const [field, setField] = solidJs.createSignal(fieldApi, {
+-    equals: false
++    equals: false,
++    ownedWrite: true
+   });
+   const reactiveStateValue = solidStore.useSelector(fieldApi.store, (state) => mode === "array" ? state.meta._arrayVersion || 0 : state.value);
+   const reactiveMetaIsTouched = solidStore.useSelector(fieldApi.store, (state) => state.meta.isTouched);
+@@ -17,16 +18,21 @@ function makeFieldReactive(fieldApi, {
+   const reactiveMetaErrorMap = solidStore.useSelector(fieldApi.store, (state) => state.meta.errorMap);
+   const reactiveMetaErrorSourceMap = solidStore.useSelector(fieldApi.store, (state) => state.meta.errorSourceMap);
+   const reactiveMetaIsValidating = solidStore.useSelector(fieldApi.store, (state) => state.meta.isValidating);
+-  solidJs.createComputed(() => {
+-    reactiveStateValue();
+-    reactiveMetaIsTouched();
+-    reactiveMetaIsBlurred();
+-    reactiveMetaIsDirty();
+-    reactiveMetaErrorMap();
+-    reactiveMetaErrorSourceMap();
+-    reactiveMetaIsValidating();
+-    setField(fieldApi);
+-  });
++  solidJs.createEffect(
++    () => {
++      reactiveStateValue();
++      reactiveMetaIsTouched();
++      reactiveMetaIsBlurred();
++      reactiveMetaIsDirty();
++      reactiveMetaErrorMap();
++      reactiveMetaErrorSourceMap();
++      reactiveMetaIsValidating();
++      return {};
++    },
++    () => {
++      setField(fieldApi);
++    }
++  );
+   return field;
+ }
+ function createField(opts) {
+@@ -34,7 +40,7 @@ function createField(opts) {
+   const api = new formCore.FieldApi(options);
+   const extendedApi = api;
+   let mounted = false;
+-  solidJs.onMount(() => {
++  solidJs.onSettled(() => {
+     const cleanupFn = api.mount();
+     mounted = true;
+     solidJs.onCleanup(() => {
+@@ -42,10 +48,13 @@ function createField(opts) {
+       mounted = false;
+     });
+   });
+-  solidJs.createComputed(() => {
+-    if (!mounted) return;
+-    api.update(opts());
+-  });
++  solidJs.createEffect(
++    () => opts(),
++    (newOpts) => {
++      if (!mounted) return;
++      api.update(newOpts);
++    }
++  );
+   return makeFieldReactive(extendedApi, {
+     mode: options.mode
+   });
+diff --git a/dist/cjs/createFieldGroup.cjs b/dist/cjs/createFieldGroup.cjs
+index 9ee93cbbe38a0ea61a338f9be063c4a31ee15d3e..c6563ae87cddb8896f7b420b93ebaeb4391dd854 100644
+--- a/dist/cjs/createFieldGroup.cjs
++++ b/dist/cjs/createFieldGroup.cjs
+@@ -1,6 +1,6 @@
+ "use strict";
+ Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+-const web = require("solid-js/web");
++const web = require("@solidjs/web");
+ const formCore = require("@tanstack/form-core");
+ const solidStore = require("@tanstack/solid-store");
+ const solidJs = require("solid-js");
+@@ -16,7 +16,7 @@ function createFieldGroup(opts) {
+     const data = solidStore.useSelector(api.store, props.selector);
+     return formCore.functionalUpdate(props.children, data());
+   };
+-  solidJs.onMount(() => {
++  solidJs.onSettled(() => {
+     const cleanupFn = api.mount();
+     solidJs.onCleanup(() => {
+       cleanupFn();
+diff --git a/dist/cjs/createForm.cjs b/dist/cjs/createForm.cjs
+index 40e39f9e970a4739b7ea48139499ef1d530f6c9d..b7e50466a7052f2d7d038d55279119086f02d089 100644
+--- a/dist/cjs/createForm.cjs
++++ b/dist/cjs/createForm.cjs
+@@ -1,6 +1,6 @@
+ "use strict";
+ Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+-const web = require("solid-js/web");
++const web = require("@solidjs/web");
+ const formCore = require("@tanstack/form-core");
+ const solidJs = require("solid-js");
+ const solidStore = require("@tanstack/solid-store");
+@@ -19,8 +19,11 @@ function createForm(opts) {
+   extendedApi.useSelector = (selector) => solidStore.useSelector(api.store, selector);
+   extendedApi.useStore = extendedApi.useSelector;
+   extendedApi.Subscribe = (props) => formCore.functionalUpdate(props.children, solidStore.useSelector(api.store, props.selector));
+-  solidJs.onMount(api.mount);
+-  solidJs.createComputed(() => api.update(opts?.()));
++  solidJs.onSettled(api.mount);
++  solidJs.createEffect(
++    () => opts?.(),
++    (newOpts) => { api.update(newOpts); }
++  );
+   return extendedApi;
+ }
+ exports.createForm = createForm;
+diff --git a/dist/cjs/createFormGroup.cjs b/dist/cjs/createFormGroup.cjs
+index ed06e9f5e16da0f1326dd2c4e378bd4149782afa..7457a5265ba5297fc5a51919ad34cec96faf9b0e 100644
+--- a/dist/cjs/createFormGroup.cjs
++++ b/dist/cjs/createFormGroup.cjs
+@@ -1,25 +1,28 @@
+ "use strict";
+ Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+-const web = require("solid-js/web");
++const web = require("@solidjs/web");
+ const formCore = require("@tanstack/form-core");
+ const solidJs = require("solid-js");
+ const solidStore = require("@tanstack/solid-store");
+ function makeFormGroupReactive(formGroupApi) {
+   const [group, setGroup] = solidJs.createSignal(formGroupApi, {
+-    equals: false
++    equals: false,
++    ownedWrite: true
+   });
+   const store = solidStore.useSelector(formGroupApi.store, (store2) => store2);
+-  solidJs.createComputed(() => {
+-    store();
+-    setGroup(formGroupApi);
+-  });
++  solidJs.createEffect(
++    () => store(),
++    () => {
++      setGroup(formGroupApi);
++    }
++  );
+   return group;
+ }
+ function createFormGroup(opts) {
+   const options = opts();
+   const api = new formCore.FormGroupApi(options);
+   let mounted = false;
+-  solidJs.onMount(() => {
++  solidJs.onSettled(() => {
+     const cleanupFn = api.mount();
+     mounted = true;
+     solidJs.onCleanup(() => {
+@@ -27,10 +30,13 @@ function createFormGroup(opts) {
+       mounted = false;
+     });
+   });
+-  solidJs.createComputed(() => {
+-    if (!mounted) return;
+-    api.update(opts());
+-  });
++  solidJs.createEffect(
++    () => opts(),
++    (newOpts) => {
++      if (!mounted) return;
++      api.update(newOpts);
++    }
++  );
+   return makeFormGroupReactive(api);
+ }
+ function FormGroup(props) {
+diff --git a/dist/cjs/createFormHook.cjs b/dist/cjs/createFormHook.cjs
+index 944e60832413804e8f5ac74b55f440e309a3e529..d0281662e58e12f2cd60f16bb95f75a274c61c8a 100644
+--- a/dist/cjs/createFormHook.cjs
++++ b/dist/cjs/createFormHook.cjs
+@@ -1,6 +1,6 @@
+ "use strict";
+ Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+-const web = require("solid-js/web");
++const web = require("@solidjs/web");
+ const solidJs = require("solid-js");
+ const createFieldGroup = require("./createFieldGroup.cjs");
+ const createForm = require("./createForm.cjs");
+@@ -32,7 +32,7 @@ function createFormHook(opts) {
+   function useAppForm(props) {
+     const form = createForm.createForm(props);
+     const AppForm = ((formProps) => {
+-      return web.createComponent(opts.formContext.Provider, {
++      return web.createComponent(opts.formContext, {
+         value: form,
+         get children() {
+           return formProps.children;
+@@ -40,12 +40,12 @@ function createFormHook(opts) {
+       });
+     });
+     const AppField = ((_props) => {
+-      const [childProps, fieldProps] = solidJs.splitProps(_props, ["children"]);
++      const fieldProps = solidJs.omit(_props, "children");
+       return web.createComponent(form.Field, web.mergeProps(fieldProps, {
+-        children: (field) => web.createComponent(opts.fieldContext.Provider, {
++        children: (field) => web.createComponent(opts.fieldContext, {
+           value: field,
+           get children() {
+-            return solidJs.createComponent(() => childProps.children(Object.assign(field, opts.fieldComponents)), {});
++            return solidJs.createComponent(() => _props.children(Object.assign(field, opts.fieldComponents)), {});
+           }
+         })
+       }));
+@@ -62,7 +62,7 @@ function createFormHook(opts) {
+     render,
+     props
+   }) {
+-    return (innerProps) => solidJs.createComponent(render, solidJs.mergeProps(props ?? {}, innerProps));
++    return (innerProps) => solidJs.createComponent(render, solidJs.merge(props ?? {}, innerProps));
+   }
+   function withFieldGroup({
+     render,
+@@ -77,7 +77,7 @@ function createFormHook(opts) {
+         formComponents: opts.formComponents
+       };
+       const fieldGroupApi = createFieldGroup.createFieldGroup(() => fieldGroupProps);
+-      return solidJs.createComponent(render, solidJs.mergeProps(props ?? {}, innerProps, {
++      return solidJs.createComponent(render, solidJs.merge(props ?? {}, innerProps, {
+         group: fieldGroupApi
+       }));
+     };
+diff --git a/dist/esm/createField.js b/dist/esm/createField.js
+index aee4dff51e6d6661ace3f759283618e2ee7d3e55..37b5438b9eeb151558ca3bf89d05d5d3de6e6456 100644
+--- a/dist/esm/createField.js
++++ b/dist/esm/createField.js
+@@ -1,12 +1,13 @@
+-import { memo } from "solid-js/web";
++import { memo } from "@solidjs/web";
+ import { FieldApi } from "@tanstack/form-core";
+-import { onMount, onCleanup, createComputed, createComponent, createSignal } from "solid-js";
++import { onSettled, onCleanup, createEffect, createComponent, createSignal } from "solid-js";
+ import { useSelector } from "@tanstack/solid-store";
+ function makeFieldReactive(fieldApi, {
+   mode
+ }) {
+   const [field, setField] = createSignal(fieldApi, {
+-    equals: false
++    equals: false,
++    ownedWrite: true
+   });
+   const reactiveStateValue = useSelector(fieldApi.store, (state) => mode === "array" ? state.meta._arrayVersion || 0 : state.value);
+   const reactiveMetaIsTouched = useSelector(fieldApi.store, (state) => state.meta.isTouched);
+@@ -15,16 +16,21 @@ function makeFieldReactive(fieldApi, {
+   const reactiveMetaErrorMap = useSelector(fieldApi.store, (state) => state.meta.errorMap);
+   const reactiveMetaErrorSourceMap = useSelector(fieldApi.store, (state) => state.meta.errorSourceMap);
+   const reactiveMetaIsValidating = useSelector(fieldApi.store, (state) => state.meta.isValidating);
+-  createComputed(() => {
+-    reactiveStateValue();
+-    reactiveMetaIsTouched();
+-    reactiveMetaIsBlurred();
+-    reactiveMetaIsDirty();
+-    reactiveMetaErrorMap();
+-    reactiveMetaErrorSourceMap();
+-    reactiveMetaIsValidating();
+-    setField(fieldApi);
+-  });
++  createEffect(
++    () => {
++      reactiveStateValue();
++      reactiveMetaIsTouched();
++      reactiveMetaIsBlurred();
++      reactiveMetaIsDirty();
++      reactiveMetaErrorMap();
++      reactiveMetaErrorSourceMap();
++      reactiveMetaIsValidating();
++      return {};
++    },
++    () => {
++      setField(fieldApi);
++    }
++  );
+   return field;
+ }
+ function createField(opts) {
+@@ -32,7 +38,7 @@ function createField(opts) {
+   const api = new FieldApi(options);
+   const extendedApi = api;
+   let mounted = false;
+-  onMount(() => {
++  onSettled(() => {
+     const cleanupFn = api.mount();
+     mounted = true;
+     onCleanup(() => {
+@@ -40,10 +46,13 @@ function createField(opts) {
+       mounted = false;
+     });
+   });
+-  createComputed(() => {
+-    if (!mounted) return;
+-    api.update(opts());
+-  });
++  createEffect(
++    () => opts(),
++    (newOpts) => {
++      if (!mounted) return;
++      api.update(newOpts);
++    }
++  );
+   return makeFieldReactive(extendedApi, {
+     mode: options.mode
+   });
+diff --git a/dist/esm/createFieldGroup.js b/dist/esm/createFieldGroup.js
+index 8fb8a99c0ff2afdcfaf6df012be0e6f8112a2207..85041cf673a973cd37f6d594cae1fabd3d59d3f3 100644
+--- a/dist/esm/createFieldGroup.js
++++ b/dist/esm/createFieldGroup.js
+@@ -1,7 +1,7 @@
+-import { createComponent, mergeProps } from "solid-js/web";
++import { createComponent, mergeProps } from "@solidjs/web";
+ import { FieldGroupApi, functionalUpdate } from "@tanstack/form-core";
+ import { useSelector } from "@tanstack/solid-store";
+-import { onMount, onCleanup } from "solid-js";
++import { onSettled, onCleanup } from "solid-js";
+ function createFieldGroup(opts) {
+   const options = opts();
+   const api = new FieldGroupApi(options);
+@@ -14,7 +14,7 @@ function createFieldGroup(opts) {
+     const data = useSelector(api.store, props.selector);
+     return functionalUpdate(props.children, data());
+   };
+-  onMount(() => {
++  onSettled(() => {
+     const cleanupFn = api.mount();
+     onCleanup(() => {
+       cleanupFn();
+diff --git a/dist/esm/createForm.js b/dist/esm/createForm.js
+index dd741c35488eabc9fd702587e5a16dd8d50340ef..dc0b37a4b71f476614e81fbd23ba9eb43eaf8fd3 100644
+--- a/dist/esm/createForm.js
++++ b/dist/esm/createForm.js
+@@ -1,6 +1,6 @@
+-import { createComponent, mergeProps } from "solid-js/web";
++import { createComponent, mergeProps } from "@solidjs/web";
+ import { FormApi, functionalUpdate } from "@tanstack/form-core";
+-import { onMount, createComputed } from "solid-js";
++import { onSettled, createEffect } from "solid-js";
+ import { useSelector } from "@tanstack/solid-store";
+ import { Field } from "./createField.js";
+ import { FormGroup } from "./createFormGroup.js";
+@@ -17,8 +17,11 @@ function createForm(opts) {
+   extendedApi.useSelector = (selector) => useSelector(api.store, selector);
+   extendedApi.useStore = extendedApi.useSelector;
+   extendedApi.Subscribe = (props) => functionalUpdate(props.children, useSelector(api.store, props.selector));
+-  onMount(api.mount);
+-  createComputed(() => api.update(opts?.()));
++  onSettled(api.mount);
++  createEffect(
++    () => opts?.(),
++    (newOpts) => { api.update(newOpts); }
++  );
+   return extendedApi;
+ }
+ export {
+diff --git a/dist/esm/createFormGroup.js b/dist/esm/createFormGroup.js
+index 291d1e58644ccb88e4b1ae4ce91e3b1d652ff992..8b98dc63a7e7411c326c3bd135d0136d69d95a3c 100644
+--- a/dist/esm/createFormGroup.js
++++ b/dist/esm/createFormGroup.js
+@@ -1,23 +1,26 @@
+-import { memo } from "solid-js/web";
++import { memo } from "@solidjs/web";
+ import { FormGroupApi } from "@tanstack/form-core";
+-import { createComponent, onMount, onCleanup, createComputed, createSignal } from "solid-js";
++import { createComponent, onSettled, onCleanup, createEffect, createSignal } from "solid-js";
+ import { useSelector } from "@tanstack/solid-store";
+ function makeFormGroupReactive(formGroupApi) {
+   const [group, setGroup] = createSignal(formGroupApi, {
+-    equals: false
++    equals: false,
++    ownedWrite: true
+   });
+   const store = useSelector(formGroupApi.store, (store2) => store2);
+-  createComputed(() => {
+-    store();
+-    setGroup(formGroupApi);
+-  });
++  createEffect(
++    () => store(),
++    () => {
++      setGroup(formGroupApi);
++    }
++  );
+   return group;
+ }
+ function createFormGroup(opts) {
+   const options = opts();
+   const api = new FormGroupApi(options);
+   let mounted = false;
+-  onMount(() => {
++  onSettled(() => {
+     const cleanupFn = api.mount();
+     mounted = true;
+     onCleanup(() => {
+@@ -25,10 +28,13 @@ function createFormGroup(opts) {
+       mounted = false;
+     });
+   });
+-  createComputed(() => {
+-    if (!mounted) return;
+-    api.update(opts());
+-  });
++  createEffect(
++    () => opts(),
++    (newOpts) => {
++      if (!mounted) return;
++      api.update(newOpts);
++    }
++  );
+   return makeFormGroupReactive(api);
+ }
+ function FormGroup(props) {
+diff --git a/dist/esm/createFormHook.js b/dist/esm/createFormHook.js
+index c5f9003999cc6a1d68377ac941fb976b4e997b0d..21601feb891ab3369c03146dc7f58917b80e64af 100644
+--- a/dist/esm/createFormHook.js
++++ b/dist/esm/createFormHook.js
+@@ -1,5 +1,5 @@
+-import { createComponent as createComponent$1, mergeProps as mergeProps$1 } from "solid-js/web";
+-import { createContext, createComponent, mergeProps, useContext, splitProps } from "solid-js";
++import { createComponent as createComponent$1, mergeProps as mergeProps$1 } from "@solidjs/web";
++import { createContext, createComponent, merge, useContext, omit } from "solid-js";
+ import { createFieldGroup } from "./createFieldGroup.js";
+ import { createForm } from "./createForm.js";
+ function createFormHookContexts() {
+@@ -30,7 +30,7 @@ function createFormHook(opts) {
+   function useAppForm(props) {
+     const form = createForm(props);
+     const AppForm = ((formProps) => {
+-      return createComponent$1(opts.formContext.Provider, {
++      return createComponent$1(opts.formContext, {
+         value: form,
+         get children() {
+           return formProps.children;
+@@ -38,12 +38,12 @@ function createFormHook(opts) {
+       });
+     });
+     const AppField = ((_props) => {
+-      const [childProps, fieldProps] = splitProps(_props, ["children"]);
++      const fieldProps = omit(_props, "children");
+       return createComponent$1(form.Field, mergeProps$1(fieldProps, {
+-        children: (field) => createComponent$1(opts.fieldContext.Provider, {
++        children: (field) => createComponent$1(opts.fieldContext, {
+           value: field,
+           get children() {
+-            return createComponent(() => childProps.children(Object.assign(field, opts.fieldComponents)), {});
++            return createComponent(() => _props.children(Object.assign(field, opts.fieldComponents)), {});
+           }
+         })
+       }));
+@@ -60,7 +60,7 @@ function createFormHook(opts) {
+     render,
+     props
+   }) {
+-    return (innerProps) => createComponent(render, mergeProps(props ?? {}, innerProps));
++    return (innerProps) => createComponent(render, merge(props ?? {}, innerProps));
+   }
+   function withFieldGroup({
+     render,
+@@ -75,7 +75,7 @@ function createFormHook(opts) {
+         formComponents: opts.formComponents
+       };
+       const fieldGroupApi = createFieldGroup(() => fieldGroupProps);
+-      return createComponent(render, mergeProps(props ?? {}, innerProps, {
++      return createComponent(render, merge(props ?? {}, innerProps, {
+         group: fieldGroupApi
+       }));
+     };

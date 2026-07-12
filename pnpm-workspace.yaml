@@ -7,3 +7,8 @@ onlyBuiltDependencies:
   - esbuild
   - maplibre-gl
   - sharp
+
+patchedDependencies:
+  '@tanstack/solid-form@1.33.1': patches/@tanstack__solid-form@1.33.1.patch
+  '@tanstack/solid-table@8.21.3': patches/@tanstack__solid-table@8.21.3.patch
+  embla-carousel-solid@8.6.0: patches/embla-carousel-solid@8.6.0.patch

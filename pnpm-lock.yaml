@@ -4,6 +4,17 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@tanstack/solid-form@1.33.1':
+    hash: 3ea9a6c2fb0bd044b97e100465d91b684102e2aebcdee33d9553f8da14875ff7
+    path: patches/@tanstack__solid-form@1.33.1.patch
+  '@tanstack/solid-table@8.21.3':
+    hash: 1a5fea72b2c05de4f45aad3b7cb3c1da58848e86575c578064b79e2cfaf04796
+    path: patches/@tanstack__solid-table@8.21.3.patch
+  embla-carousel-solid@8.6.0:
+    hash: ce639412f0ba82f8bdf34549eb0527ed5675af7853bb382da2c025304db213d4
+    path: patches/embla-carousel-solid@8.6.0.patch
+
 importers:
 
   .:
@@ -28,10 +39,10 @@ importers:
         version: 2.0.0-beta.15(solid-js@2.0.0-beta.15)
       '@tanstack/solid-form':
         specifier: ^1.25.0
-        version: 1.33.1(solid-js@2.0.0-beta.15)
+        version: 1.33.1(patch_hash=3ea9a6c2fb0bd044b97e100465d91b684102e2aebcdee33d9553f8da14875ff7)(solid-js@2.0.0-beta.15)
       '@tanstack/solid-table':
         specifier: ^8.21.3
-        version: 8.21.3(solid-js@2.0.0-beta.15)
+        version: 8.21.3(patch_hash=1a5fea72b2c05de4f45aad3b7cb3c1da58848e86575c578064b79e2cfaf04796)(solid-js@2.0.0-beta.15)
       '@unovis/solid':
         specifier: ^1.6.1
         version: 1.6.7(@unovis/ts@1.6.7)(solid-js@2.0.0-beta.15)
@@ -49,7 +60,7 @@ importers:
         version: 8.6.0(embla-carousel@8.6.0)
       embla-carousel-solid:
         specifier: ^8.6.0
-        version: 8.6.0(solid-js@2.0.0-beta.15)
+        version: 8.6.0(patch_hash=ce639412f0ba82f8bdf34549eb0527ed5675af7853bb382da2c025304db213d4)(solid-js@2.0.0-beta.15)
       minisearch:
         specifier: ^7.2.0
         version: 7.2.0
@@ -7373,7 +7384,7 @@ snapshots:
       - supports-color
       - vite
 
-  '@tanstack/solid-form@1.33.1(solid-js@2.0.0-beta.15)':
+  '@tanstack/solid-form@1.33.1(patch_hash=3ea9a6c2fb0bd044b97e100465d91b684102e2aebcdee33d9553f8da14875ff7)(solid-js@2.0.0-beta.15)':
     dependencies:
       '@tanstack/form-core': 1.33.1
       '@tanstack/solid-store': 0.11.0(solid-js@2.0.0-beta.15)
@@ -7654,7 +7665,7 @@ snapshots:
       '@tanstack/store': 0.7.0
       solid-js: 2.0.0-beta.15
 
-  '@tanstack/solid-table@8.21.3(solid-js@2.0.0-beta.15)':
+  '@tanstack/solid-table@8.21.3(patch_hash=1a5fea72b2c05de4f45aad3b7cb3c1da58848e86575c578064b79e2cfaf04796)(solid-js@2.0.0-beta.15)':
     dependencies:
       '@tanstack/table-core': 8.21.3
       solid-js: 2.0.0-beta.15
@@ -9247,7 +9258,7 @@ snapshots:
     dependencies:
       embla-carousel: 8.6.0
 
-  embla-carousel-solid@8.6.0(solid-js@2.0.0-beta.15):
+  embla-carousel-solid@8.6.0(patch_hash=ce639412f0ba82f8bdf34549eb0527ed5675af7853bb382da2c025304db213d4)(solid-js@2.0.0-beta.15):
     dependencies:
       embla-carousel: 8.6.0
       embla-carousel-reactive-utils: 8.6.0(embla-carousel@8.6.0)

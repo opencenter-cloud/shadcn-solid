@@ -1,0 +1,135 @@
+diff --git a/build/lib/index.esm.js b/build/lib/index.esm.js
+index 8cf2b8c6f6f2b982f34fdc12f96866e5172e0b68..aef1b65a21eaffb7941b7a507d1020c59d3f0c24 100644
+--- a/build/lib/index.esm.js
++++ b/build/lib/index.esm.js
+@@ -10,8 +10,7 @@
+    */
+ import { createTable } from '@tanstack/table-core';
+ export * from '@tanstack/table-core';
+-import { createComponent, mergeProps, createComputed } from 'solid-js';
+-import { createStore } from 'solid-js/store';
++import { createComponent, merge, createEffect, createStore } from 'solid-js';
+ 
+ // /** @jsxImportSource solid-js */
+ function flexRender(Comp, props) {
+@@ -22,32 +21,38 @@ function flexRender(Comp, props) {
+   return Comp;
+ }
+ function createSolidTable(options) {
+-  const resolvedOptions = mergeProps({
++  const resolvedOptions = merge({
+     state: {},
+     // Dummy state
+     onStateChange: () => {},
+     // noop
+     renderFallbackValue: null,
+     mergeOptions: (defaultOptions, options) => {
+-      return mergeProps(defaultOptions, options);
++      return merge(defaultOptions, options);
+     }
+   }, options);
+   const table = createTable(resolvedOptions);
+   const [state, setState] = createStore(table.initialState);
+-  createComputed(() => {
+-    table.setOptions(prev => {
+-      return mergeProps(prev, options, {
+-        state: mergeProps(state, options.state || {}),
+-        // Similarly, we'll maintain both our internal state and any user-provided
+-        // state.
+-        onStateChange: updater => {
+-          // merging isn't required because stores shallow update
+-          setState(updater);
+-          options.onStateChange == null || options.onStateChange(updater);
+-        }
++  createEffect(
++    () => {
++      // Track reactive options by reading through the merge proxy
++      return merge({}, options);
++    },
++    () => {
++      table.setOptions(prev => {
++        return merge(prev, options, {
++          state: merge(state, options.state || {}),
++          // Similarly, we'll maintain both our internal state and any user-provided
++          // state.
++          onStateChange: updater => {
++            // merging isn't required because stores shallow update
++            setState(updater);
++            options.onStateChange == null || options.onStateChange(updater);
++          }
++        });
+       });
+-    });
+-  });
++    }
++  );
+   return table;
+ }
+ 
+diff --git a/build/lib/index.js b/build/lib/index.js
+index 5ab2ec9f9a3b251ae54f9efc783c67b8d73faf8f..bdcd7fbf47859e2c2d5f950bba04b22fbb950244 100644
+--- a/build/lib/index.js
++++ b/build/lib/index.js
+@@ -12,7 +12,6 @@
+ 
+ var tableCore = require('@tanstack/table-core');
+ var solidJs = require('solid-js');
+-var store = require('solid-js/store');
+ 
+ // /** @jsxImportSource solid-js */
+ function flexRender(Comp, props) {
+@@ -23,32 +22,38 @@ function flexRender(Comp, props) {
+   return Comp;
+ }
+ function createSolidTable(options) {
+-  const resolvedOptions = solidJs.mergeProps({
++  const resolvedOptions = solidJs.merge({
+     state: {},
+     // Dummy state
+     onStateChange: () => {},
+     // noop
+     renderFallbackValue: null,
+     mergeOptions: (defaultOptions, options) => {
+-      return solidJs.mergeProps(defaultOptions, options);
++      return solidJs.merge(defaultOptions, options);
+     }
+   }, options);
+   const table = tableCore.createTable(resolvedOptions);
+-  const [state, setState] = store.createStore(table.initialState);
+-  solidJs.createComputed(() => {
+-    table.setOptions(prev => {
+-      return solidJs.mergeProps(prev, options, {
+-        state: solidJs.mergeProps(state, options.state || {}),
+-        // Similarly, we'll maintain both our internal state and any user-provided
+-        // state.
+-        onStateChange: updater => {
+-          // merging isn't required because stores shallow update
+-          setState(updater);
+-          options.onStateChange == null || options.onStateChange(updater);
+-        }
++  const [state, setState] = solidJs.createStore(table.initialState);
++  solidJs.createEffect(
++    () => {
++      // Track reactive options by reading through the merge proxy
++      return solidJs.merge({}, options);
++    },
++    () => {
++      table.setOptions(prev => {
++        return solidJs.merge(prev, options, {
++          state: solidJs.merge(state, options.state || {}),
++          // Similarly, we'll maintain both our internal state and any user-provided
++          // state.
++          onStateChange: updater => {
++            // merging isn't required because stores shallow update
++            setState(updater);
++            options.onStateChange == null || options.onStateChange(updater);
++          }
++        });
+       });
+-    });
+-  });
++    }
++  );
+   return table;
+ }
+ 
