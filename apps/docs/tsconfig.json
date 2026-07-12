@@ -4,7 +4,7 @@
     "strict": true,
     "esModuleInterop": true,
     "jsx": "preserve",
-    "jsxImportSource": "solid-js",
+    "jsxImportSource": "@solidjs/web",
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "lib": ["DOM", "DOM.Iterable", "ES2022"],
@@ -18,6 +18,8 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "noEmit": true
+    "noEmit": true,
+    "types": ["@solidjs/web", "vite/client", "node"],
+    "ignoreDeprecations": "6.0"
   }
 }
