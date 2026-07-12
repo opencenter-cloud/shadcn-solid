@@ -1,0 +1,48 @@
+{
+  "name": "@opencenter-cloud/cmdk-solid",
+  "version": "0.1.0",
+  "description": "Solid 2 port of cmdk-solid — command menu component",
+  "license": "MIT",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    "solid": "./dist/index.jsx",
+    "import": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "require": {
+      "types": "./dist/index.d.cts",
+      "default": "./dist/index.cjs"
+    }
+  },
+  "scripts": {
+    "build": "tsup src",
+    "dev": "tsup src --watch"
+  },
+  "peerDependencies": {
+    "solid-js": "^2.0.0-beta.14",
+    "@solidjs/web": "^2.0.0-beta.14"
+  },
+  "dependencies": {
+    "@opencenter-cloud/kobalte-core": "^0.1.0",
+    "@opencenter-cloud/kobalte-utils": "^0.1.0",
+    "@solid-primitives/deep": "next"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0",
+    "tsup-preset-solid": "^2.2.0",
+    "babel-preset-solid": "2.0.0-beta.15",
+    "typescript": "^6.0.1",
+    "solid-js": "2.0.0-beta.15",
+    "@solidjs/web": "2.0.0-beta.15"
+  },
+  "sideEffects": false,
+  "browser": {},
+  "typesVersions": {}
+}
