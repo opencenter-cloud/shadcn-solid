@@ -1,4 +1,4 @@
-import { VisArea, VisLine, VisScatter } from "@unovis/solid"
+import { VisArea, VisLine, VisScatter } from "@opencenter-cloud/unovis-solid"
 import { CurveType } from "@unovis/ts"
 
 import { Button } from "@/registry/ui/button"

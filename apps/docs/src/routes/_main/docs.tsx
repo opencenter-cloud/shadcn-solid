@@ -1,5 +1,4 @@
 import { Outlet, createFileRoute } from "@tanstack/solid-router"
-// @ts-expect-error
 import { MDXProvider } from "solid-mdx"
 
 import DocsSidebar from "@/components/docs-sidebar"

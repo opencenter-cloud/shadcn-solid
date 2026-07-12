@@ -1,5 +1,5 @@
 import { For, createMemo, createSignal } from "solid-js"
-import { VisAxis, VisLine, VisTooltip } from "@unovis/solid"
+import { VisAxis, VisLine, VisTooltip } from "@opencenter-cloud/unovis-solid"
 import { Position } from "@unovis/ts"
 
 import { useIsMobile } from "@/registry/hooks/use-mobile"

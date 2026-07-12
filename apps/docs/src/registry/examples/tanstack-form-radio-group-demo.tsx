@@ -1,7 +1,7 @@
 import { For } from "solid-js"
 import { createForm } from "@tanstack/solid-form"
 import { useRadioGroupContext } from "@opencenter-cloud/kobalte-core/radio-group"
-import { toast } from "somoto"
+import { toast } from "@opencenter-cloud/somoto"
 import * as v from "valibot"
 
 import { Button } from "@/registry/ui/button"

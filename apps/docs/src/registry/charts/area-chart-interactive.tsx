@@ -1,4 +1,4 @@
-import { batch, createSignal } from "solid-js"
+import { createSignal } from "solid-js"
 import {
   VisArea,
   VisAxis,
@@ -6,7 +6,7 @@ import {
   VisBulletLegend,
   VisLine,
   VisTooltip,
-} from "@unovis/solid"
+} from "@opencenter-cloud/unovis-solid"
 import {
   Area,
   CurveType,
@@ -348,10 +348,10 @@ const AreaChartInteractive = () => {
             selection={domain()}
             onBrush={(selection, _, userDriven) => {
               if (userDriven)
-                batch(() => {
+                {
                   setDuration(0)
                   setDomain(selection!)
-                })
+                }
             }}
             draggable
           />

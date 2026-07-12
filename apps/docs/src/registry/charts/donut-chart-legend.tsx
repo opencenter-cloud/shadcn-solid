@@ -1,4 +1,4 @@
-import { VisBulletLegend, VisDonut } from "@unovis/solid"
+import { VisBulletLegend, VisDonut } from "@opencenter-cloud/unovis-solid"
 import type { BulletLegendItemInterface } from "@unovis/ts"
 
 import {

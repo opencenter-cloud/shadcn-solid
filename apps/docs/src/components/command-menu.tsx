@@ -1,11 +1,11 @@
-import type { ComponentProps } from "solid-js"
+import type { ComponentProps } from "@solidjs/web"
 import {
   For,
   Show,
   createEffect,
   createSignal,
   onCleanup,
-  splitProps,
+  omit,
 } from "solid-js"
 import { useNavigate } from "@tanstack/solid-router"
 
@@ -32,13 +32,13 @@ import {
 import { Kbd, KbdGroup } from "@/registry/ui/kbd"
 
 const CommandKbd = (props: ComponentProps<"kbd">) => {
-  const [local, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <kbd
       class={cx(
         "bg-background text-muted-foreground pointer-events-none flex h-5 items-center justify-center gap-1 rounded border px-1 font-sans text-[0.7rem] font-medium select-none [&_svg:not([class*='size-'])]:size-3",
-        local.class,
+        props.class,
       )}
       {...rest}
     />
@@ -50,13 +50,13 @@ const CommandMenuItem = (
     onHighlight?: () => void
   },
 ) => {
-  const [local, rest] = splitProps(props, ["class", "onHighlight"])
+  const rest = omit(props, "class", "onHighlight")
 
   return (
     <CommandItem
       class={cx(
         "data-[selected=true]:border-input data-[selected=true]:bg-input/50 h-9 rounded-md border border-transparent px-3! font-medium",
-        local.class,
+        props.class,
       )}
       {...rest}
     />

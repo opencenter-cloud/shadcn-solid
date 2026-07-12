@@ -1,9 +1,10 @@
-import { splitProps, type ComponentProps } from "solid-js"
+import { omit } from "solid-js"
+import type { ComponentProps } from "@solidjs/web"
 
 import { cx } from "@/registry/lib/cva"
 
 export const PageHeader = (props: ComponentProps<"section">) => {
-  const [, rest] = splitProps(props, ["class", "children"])
+  const rest = omit(props, "class", "children")
 
   return (
     <section class={cx("border-grid", props.class)} {...rest}>
@@ -17,7 +18,7 @@ export const PageHeader = (props: ComponentProps<"section">) => {
 }
 
 export const PageHeaderHeading = (props: ComponentProps<"h1">) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <h1
@@ -31,7 +32,7 @@ export const PageHeaderHeading = (props: ComponentProps<"h1">) => {
 }
 
 export const PageHeaderDescription = (props: ComponentProps<"p">) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <p
@@ -45,7 +46,7 @@ export const PageHeaderDescription = (props: ComponentProps<"p">) => {
 }
 
 export const PageActions = (props: ComponentProps<"div">) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div

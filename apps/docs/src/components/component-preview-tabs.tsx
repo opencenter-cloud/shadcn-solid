@@ -1,10 +1,5 @@
-import {
-  Show,
-  mergeProps,
-  splitProps,
-  type ComponentProps,
-  type JSX,
-} from "solid-js"
+import { Show, merge, omit } from "solid-js"
+import type { ComponentProps, JSX } from "@solidjs/web"
 
 import { cx } from "@/registry/lib/cva"
 
@@ -15,44 +10,38 @@ type Props = ComponentProps<"div"> & {
 }
 
 const ComponentPreviewTabs = (props: Props) => {
-  const merge = mergeProps(
+  const mergedProps = merge(
     {
       align: "center",
       hideCode: false,
     } as Props,
     props,
   )
-  const [, rest] = splitProps(merge, [
-    "class",
-    "align",
-    "hideCode",
-    "component",
-    "children",
-  ])
+  const rest = omit(mergedProps, "class", "align", "hideCode", "component", "children")
 
   return (
     <div
       class={cx(
         "group relative mt-4 mb-12 flex flex-col gap-2 rounded-lg border",
-        merge.class,
+        mergedProps.class,
       )}
       {...rest}
     >
       <div data-slot="preview">
         <div
-          data-align={merge.align}
+          data-align={mergedProps.align}
           class={cx(
             "preview flex h-[450px] w-full justify-center p-10 has-data-[slot='card']:h-fit has-data-[slot='data-table-demo']:h-full data-[align=center]:items-center data-[align=end]:items-end data-[align=start]:items-start",
           )}
         >
-          {merge.component()}
+          {mergedProps.component()}
         </div>
-        <Show when={!merge.hideCode}>
+        <Show when={!mergedProps.hideCode}>
           <div
             data-slot="code"
             class="overflow-hidden **:data-rehype-pretty-code-figure:m-0! **:data-rehype-pretty-code-figure:rounded-t-none **:data-rehype-pretty-code-figure:border-t [&_pre]:max-h-[400px]"
           >
-            {merge.children}
+            {mergedProps.children}
           </div>
         </Show>
       </div>

@@ -1,4 +1,5 @@
-import { splitProps, type ComponentProps } from "solid-js"
+import { omit } from "solid-js"
+import type { ComponentProps } from "@solidjs/web"
 
 import { Index } from "@/registry/__index__"
 import { cx } from "@/registry/lib/cva"
@@ -10,7 +11,7 @@ const ChartDisplay = (
     name: string
   },
 ) => {
-  const [, rest] = splitProps(props, ["class", "children"])
+  const rest = omit(props, "class", "children")
   const item = () => Index.tailwindcss[props.name]
 
   return (

@@ -1,4 +1,4 @@
-import { Show, createSignal, mergeProps, splitProps } from "solid-js"
+import { Show, createSignal, merge, omit } from "solid-js"
 
 import { cx } from "@/registry/lib/cva"
 import type { ButtonProps } from "@/registry/ui/button"
@@ -13,19 +13,19 @@ import {
 type Props = ButtonProps & { value: string }
 
 const CopyButton = (props: Props) => {
-  const merge = mergeProps(
+  const mergedProps = merge(
     {
       variant: "ghost",
     } as Props,
     props,
   )
-  const [local, rest] = splitProps(merge, ["value", "variant", "class"])
+  const rest = omit(mergedProps, "value", "variant", "class")
 
   const [hasCopied, setHasCopied] = createSignal(false)
 
   const copyToClipboard = () => {
     setHasCopied(true)
-    void navigator.clipboard.writeText(local.value)
+    void navigator.clipboard.writeText(mergedProps.value)
     setTimeout(() => setHasCopied(false), 2000)
   }
 
@@ -37,10 +37,10 @@ const CopyButton = (props: Props) => {
         as={(props) => (
           <Button
             size="icon"
-            variant={local.variant}
+            variant={mergedProps.variant}
             class={cx(
               "bg-code absolute top-3 right-2 z-10 size-7 hover:opacity-100 focus-visible:opacity-100",
-              local.class,
+              mergedProps.class,
             )}
             {...rest}
             {...props}

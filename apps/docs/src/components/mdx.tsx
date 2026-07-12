@@ -1,5 +1,5 @@
-import type { ComponentProps, JSX } from "solid-js"
-import { Match, Show, Switch, lazy, splitProps } from "solid-js"
+import type { ComponentProps, JSX } from "@solidjs/web"
+import { Match, Show, Switch, lazy, omit } from "solid-js"
 
 import { cx } from "@/registry/lib/cva"
 import * as accordion from "@/registry/ui/accordion"
@@ -105,25 +105,17 @@ export const mdxCustomComponents: MDXComponents | Record<string, unknown> = {
       __bun__?: string
     },
   ) => {
-    const [local, rest] = splitProps(props, [
-      "class",
-      "__raw__",
-      "__src__",
-      "__npm__",
-      "__yarn__",
-      "__pnpm__",
-      "__bun__",
-    ])
+    const rest = omit(props, "class", "__raw__", "__src__", "__npm__", "__yarn__", "__pnpm__", "__bun__")
 
     const isCommand = () =>
-      local.__npm__ ?? local.__yarn__ ?? local.__pnpm__ ?? local.__bun__
+      props.__npm__ ?? props.__yarn__ ?? props.__pnpm__ ?? props.__bun__
 
     return (
       <Switch
         fallback={
           <>
-            <Show when={local.__raw__}>
-              <CopyButton value={local.__raw__!} />
+            <Show when={props.__raw__}>
+              <CopyButton value={props.__raw__!} />
             </Show>
             <code {...rest} />
           </>
@@ -133,7 +125,7 @@ export const mdxCustomComponents: MDXComponents | Record<string, unknown> = {
           <code
             class={cx(
               "bg-muted relative rounded-md px-[0.3rem] py-[0.2rem] font-mono text-[0.8rem] outline-none",
-              local.class,
+              props.class,
             )}
             {...rest}
           />
@@ -141,10 +133,10 @@ export const mdxCustomComponents: MDXComponents | Record<string, unknown> = {
 
         <Match when={isCommand()}>
           <CodeBlockCommand
-            __npm__={local.__npm__}
-            __yarn__={local.__yarn__}
-            __pnpm__={local.__pnpm__}
-            __bun__={local.__bun__}
+            __npm__={props.__npm__}
+            __yarn__={props.__yarn__}
+            __pnpm__={props.__pnpm__}
+            __bun__={props.__bun__}
           />
         </Match>
       </Switch>

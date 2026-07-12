@@ -1,10 +1,10 @@
-import { render } from "solid-js/web"
+import { render } from "@solidjs/web"
 import {
   VisAxis,
   VisBulletLegend,
   VisStackedBar,
   VisTooltip,
-} from "@unovis/solid"
+} from "@opencenter-cloud/unovis-solid"
 import { StackedBar, type BulletLegendItemInterface } from "@unovis/ts"
 
 import {

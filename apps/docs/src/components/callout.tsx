@@ -1,5 +1,5 @@
-import type { JSX } from "solid-js"
-import { Show, splitProps, type ComponentProps } from "solid-js"
+import { Show, omit } from "solid-js"
+import type { ComponentProps, JSX } from "@solidjs/web"
 
 import { cx } from "@/registry/lib/cva"
 import { Alert, AlertDescription, AlertTitle } from "@/registry/ui/alert"
@@ -7,7 +7,7 @@ import { Alert, AlertDescription, AlertTitle } from "@/registry/ui/alert"
 const Callout = (
   props: ComponentProps<typeof Alert> & { icon?: JSX.Element },
 ) => {
-  const [, rest] = splitProps(props, ["class", "icon", "title", "children"])
+  const rest = omit(props, "class", "icon", "title", "children")
 
   return (
     <Alert

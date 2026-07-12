@@ -1,4 +1,4 @@
-import { Index, createMemo } from "solid-js"
+import { For, createMemo } from "solid-js"
 import Autoplay from "embla-carousel-autoplay"
 
 import { Card, CardContent } from "@/registry/ui/card"
@@ -25,7 +25,7 @@ const CarouselPluginDemo = () => {
       }}
     >
       <CarouselContent>
-        <Index each={Array.from({ length: 5 })}>
+        <For each={Array.from({ length: 5 })}>
           {(_, index) => (
             <CarouselItem>
               <div class="p-1">
@@ -37,7 +37,7 @@ const CarouselPluginDemo = () => {
               </div>
             </CarouselItem>
           )}
-        </Index>
+        </For>
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />

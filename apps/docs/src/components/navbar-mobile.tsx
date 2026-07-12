@@ -1,5 +1,5 @@
-import type { ComponentProps } from "solid-js"
-import { For, createSignal, splitProps } from "solid-js"
+import type { ComponentProps } from "@solidjs/web"
+import { For, createSignal, omit } from "solid-js"
 import { Link } from "@tanstack/solid-router"
 
 import { docsConfig } from "@/config/docs"
@@ -12,14 +12,14 @@ const MobileLink = (
     onOpenChange?: (open: boolean) => void
   },
 ) => {
-  const [local, rest] = splitProps(props, ["class", "onOpenChange"])
+  const rest = omit(props, "class", "onOpenChange")
 
   return (
     <Link
       onClick={() => {
-        local.onOpenChange?.(false)
+        props.onOpenChange?.(false)
       }}
-      class={cx("text-2xl font-medium", local.class)}
+      class={cx("text-2xl font-medium", props.class)}
       {...rest}
     />
   )

@@ -1,4 +1,4 @@
-import { VisAxis, VisLine, VisScatter, VisTooltip } from "@unovis/solid"
+import { VisAxis, VisLine, VisScatter, VisTooltip } from "@opencenter-cloud/unovis-solid"
 import { CurveType, Position } from "@unovis/ts"
 
 import {

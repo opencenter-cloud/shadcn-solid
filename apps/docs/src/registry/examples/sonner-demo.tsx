@@ -1,4 +1,4 @@
-import { toast } from "somoto"
+import { toast } from "@opencenter-cloud/somoto"
 
 import { Button } from "@/registry/ui/button"
 

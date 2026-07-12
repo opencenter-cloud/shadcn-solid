@@ -1,5 +1,5 @@
-import { render } from "solid-js/web"
-import { VisAxis, VisGroupedBar, VisTooltip } from "@unovis/solid"
+import { render } from "@solidjs/web"
+import { VisAxis, VisGroupedBar, VisTooltip } from "@opencenter-cloud/unovis-solid"
 import { GroupedBar } from "@unovis/ts"
 
 import {

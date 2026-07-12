@@ -4,34 +4,14 @@
   "description": "Solid 2 port of somoto — toast notifications for SolidJS",
   "license": "MIT",
   "type": "module",
-  "main": "./dist/server.cjs",
-  "module": "./dist/server.js",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
     "dist"
   ],
   "exports": {
-    "worker": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/server.js"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/server.cjs"
-      }
-    },
-    "browser": {
-      "development": {
-        "import": {
-          "types": "./dist/index.d.ts",
-          "default": "./dist/dev.js"
-        },
-        "require": {
-          "types": "./dist/index.d.cts",
-          "default": "./dist/dev.cjs"
-        }
-      },
+    ".": {
       "import": {
         "types": "./dist/index.d.ts",
         "default": "./dist/index.js"
@@ -40,44 +20,6 @@
         "types": "./dist/index.d.cts",
         "default": "./dist/index.cjs"
       }
-    },
-    "deno": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/server.js"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/server.cjs"
-      }
-    },
-    "node": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/server.js"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/server.cjs"
-      }
-    },
-    "development": {
-      "import": {
-        "types": "./dist/index.d.ts",
-        "default": "./dist/dev.js"
-      },
-      "require": {
-        "types": "./dist/index.d.cts",
-        "default": "./dist/dev.cjs"
-      }
-    },
-    "import": {
-      "types": "./dist/index.d.ts",
-      "default": "./dist/index.js"
-    },
-    "require": {
-      "types": "./dist/index.d.cts",
-      "default": "./dist/index.cjs"
     }
   },
   "scripts": {

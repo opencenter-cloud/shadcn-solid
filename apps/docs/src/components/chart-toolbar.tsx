@@ -1,5 +1,5 @@
-import type { ComponentProps } from "solid-js"
-import { Match, Show, Switch, createSignal, splitProps } from "solid-js"
+import type { ComponentProps } from "@solidjs/web"
+import { Match, Show, Switch, createSignal, omit } from "solid-js"
 
 import { cx } from "@/registry/lib/cva"
 import type { ButtonProps } from "@/registry/ui/button"
@@ -12,7 +12,7 @@ import {
 } from "@/registry/ui/tooltip"
 
 export const ChartToolbar = (props: ComponentProps<"div"> & { item: any }) => {
-  const [, rest] = splitProps(props, ["class", "item"])
+  const rest = omit(props, "class", "item")
 
   return (
     <div class={cx("flex items-center gap-2", props.class)} {...rest}>

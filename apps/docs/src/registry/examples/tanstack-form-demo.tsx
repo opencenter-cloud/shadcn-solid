@@ -1,5 +1,5 @@
 import { createForm } from "@tanstack/solid-form"
-import { toast } from "somoto"
+import { toast } from "@opencenter-cloud/somoto"
 import * as v from "valibot"
 
 import { Button } from "@/registry/ui/button"

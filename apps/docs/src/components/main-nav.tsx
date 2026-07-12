@@ -1,5 +1,5 @@
-import type { ComponentProps } from "solid-js"
-import { For, splitProps } from "solid-js"
+import type { ComponentProps } from "@solidjs/web"
+import { For, omit } from "solid-js"
 import { Link, useLocation } from "@tanstack/solid-router"
 
 import type { TNavItem } from "@/config/docs"
@@ -11,12 +11,12 @@ const MainNav = (
     items: TNavItem[]
   },
 ) => {
-  const [local, rest] = splitProps(props, ["class", "items"])
+  const rest = omit(props, "class", "items")
   const location = useLocation()
 
   return (
-    <nav class={cx("items-center gap-0.5", local.class)} {...rest}>
-      <For each={local.items}>
+    <nav class={cx("items-center gap-0.5", props.class)} {...rest}>
+      <For each={props.items}>
         {(item) => (
           <Button<typeof Link>
             variant="ghost"

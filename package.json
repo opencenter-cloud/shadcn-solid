@@ -35,24 +35,30 @@
     "@corvu-next/drawer": "^0.1.3",
     "@corvu-next/otp-field": "^0.1.3",
     "@corvu-next/resizable": "^0.1.3",
+    "@opencenter-cloud/cmdk-solid": "workspace:*",
     "@opencenter-cloud/kobalte-core": "^0.1.0",
+    "@opencenter-cloud/somoto": "workspace:*",
+    "@opencenter-cloud/unovis-solid": "workspace:*",
+    "@solidjs/signals": "^2.0.0-beta.15",
     "@solidjs/web": "2.0.0-beta.15",
     "@tanstack/solid-form": "^1.25.0",
     "@tanstack/solid-table": "^8.21.3",
-    "@unovis/solid": "^1.6.1",
     "@unovis/ts": "^1.6.1",
-    "cmdk-solid": "^1.1.2",
     "cva": "1.0.0-beta.4",
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-solid": "^8.6.0",
     "minisearch": "^7.2.0",
     "solid-js": "2.0.0-beta.15",
-    "somoto": "^0.0.2",
     "tailwind-merge": "^3.3.1"
   },
   "pnpm": {
     "overrides": {
       "babel-preset-solid": "2.0.0-beta.15"
+    },
+    "patchedDependencies": {
+      "@tanstack/solid-form@1.33.1": "patches/@tanstack__solid-form@1.33.1.patch",
+      "@tanstack/solid-table@8.21.3": "patches/@tanstack__solid-table@8.21.3.patch",
+      "embla-carousel-solid@8.6.0": "patches/embla-carousel-solid@8.6.0.patch"
     }
   }
 }

@@ -1,4 +1,4 @@
-import { createServerFileRoute } from "@tanstack/solid-start/server"
+import { createFileRoute } from "@tanstack/solid-router"
 import { ImageResponse } from "@vercel/og"
 
 const loadAssets = async (): Promise<
@@ -38,9 +38,9 @@ const loadAssets = async (): Promise<
   ]
 }
 
-export const ServerRoute = createServerFileRoute("/_og/og").methods({
-  GET: async ({ request }) => {
-    const { searchParams } = new URL(request.url)
+export const Route = createFileRoute("/_og/og")({
+  loader: async ({ location }) => {
+    const searchParams = new URLSearchParams(location.searchStr)
     const title = searchParams.get("title")
     const description = searchParams.get("description")
 

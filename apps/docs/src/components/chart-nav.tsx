@@ -1,4 +1,5 @@
-import { For, splitProps, type ComponentProps } from "solid-js"
+import { For, omit } from "solid-js"
+import type { ComponentProps } from "@solidjs/web"
 import { Link } from "@tanstack/solid-router"
 
 import { cx } from "@/registry/lib/cva"
@@ -27,7 +28,7 @@ const links = [
 ]
 
 const ChartNav = (props: ComponentProps<"div">) => {
-  const [, rest] = splitProps(props, ["class"])
+  const rest = omit(props, "class")
 
   return (
     <div class="relative overflow-hidden">

@@ -1,9 +1,10 @@
-import { splitProps, type ComponentProps } from "solid-js"
+import { omit } from "solid-js"
+import type { ComponentProps } from "@solidjs/web"
 
 import { cx } from "@/registry/lib/cva"
 
 const PageNav = (props: ComponentProps<"div">) => {
-  const [, rest] = splitProps(props, ["class", "children"])
+  const rest = omit(props, "class", "children")
 
   return (
     <div class={cx("container-wrapper scroll-mt-24", props.class)} {...rest}>

@@ -1,5 +1,5 @@
-import type { ComponentProps } from "solid-js"
-import { For, splitProps } from "solid-js"
+import type { ComponentProps } from "@solidjs/web"
+import { For, omit } from "solid-js"
 import { Link } from "@tanstack/solid-router"
 
 import { docsConfig } from "@/config/docs"
@@ -40,7 +40,7 @@ const DocsSidebar = (props: ComponentProps<typeof Sidebar>) => {
                       >
                         <SidebarMenuButton<typeof SidebarMenuButton>
                           as={(props) => {
-                            const [, rest] = splitProps(props, ["class"])
+                            const rest = omit(props, "class")
 
                             return (
                               <Link

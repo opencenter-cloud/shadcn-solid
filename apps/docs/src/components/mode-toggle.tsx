@@ -1,4 +1,4 @@
-import { useColorMode } from "@kobalte/core"
+import { useColorMode } from "@opencenter-cloud/kobalte-core"
 
 import { Button } from "@/registry/ui/button"
 

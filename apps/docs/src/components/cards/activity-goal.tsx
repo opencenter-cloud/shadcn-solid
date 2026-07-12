@@ -1,5 +1,5 @@
 import { createSignal } from "solid-js"
-import { VisStackedBar } from "@unovis/solid"
+import { VisStackedBar } from "@opencenter-cloud/unovis-solid"
 
 import { Button } from "@/registry/ui/button"
 import {

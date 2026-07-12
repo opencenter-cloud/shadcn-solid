@@ -1,4 +1,4 @@
-import { Index } from "solid-js"
+import { For } from "solid-js"
 
 import {
   Calendar,
@@ -50,20 +50,20 @@ const CardsCalendar = () => {
               <CalendarTable>
                 <thead>
                   <tr class="flex">
-                    <Index each={props.weekdays}>
+                    <For each={props.weekdays}>
                       {(weekday) => (
                         <CalendarHeadCell abbr={formatWeekdayLong(weekday())}>
                           {formatWeekdayShort(weekday())}
                         </CalendarHeadCell>
                       )}
-                    </Index>
+                    </For>
                   </tr>
                 </thead>
                 <tbody>
-                  <Index each={props.weeks}>
+                  <For each={props.weeks}>
                     {(week) => (
                       <tr class="mt-2 flex w-full">
-                        <Index each={week()}>
+                        <For each={week()}>
                           {(day) => (
                             <CalendarCell>
                               <CalendarCellTrigger day={day()}>
@@ -71,10 +71,10 @@ const CardsCalendar = () => {
                               </CalendarCellTrigger>
                             </CalendarCell>
                           )}
-                        </Index>
+                        </For>
                       </tr>
                     )}
-                  </Index>
+                  </For>
                 </tbody>
               </CalendarTable>
             </div>

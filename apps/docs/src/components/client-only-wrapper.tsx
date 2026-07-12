@@ -1,16 +1,17 @@
 /* eslint-disable */
 // @ts-ignore
 // @refresh skip
-import type { Component, ComponentProps, JSX, Setter } from "solid-js"
+import type { Component, Setter } from "solid-js"
+import type { ComponentProps, JSX } from "@solidjs/web"
 import {
   createMemo,
   createSignal,
-  onMount,
+  onSettled,
   sharedConfig,
-  splitProps,
+  omit,
   untrack,
 } from "solid-js"
-import { isServer } from "solid-js/web"
+import { isServer } from "@solidjs/web"
 
 /**
  *
@@ -32,11 +33,11 @@ export default function clientOnlyWrapper<T extends Component<any>>(
   return (props: ComponentProps<T>) => {
     let Comp: T | undefined
     let m: boolean
-    const [, rest] = splitProps(props, ["fallback"])
+    const rest = omit(props, "fallback")
     options.lazy && load(fn, setComp)
     if ((Comp = comp()) && !sharedConfig.context) return Comp(rest)
     const [mounted, setMounted] = createSignal(!sharedConfig.context)
-    onMount(() => setMounted(true))
+    onSettled(() => setMounted(true))
     return createMemo(
       () => (
         (Comp = comp()),

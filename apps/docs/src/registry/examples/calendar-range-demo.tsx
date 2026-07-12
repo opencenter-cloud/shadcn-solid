@@ -1,4 +1,4 @@
-import { Index } from "solid-js"
+import { For } from "solid-js"
 
 import {
   Calendar,
@@ -38,7 +38,7 @@ const CalendarRangeDemo = () => {
             />
           </div>
           <div class="space-y-4 md:flex md:space-y-0 md:space-x-4">
-            <Index each={props.months}>
+            <For each={props.months}>
               {(month, index) => (
                 <div class="flex flex-col gap-4">
                   <div class="flex h-7 items-center justify-center">
@@ -49,7 +49,7 @@ const CalendarRangeDemo = () => {
                   <CalendarTable index={index}>
                     <thead>
                       <tr class="flex">
-                        <Index each={props.weekdays}>
+                        <For each={props.weekdays}>
                           {(weekday) => (
                             <CalendarHeadCell
                               abbr={formatWeekdayLong(weekday())}
@@ -57,14 +57,14 @@ const CalendarRangeDemo = () => {
                               {formatWeekdayShort(weekday())}
                             </CalendarHeadCell>
                           )}
-                        </Index>
+                        </For>
                       </tr>
                     </thead>
                     <tbody>
-                      <Index each={month().weeks}>
+                      <For each={month().weeks}>
                         {(week) => (
                           <tr class="mt-2 flex w-full">
-                            <Index each={week()}>
+                            <For each={week()}>
                               {(day) => (
                                 <CalendarCell>
                                   <CalendarCellTrigger
@@ -75,15 +75,15 @@ const CalendarRangeDemo = () => {
                                   </CalendarCellTrigger>
                                 </CalendarCell>
                               )}
-                            </Index>
+                            </For>
                           </tr>
                         )}
-                      </Index>
+                      </For>
                     </tbody>
                   </CalendarTable>
                 </div>
               )}
-            </Index>
+            </For>
           </div>
         </div>
       )}

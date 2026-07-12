@@ -1,4 +1,4 @@
-import { Index, Show, createSignal } from "solid-js"
+import { For, Show, createSignal } from "solid-js"
 
 import { Button } from "@/registry/ui/button"
 import {
@@ -91,20 +91,20 @@ const DatePickerDemo = () => {
                 <CalendarTable>
                   <thead>
                     <tr class="flex">
-                      <Index each={props.weekdays}>
+                      <For each={props.weekdays}>
                         {(weekday) => (
                           <CalendarHeadCell abbr={formatWeekdayLong(weekday())}>
                             {formatWeekdayShort(weekday())}
                           </CalendarHeadCell>
                         )}
-                      </Index>
+                      </For>
                     </tr>
                   </thead>
                   <tbody>
-                    <Index each={props.weeks}>
+                    <For each={props.weeks}>
                       {(week) => (
                         <tr class="mt-2 flex w-full">
-                          <Index each={week()}>
+                          <For each={week()}>
                             {(day) => (
                               <CalendarCell>
                                 <CalendarCellTrigger
@@ -115,10 +115,10 @@ const DatePickerDemo = () => {
                                 </CalendarCellTrigger>
                               </CalendarCell>
                             )}
-                          </Index>
+                          </For>
                         </tr>
                       )}
-                    </Index>
+                    </For>
                   </tbody>
                 </CalendarTable>
               </div>

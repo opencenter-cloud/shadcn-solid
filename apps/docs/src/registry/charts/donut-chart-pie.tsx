@@ -1,5 +1,5 @@
-import { render } from "solid-js/web"
-import { VisDonut, VisTooltip } from "@unovis/solid"
+import { render } from "@solidjs/web"
+import { VisDonut, VisTooltip } from "@opencenter-cloud/unovis-solid"
 import { Donut } from "@unovis/ts"
 
 import {

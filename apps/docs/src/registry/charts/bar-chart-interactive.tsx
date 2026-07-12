@@ -1,6 +1,6 @@
 import { For, createMemo, createSignal } from "solid-js"
-import { render } from "solid-js/web"
-import { VisAxis, VisStackedBar, VisTooltip } from "@unovis/solid"
+import { render } from "@solidjs/web"
+import { VisAxis, VisStackedBar, VisTooltip } from "@opencenter-cloud/unovis-solid"
 import { StackedBar } from "@unovis/ts"
 
 import { useIsMobile } from "@/registry/hooks/use-mobile"

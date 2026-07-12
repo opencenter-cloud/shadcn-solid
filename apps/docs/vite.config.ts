@@ -1,3 +1,4 @@
+import { resolve } from "node:path"
 import { tanstackStart } from "@tanstack/solid-start/plugin/vite"
 import tailwindcss from "@tailwindcss/vite"
 import { defineConfig } from "vite"
@@ -6,12 +7,14 @@ import tsConfigPaths from "vite-tsconfig-paths"
 
 import content from "./plugins/content"
 import mdx from "./plugins/mdx"
+import solidCompat from "./plugins/solid-compat"
 
 export default defineConfig({
   server: {
     port: 3001,
   },
   plugins: [
+    solidCompat(),
     tsConfigPaths({
       projects: ["./tsconfig.json"],
     }),
@@ -19,11 +22,6 @@ export default defineConfig({
     mdx(),
     content(),
     tanstackStart({
-      customViteSolidPlugin: true,
-      target: "netlify",
-      sitemap: {
-        enabled: true,
-      },
       prerender: {
         crawlLinks: true,
       },
@@ -33,7 +31,22 @@ export default defineConfig({
       extensions: [".mdx"],
     }),
   ],
+  build: {
+    rollupOptions: {
+      external: ["@vercel/og", "@opencenter-cloud/unovis-solid", "@unovis/ts"],
+    },
+  },
   resolve: {
-    noExternal: ["@kobalte/core", "cmdk-solid"],
+    alias: {
+      // Local solid-mdx replacement (upstream is Solid 1 only)
+      "solid-mdx": resolve(import.meta.dirname, "src/lib/solid-mdx.tsx"),
+    },
+    noExternal: [
+      "@opencenter-cloud/kobalte-core",
+      "@opencenter-cloud/cmdk-solid",
+      "@solid-primitives/deep",
+      "@tanstack/solid-store",
+      "@tanstack/solid-table",
+    ],
   },
 })

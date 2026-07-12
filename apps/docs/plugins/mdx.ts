@@ -16,7 +16,7 @@ export default (): Plugin => {
     enforce: "pre",
     ...mdx({
       jsx: true,
-      jsxImportSource: "solid-js",
+      jsxImportSource: "@solidjs/web",
       providerImportSource: "solid-mdx",
       remarkPlugins: [
         remarkGFM,

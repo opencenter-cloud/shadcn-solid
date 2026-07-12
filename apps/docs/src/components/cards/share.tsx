@@ -1,5 +1,5 @@
 import { For } from "solid-js"
-import { Image } from "@kobalte/core/image"
+import { Image } from "@opencenter-cloud/kobalte-core/image"
 
 import { Button } from "@/registry/ui/button"
 import {
@@ -23,7 +23,7 @@ import {
   TextFieldInput,
   TextFieldLabel,
 } from "@/registry/ui/text-field"
-import { toast } from "somoto"
+import { toast } from "@opencenter-cloud/somoto"
 
 const people = [
   {

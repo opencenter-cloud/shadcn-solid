@@ -1,4 +1,4 @@
-import { Index } from "solid-js"
+import { For } from "solid-js"
 
 import { Card, CardContent } from "@/registry/ui/card"
 import {
@@ -19,7 +19,7 @@ const CarouselOrientationDemo = () => {
       class="w-full max-w-xs"
     >
       <CarouselContent class="-mt-1 h-[150px] md:h-[300px]">
-        <Index each={Array.from({ length: 5 })}>
+        <For each={Array.from({ length: 5 })}>
           {(_, index) => (
             <CarouselItem class="pt-1 md:basis-1/2">
               <div class="p-1">
@@ -31,7 +31,7 @@ const CarouselOrientationDemo = () => {
               </div>
             </CarouselItem>
           )}
-        </Index>
+        </For>
       </CarouselContent>
       <CarouselPrevious />
       <CarouselNext />

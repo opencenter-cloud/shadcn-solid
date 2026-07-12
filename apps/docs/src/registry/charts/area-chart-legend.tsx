@@ -4,7 +4,7 @@ import {
   VisBulletLegend,
   VisLine,
   VisTooltip,
-} from "@unovis/solid"
+} from "@opencenter-cloud/unovis-solid"
 import { CurveType, Position, type BulletLegendItemInterface } from "@unovis/ts"
 
 import {

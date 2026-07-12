@@ -1,4 +1,4 @@
-import { splitProps } from "solid-js"
+import { omit } from "solid-js"
 import { Link } from "@tanstack/solid-router"
 
 import { docsConfig } from "@/config/docs"
@@ -23,13 +23,13 @@ const Header = () => {
             variant="ghost"
             size="icon"
             as={(buttonProps) => {
-              const [local, rest] = splitProps(buttonProps, ["class"])
+              const rest = omit(buttonProps, "class")
 
               return (
                 <Link
                   {...rest}
                   to="/"
-                  class={cx(local.class, "hidden size-8 lg:flex")}
+                  class={cx(buttonProps.class, "hidden size-8 lg:flex")}
                 >
                   <Logo class="size-5" />
                   <span class="sr-only">{siteConfig.title}</span>
@@ -47,7 +47,7 @@ const Header = () => {
               size="sm"
               variant="ghost"
               as={(buttonProps) => {
-                const [, rest] = splitProps(buttonProps, ["class"])
+                const rest = omit(buttonProps, "class")
 
                 return (
                   <Link
