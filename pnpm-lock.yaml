@@ -282,6 +282,51 @@ importers:
         specifier: ^6.0.1
         version: 6.0.3
 
+  packages/somoto:
+    devDependencies:
+      '@solidjs/web':
+        specifier: 2.0.0-beta.15
+        version: 2.0.0-beta.15(solid-js@2.0.0-beta.15)
+      babel-preset-solid:
+        specifier: 2.0.0-beta.15
+        version: 2.0.0-beta.15(@babel/core@7.29.7)(solid-js@2.0.0-beta.15)
+      solid-js:
+        specifier: 2.0.0-beta.15
+        version: 2.0.0-beta.15
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.17)(tsx@4.23.0)(typescript@6.0.3)
+      tsup-preset-solid:
+        specifier: ^2.2.0
+        version: 2.2.0(esbuild@0.28.1)(solid-js@2.0.0-beta.15)(tsup@8.5.1(jiti@2.7.0)(postcss@8.5.17)(tsx@4.23.0)(typescript@6.0.3))
+      typescript:
+        specifier: ^6.0.1
+        version: 6.0.3
+
+  packages/unovis-solid:
+    devDependencies:
+      '@solidjs/web':
+        specifier: 2.0.0-beta.15
+        version: 2.0.0-beta.15(solid-js@2.0.0-beta.15)
+      '@unovis/ts':
+        specifier: ^1.6.1
+        version: 1.6.7
+      babel-preset-solid:
+        specifier: 2.0.0-beta.15
+        version: 2.0.0-beta.15(@babel/core@7.29.7)(solid-js@2.0.0-beta.15)
+      solid-js:
+        specifier: 2.0.0-beta.15
+        version: 2.0.0-beta.15
+      tsup:
+        specifier: ^8.0.0
+        version: 8.5.1(jiti@2.7.0)(postcss@8.5.17)(tsx@4.23.0)(typescript@6.0.3)
+      tsup-preset-solid:
+        specifier: ^2.2.0
+        version: 2.2.0(esbuild@0.28.1)(solid-js@2.0.0-beta.15)(tsup@8.5.1(jiti@2.7.0)(postcss@8.5.17)(tsx@4.23.0)(typescript@6.0.3))
+      typescript:
+        specifier: ^6.0.1
+        version: 6.0.3
+
 packages:
 
   '@alloc/quick-lru@5.2.0':
