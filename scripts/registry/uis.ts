@@ -4,7 +4,7 @@ export const uis: Registry["items"] = [
   {
     name: "accordion",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/accordion.tsx",
@@ -15,7 +15,7 @@ export const uis: Registry["items"] = [
   {
     name: "alert",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/alert.tsx",
@@ -26,7 +26,7 @@ export const uis: Registry["items"] = [
   {
     name: "alert-dialog",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     registryDependencies: ["button"],
     files: [
       {
@@ -38,7 +38,7 @@ export const uis: Registry["items"] = [
   {
     name: "badge",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/badge.tsx",
@@ -49,7 +49,7 @@ export const uis: Registry["items"] = [
   {
     name: "breadcrumbs",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/breadcrumbs.tsx",
@@ -60,7 +60,7 @@ export const uis: Registry["items"] = [
   {
     name: "button-group",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     registryDependencies: ["separator"],
     files: [
       {
@@ -72,7 +72,7 @@ export const uis: Registry["items"] = [
   {
     name: "button",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/button.tsx",
@@ -83,7 +83,7 @@ export const uis: Registry["items"] = [
   {
     name: "calendar",
     type: "registry:ui",
-    dependencies: ["@corvu/calendar"],
+    dependencies: ["@corvu-next/calendar"],
     registryDependencies: ["button"],
     files: [
       {
@@ -105,7 +105,7 @@ export const uis: Registry["items"] = [
   {
     name: "carousel",
     type: "registry:ui",
-    dependencies: ["embla-carousel-solid"],
+    dependencies: ["@opencenter-cloud/embla-carousel-solid"],
     registryDependencies: ["button"],
     files: [
       {
@@ -117,7 +117,7 @@ export const uis: Registry["items"] = [
   {
     name: "chart",
     type: "registry:ui",
-    dependencies: ["@unovis/ts", "@unovis/solid"],
+    dependencies: ["@unovis/ts", "@opencenter-cloud/unovis-solid"],
     files: [
       {
         path: "ui/chart.tsx",
@@ -128,7 +128,7 @@ export const uis: Registry["items"] = [
   {
     name: "checkbox",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/checkbox.tsx",
@@ -139,7 +139,7 @@ export const uis: Registry["items"] = [
   {
     name: "collapsible",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/collapsible.tsx",
@@ -150,7 +150,7 @@ export const uis: Registry["items"] = [
   {
     name: "combobox",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/combobox.tsx",
@@ -161,7 +161,7 @@ export const uis: Registry["items"] = [
   {
     name: "command",
     type: "registry:ui",
-    dependencies: ["cmdk-solid"],
+    dependencies: ["@opencenter-cloud/cmdk-solid"],
     files: [
       {
         path: "ui/command.tsx",
@@ -172,7 +172,7 @@ export const uis: Registry["items"] = [
   {
     name: "context-menu",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/context.tsx",
@@ -183,7 +183,7 @@ export const uis: Registry["items"] = [
   {
     name: "drawer",
     type: "registry:ui",
-    dependencies: ["@corvu/drawer"],
+    dependencies: ["@corvu-next/drawer"],
     files: [
       {
         path: "ui/drawer.tsx",
@@ -194,7 +194,7 @@ export const uis: Registry["items"] = [
   {
     name: "dropdown-menu",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/dropdown-menu.tsx",
@@ -205,7 +205,7 @@ export const uis: Registry["items"] = [
   {
     name: "file-field",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/file-field.tsx",
@@ -216,7 +216,7 @@ export const uis: Registry["items"] = [
   {
     name: "hover-card",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/hover-card.tsx",
@@ -237,7 +237,7 @@ export const uis: Registry["items"] = [
   {
     name: "menubar",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/menubar.tsx",
@@ -248,7 +248,7 @@ export const uis: Registry["items"] = [
   {
     name: "navigation-menu",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/navigation-menu.tsx",
@@ -259,7 +259,7 @@ export const uis: Registry["items"] = [
   {
     name: "number-field",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/number-field.tsx",
@@ -270,7 +270,7 @@ export const uis: Registry["items"] = [
   {
     name: "otp-field",
     type: "registry:ui",
-    dependencies: ["@corvu/otp-field"],
+    dependencies: ["@corvu-next/otp-field"],
     files: [
       {
         path: "ui/otp-field.tsx",
@@ -281,7 +281,7 @@ export const uis: Registry["items"] = [
   {
     name: "pagination",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     registryDependencies: ["button"],
     files: [
       {
@@ -293,7 +293,7 @@ export const uis: Registry["items"] = [
   {
     name: "popover",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/popover.tsx",
@@ -304,7 +304,7 @@ export const uis: Registry["items"] = [
   {
     name: "progress",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/progress.tsx",
@@ -315,7 +315,7 @@ export const uis: Registry["items"] = [
   {
     name: "radio-group",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/radio-group.tsx",
@@ -326,7 +326,7 @@ export const uis: Registry["items"] = [
   {
     name: "resizable",
     type: "registry:ui",
-    dependencies: ["@corvu/resizable"],
+    dependencies: ["@corvu-next/resizable"],
     files: [
       {
         path: "ui/resizable.tsx",
@@ -337,7 +337,7 @@ export const uis: Registry["items"] = [
   {
     name: "search",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/search.tsx",
@@ -348,7 +348,7 @@ export const uis: Registry["items"] = [
   {
     name: "segmented-control",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/segmented-control.tsx",
@@ -359,7 +359,7 @@ export const uis: Registry["items"] = [
   {
     name: "select",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/select.tsx",
@@ -370,7 +370,7 @@ export const uis: Registry["items"] = [
   {
     name: "separator",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/separator.tsx",
@@ -381,7 +381,7 @@ export const uis: Registry["items"] = [
   {
     name: "sidebar",
     type: "registry:ui",
-    dependencies: ["@kobalte/core", "@solid-primitives/props"],
+    dependencies: ["@opencenter-cloud/kobalte-core", "@solid-primitives/props"],
     registryDependencies: [
       "use-mobile",
       "call-handler",
@@ -401,7 +401,7 @@ export const uis: Registry["items"] = [
   {
     name: "skeleton",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/skeleton.tsx",
@@ -412,7 +412,7 @@ export const uis: Registry["items"] = [
   {
     name: "slider",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/slider.tsx",
@@ -423,7 +423,7 @@ export const uis: Registry["items"] = [
   {
     name: "sonner",
     type: "registry:ui",
-    dependencies: ["somoto"],
+    dependencies: ["@opencenter-cloud/somoto"],
     files: [
       {
         path: "ui/sonner.tsx",
@@ -434,7 +434,7 @@ export const uis: Registry["items"] = [
   {
     name: "switch",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/switch.tsx",
@@ -455,7 +455,7 @@ export const uis: Registry["items"] = [
   {
     name: "tabs",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/tabs.tsx",
@@ -466,7 +466,7 @@ export const uis: Registry["items"] = [
   {
     name: "text-field",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/text-field.tsx",
@@ -477,7 +477,7 @@ export const uis: Registry["items"] = [
   {
     name: "toggle-group",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     registryDependencies: ["toggle-button"],
     files: [
       {
@@ -489,7 +489,7 @@ export const uis: Registry["items"] = [
   {
     name: "toggle-button",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/toggle-button.tsx",
@@ -500,7 +500,7 @@ export const uis: Registry["items"] = [
   {
     name: "tooltip",
     type: "registry:ui",
-    dependencies: ["@kobalte/core"],
+    dependencies: ["@opencenter-cloud/kobalte-core"],
     files: [
       {
         path: "ui/tooltip.tsx",
