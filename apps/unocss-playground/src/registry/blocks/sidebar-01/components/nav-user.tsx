@@ -1,4 +1,4 @@
-import { Image } from "@kobalte/core/image"
+import { Image } from "@opencenter-cloud/kobalte-core/image"
 
 import {
   DropdownMenu,

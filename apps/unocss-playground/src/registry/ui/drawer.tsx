@@ -1,7 +1,7 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { Show, mergeProps, splitProps } from "solid-js"
-import type { DynamicProps } from "@corvu/drawer"
-import DrawerPrimitive from "@corvu/drawer"
+import type { DynamicProps } from "@corvu-next/drawer"
+import DrawerPrimitive from "@corvu-next/drawer"
 
 import { cx } from "@/registry/lib/cva"
 

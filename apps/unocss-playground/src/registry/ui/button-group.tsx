@@ -4,7 +4,7 @@ import {
   Polymorphic,
   type ElementOf,
   type PolymorphicProps,
-} from "@kobalte/core"
+} from "@opencenter-cloud/kobalte-core"
 import type { VariantProps } from "cva"
 
 import { cva, cx } from "@/registry/lib/cva"

@@ -40,8 +40,8 @@ const CalendarDemo = () => {
               <tr class="flex">
                 <For each={props.weekdays}>
                   {(weekday) => (
-                    <CalendarHeadCell abbr={formatWeekdayLong(weekday())}>
-                      {formatWeekdayShort(weekday())}
+                    <CalendarHeadCell abbr={formatWeekdayLong(weekday)}>
+                      {formatWeekdayShort(weekday)}
                     </CalendarHeadCell>
                   )}
                 </For>
@@ -51,11 +51,11 @@ const CalendarDemo = () => {
               <For each={props.weeks}>
                 {(week) => (
                   <tr class="mt-2 flex w-full">
-                    <For each={week()}>
+                    <For each={week}>
                       {(day) => (
                         <CalendarCell>
-                          <CalendarCellTrigger day={day()}>
-                            {day().getDate()}
+                          <CalendarCellTrigger day={day}>
+                            {day.getDate()}
                           </CalendarCellTrigger>
                         </CalendarCell>
                       )}

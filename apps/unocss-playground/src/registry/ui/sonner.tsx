@@ -1,5 +1,5 @@
-import { useColorMode } from "@kobalte/core"
-import { Toaster as Sonner } from "somoto"
+import { useColorMode } from "@opencenter-cloud/kobalte-core"
+import { Toaster as Sonner } from "@opencenter-cloud/somoto"
 
 export const Toaster = (props: Parameters<typeof Sonner>[0]) => {
   const { colorMode } = useColorMode()

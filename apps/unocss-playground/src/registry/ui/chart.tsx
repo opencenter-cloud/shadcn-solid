@@ -9,15 +9,15 @@ import {
   useContext,
   type JSX,
 } from "solid-js"
-import { render } from "solid-js/web"
-import type { VisCrosshairProps } from "@unovis/solid"
+import { render } from "@solidjs/web"
+import type { VisCrosshairProps } from "@opencenter-cloud/unovis-solid"
 import {
   VisCrosshair,
   VisSingleContainer,
   VisXYContainer,
   type VisSingleContainerProps,
   type VisXYContainerProps,
-} from "@unovis/solid"
+} from "@opencenter-cloud/unovis-solid"
 
 import { cx } from "@/registry/lib/cva"
 

@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { splitProps } from "solid-js"
-import { Collapsible as CollapsiblePrimitive } from "@kobalte/core/collapsible"
+import { Collapsible as CollapsiblePrimitive } from "@opencenter-cloud/kobalte-core/collapsible"
 
 import { cx } from "@/registry/lib/cva"
 

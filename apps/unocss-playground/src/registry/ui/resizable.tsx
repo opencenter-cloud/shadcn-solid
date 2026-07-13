@@ -5,7 +5,7 @@ import {
   type ComponentProps,
   type ValidComponent,
 } from "solid-js"
-import ResizablePrimitive from "@corvu/resizable"
+import ResizablePrimitive from "@corvu-next/resizable"
 
 import { cx } from "@/registry/lib/cva"
 

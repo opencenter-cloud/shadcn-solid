@@ -18,10 +18,10 @@ import {
   splitProps,
   useContext,
 } from "solid-js"
-import type { ElementOf } from "@kobalte/core"
-import { Polymorphic } from "@kobalte/core"
-import { Badge } from "@kobalte/core/badge"
-import type { PolymorphicProps } from "@kobalte/core/polymorphic"
+import type { ElementOf } from "@opencenter-cloud/kobalte-core"
+import { Polymorphic } from "@opencenter-cloud/kobalte-core"
+import { Badge } from "@opencenter-cloud/kobalte-core/badge"
+import type { PolymorphicProps } from "@opencenter-cloud/kobalte-core/polymorphic"
 import type { VariantProps } from "cva"
 
 import { useIsMobile } from "@/registry/hooks/use-mobile"

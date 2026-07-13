@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { createContext, splitProps, useContext } from "solid-js"
-import { ToggleGroup as ToggleGroupPrimitive } from "@kobalte/core/toggle-group"
+import { ToggleGroup as ToggleGroupPrimitive } from "@opencenter-cloud/kobalte-core/toggle-group"
 import type { VariantProps } from "cva"
 
 import { cx } from "@/registry/lib/cva"

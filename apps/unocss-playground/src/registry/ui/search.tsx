@@ -5,11 +5,11 @@ import {
   type ComponentProps,
   type ValidComponent,
 } from "solid-js"
-import { usePopperContext } from "@kobalte/core/popper"
+import { usePopperContext } from "@opencenter-cloud/kobalte-core/popper"
 import {
   Search as SearchPrimitive,
   useSearchContext,
-} from "@kobalte/core/search"
+} from "@opencenter-cloud/kobalte-core/search"
 
 import { cx } from "@/registry/lib/cva"
 

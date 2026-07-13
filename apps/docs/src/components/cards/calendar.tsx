@@ -52,8 +52,8 @@ const CardsCalendar = () => {
                   <tr class="flex">
                     <For each={props.weekdays}>
                       {(weekday) => (
-                        <CalendarHeadCell abbr={formatWeekdayLong(weekday())}>
-                          {formatWeekdayShort(weekday())}
+                        <CalendarHeadCell abbr={formatWeekdayLong(weekday)}>
+                          {formatWeekdayShort(weekday)}
                         </CalendarHeadCell>
                       )}
                     </For>

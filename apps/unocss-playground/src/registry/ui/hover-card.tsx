@@ -1,7 +1,7 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { splitProps } from "solid-js"
-import { HoverCard as HoverCardPrimitive } from "@kobalte/core/hover-card"
-import { usePopperContext } from "@kobalte/core/popper"
+import { HoverCard as HoverCardPrimitive } from "@opencenter-cloud/kobalte-core/hover-card"
+import { usePopperContext } from "@opencenter-cloud/kobalte-core/popper"
 
 import { cx } from "@/registry/lib/cva"
 

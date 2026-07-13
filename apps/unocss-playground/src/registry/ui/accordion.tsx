@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { splitProps } from "solid-js"
-import { Accordion as AccordionPrimitive } from "@kobalte/core/accordion"
+import { Accordion as AccordionPrimitive } from "@opencenter-cloud/kobalte-core/accordion"
 
 import { cx } from "@/registry/lib/cva"
 

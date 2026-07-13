@@ -1,6 +1,6 @@
 import type { VoidProps } from "solid-js"
 import { splitProps, type ComponentProps, type ValidComponent } from "solid-js"
-import { Slider as SliderPrimitive } from "@kobalte/core/slider"
+import { Slider as SliderPrimitive } from "@opencenter-cloud/kobalte-core/slider"
 
 import { cx } from "@/registry/lib/cva"
 

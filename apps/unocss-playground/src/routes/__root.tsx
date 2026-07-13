@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
-import type { JSX } from "solid-js"
+import type { JSX } from "@solidjs/web"
 import { HeadContent, Scripts, createRootRoute } from "@tanstack/solid-router"
-import { ColorModeProvider, ColorModeScript } from "@kobalte/core"
+import { ColorModeProvider, ColorModeScript } from "@opencenter-cloud/kobalte-core"
 
 import { Toaster } from "@/registry/ui/sonner"
 

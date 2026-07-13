@@ -1,6 +1,6 @@
 import type { VoidProps } from "solid-js"
 import { splitProps, type ComponentProps, type ValidComponent } from "solid-js"
-import { Breadcrumbs as BreadcrumbsPrimitive } from "@kobalte/core/breadcrumbs"
+import { Breadcrumbs as BreadcrumbsPrimitive } from "@opencenter-cloud/kobalte-core/breadcrumbs"
 
 import { cx } from "@/registry/lib/cva"
 

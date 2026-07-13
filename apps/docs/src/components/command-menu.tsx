@@ -5,8 +5,10 @@ import {
   createEffect,
   createSignal,
   onCleanup,
+  onSettled,
   omit,
 } from "solid-js"
+import { isServer } from "@solidjs/web"
 import { useNavigate } from "@tanstack/solid-router"
 
 import { docsConfig } from "@/config/docs"
@@ -89,12 +91,14 @@ const CommandMenu = () => {
     }
   }
 
-  createEffect(() => {
+  onSettled(() => {
+    if (isServer) return
     document.addEventListener("keydown", handleKeyDown)
+  })
 
-    onCleanup(() => {
-      document.removeEventListener("keydown", handleKeyDown)
-    })
+  onCleanup(() => {
+    if (isServer) return
+    document.removeEventListener("keydown", handleKeyDown)
   })
 
   return (

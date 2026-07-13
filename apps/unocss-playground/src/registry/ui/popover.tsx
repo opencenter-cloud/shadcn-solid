@@ -4,8 +4,8 @@ import {
   type ComponentProps,
   type ValidComponent,
 } from "solid-js"
-import { Popover as PopoverPrimitive } from "@kobalte/core/popover"
-import { usePopperContext } from "@kobalte/core/popper"
+import { Popover as PopoverPrimitive } from "@opencenter-cloud/kobalte-core/popover"
+import { usePopperContext } from "@opencenter-cloud/kobalte-core/popper"
 
 import { cx } from "@/registry/lib/cva"
 

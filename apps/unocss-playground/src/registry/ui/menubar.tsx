@@ -4,8 +4,8 @@ import {
   type ComponentProps,
   type ValidComponent,
 } from "solid-js"
-import { Menubar as MenubarPrimitive } from "@kobalte/core/menubar"
-import { usePopperContext } from "@kobalte/core/popper"
+import { Menubar as MenubarPrimitive } from "@opencenter-cloud/kobalte-core/menubar"
+import { usePopperContext } from "@opencenter-cloud/kobalte-core/popper"
 
 import { cx } from "@/registry/lib/cva"
 

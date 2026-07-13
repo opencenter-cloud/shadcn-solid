@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { splitProps } from "solid-js"
-import { Tabs as TabsPrimitive } from "@kobalte/core/tabs"
+import { Tabs as TabsPrimitive } from "@opencenter-cloud/kobalte-core/tabs"
 
 import { cx } from "@/registry/lib/cva"
 

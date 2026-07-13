@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { splitProps } from "solid-js"
-import { Alert as AlertPrimitive } from "@kobalte/core/alert"
+import { Alert as AlertPrimitive } from "@opencenter-cloud/kobalte-core/alert"
 import type { VariantProps } from "cva"
 
 import { cva, cx } from "@/registry/lib/cva"

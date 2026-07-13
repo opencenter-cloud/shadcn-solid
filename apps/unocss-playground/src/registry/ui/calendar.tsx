@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { Match, Switch, splitProps } from "solid-js"
-import CalendarPrimitive from "@corvu/calendar"
+import CalendarPrimitive from "@corvu-next/calendar"
 
 import { cx } from "@/registry/lib/cva"
 

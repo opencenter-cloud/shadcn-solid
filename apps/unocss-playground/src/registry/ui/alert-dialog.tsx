@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { splitProps } from "solid-js"
-import { AlertDialog as AlertDialogPrimitive } from "@kobalte/core/alert-dialog"
+import { AlertDialog as AlertDialogPrimitive } from "@opencenter-cloud/kobalte-core/alert-dialog"
 
 import { cx } from "@/registry/lib/cva"
 

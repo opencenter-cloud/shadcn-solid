@@ -15,7 +15,7 @@ import {
   useContext,
 } from "solid-js"
 import { createStore } from "solid-js/store"
-import type { PolymorphicProps } from "@kobalte/core/polymorphic"
+import type { PolymorphicProps } from "@opencenter-cloud/kobalte-core/polymorphic"
 import type { CreateEmblaCarouselType } from "embla-carousel-solid"
 import createEmblaCarousel from "embla-carousel-solid"
 

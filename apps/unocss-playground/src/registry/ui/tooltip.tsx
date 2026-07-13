@@ -1,7 +1,7 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { mergeProps, splitProps } from "solid-js"
-import { usePopperContext } from "@kobalte/core/popper"
-import { Tooltip as TooltipPrimitive } from "@kobalte/core/tooltip"
+import { usePopperContext } from "@opencenter-cloud/kobalte-core/popper"
+import { Tooltip as TooltipPrimitive } from "@opencenter-cloud/kobalte-core/tooltip"
 
 import { cx } from "@/registry/lib/cva"
 

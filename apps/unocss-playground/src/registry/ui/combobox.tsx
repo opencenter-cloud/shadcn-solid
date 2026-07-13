@@ -1,7 +1,7 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { splitProps } from "solid-js"
-import { Combobox as ComboboxPrimitive } from "@kobalte/core/combobox"
-import { usePopperContext } from "@kobalte/core/popper"
+import { Combobox as ComboboxPrimitive } from "@opencenter-cloud/kobalte-core/combobox"
+import { usePopperContext } from "@opencenter-cloud/kobalte-core/popper"
 
 import { cx } from "@/registry/lib/cva"
 

@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { splitProps } from "solid-js"
-import { Badge as BadgePrimitive } from "@kobalte/core/badge"
+import { Badge as BadgePrimitive } from "@opencenter-cloud/kobalte-core/badge"
 import type { VariantProps } from "cva"
 
 import { cva } from "@/registry/lib/cva"

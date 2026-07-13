@@ -5,7 +5,7 @@ import {
   type ComponentProps,
   type ValidComponent,
 } from "solid-js"
-import { NavigationMenu as NavigationMenuPrimitive } from "@kobalte/core/navigation-menu"
+import { NavigationMenu as NavigationMenuPrimitive } from "@opencenter-cloud/kobalte-core/navigation-menu"
 
 import { cx } from "@/registry/lib/cva"
 

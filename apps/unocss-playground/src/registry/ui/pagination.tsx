@@ -8,7 +8,7 @@ import {
 import {
   Pagination as PaginationPrimitive,
   usePaginationContext,
-} from "@kobalte/core/pagination"
+} from "@opencenter-cloud/kobalte-core/pagination"
 
 import { cx } from "@/registry/lib/cva"
 

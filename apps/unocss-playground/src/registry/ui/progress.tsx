@@ -1,5 +1,5 @@
 import { splitProps, type ComponentProps, type ValidComponent } from "solid-js"
-import { Progress as ProgressPrimitive } from "@kobalte/core/progress"
+import { Progress as ProgressPrimitive } from "@opencenter-cloud/kobalte-core/progress"
 
 import { cx } from "@/registry/lib/cva"
 

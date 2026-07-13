@@ -1,11 +1,11 @@
-import { render } from "solid-js/web"
+import { render } from "@solidjs/web"
 import {
   VisArea,
   VisAxis,
   VisGroupedBar,
   VisLine,
   VisTooltip,
-} from "@unovis/solid"
+} from "@opencenter-cloud/unovis-solid"
 import { Area, CurveType, GroupedBar, Position } from "@unovis/ts"
 
 import {

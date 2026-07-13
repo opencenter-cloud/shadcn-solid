@@ -16,13 +16,21 @@
     "@unocss/preset-wind4": "^66.5.5",
     "unocss": "^66.5.5",
     "vite": "^7.1.7",
-    "vite-plugin-solid": "^2.11.10",
-    "vite-tsconfig-paths": "^5.1.4"
+    "vite-plugin-solid": "3.0.0-next.5",
+    "vite-tsconfig-paths": "^5.1.4",
+    "@solidjs/web": "2.0.0-beta.15",
+    "babel-preset-solid": "2.0.0-beta.15"
   },
   "dependencies": {
-    "@solid-primitives/media": "^2.3.3",
-    "@tanstack/solid-router": "^1.130.12",
-    "@tanstack/solid-start": "^1.130.16",
-    "solid-js": "^1.9.10"
+    "@opencenter-cloud/kobalte-core": "^0.1.1",
+    "@opencenter-cloud/cmdk-solid": "workspace:*",
+    "@opencenter-cloud/somoto": "workspace:*",
+    "@opencenter-cloud/unovis-solid": "workspace:*",
+    "@corvu-next/drawer": "^0.1.3",
+    "@corvu-next/resizable": "^0.1.3",
+    "@solid-primitives/media": "4.0.0-next.0",
+    "@tanstack/solid-router": "2.0.0-beta.21",
+    "@tanstack/solid-start": "2.0.0-beta.22",
+    "solid-js": "2.0.0-beta.15"
   }
 }

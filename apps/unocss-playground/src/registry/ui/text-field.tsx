@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { For, Match, Switch, splitProps } from "solid-js"
-import { TextField as TextFieldPrimitive } from "@kobalte/core/text-field"
+import { TextField as TextFieldPrimitive } from "@opencenter-cloud/kobalte-core/text-field"
 
 import { cx } from "@/registry/lib/cva"
 

@@ -1,7 +1,7 @@
 import type { ComponentProps, ValidComponent, VoidProps } from "solid-js"
 import { mergeProps, splitProps } from "solid-js"
-import { usePopperContext } from "@kobalte/core/popper"
-import { Select as SelectPrimitive } from "@kobalte/core/select"
+import { usePopperContext } from "@opencenter-cloud/kobalte-core/popper"
+import { Select as SelectPrimitive } from "@opencenter-cloud/kobalte-core/select"
 
 import { cx } from "@/registry/lib/cva"
 

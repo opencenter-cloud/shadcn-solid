@@ -1,6 +1,6 @@
 import type { VoidProps } from "solid-js"
 import { splitProps, type ComponentProps, type ValidComponent } from "solid-js"
-import { RadioGroup as RadioGroupPrimitive } from "@kobalte/core/radio-group"
+import { RadioGroup as RadioGroupPrimitive } from "@opencenter-cloud/kobalte-core/radio-group"
 
 import { cx } from "@/registry/lib/cva"
 

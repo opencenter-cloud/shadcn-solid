@@ -33,7 +33,7 @@ export default defineConfig({
   ],
   build: {
     rollupOptions: {
-      external: ["@vercel/og", "@opencenter-cloud/unovis-solid", "@unovis/ts"],
+      external: ["@vercel/og", "@opencenter-cloud/unovis-solid", "@unovis/ts", "@opencenter-cloud/somoto"],
     },
   },
   resolve: {
@@ -44,9 +44,11 @@ export default defineConfig({
     noExternal: [
       "@opencenter-cloud/kobalte-core",
       "@opencenter-cloud/cmdk-solid",
+      "@opencenter-cloud/somoto",
       "@solid-primitives/deep",
       "@tanstack/solid-store",
       "@tanstack/solid-table",
+      /^@corvu-next\//,
     ],
   },
 })

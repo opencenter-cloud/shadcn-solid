@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { splitProps } from "solid-js"
-import { Root as ButtonPrimitive } from "@kobalte/core/button"
+import { Root as ButtonPrimitive } from "@opencenter-cloud/kobalte-core/button"
 import type { VariantProps } from "cva"
 
 import { cva } from "@/registry/lib/cva"

@@ -1,6 +1,6 @@
 import type { ValidComponent, VoidProps } from "solid-js"
 import { splitProps, type ComponentProps } from "solid-js"
-import { NumberField as NumberFieldPrimitive } from "@kobalte/core/number-field"
+import { NumberField as NumberFieldPrimitive } from "@opencenter-cloud/kobalte-core/number-field"
 
 import { cx } from "@/registry/lib/cva"
 

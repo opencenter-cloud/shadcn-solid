@@ -1,7 +1,7 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { splitProps } from "solid-js"
-import { ContextMenu as ContextMenuPrimitive } from "@kobalte/core/context-menu"
-import { usePopperContext } from "@kobalte/core/popper"
+import { ContextMenu as ContextMenuPrimitive } from "@opencenter-cloud/kobalte-core/context-menu"
+import { usePopperContext } from "@opencenter-cloud/kobalte-core/popper"
 
 import { cx } from "@/registry/lib/cva"
 

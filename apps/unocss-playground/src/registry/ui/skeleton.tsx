@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { mergeProps, splitProps } from "solid-js"
-import { Root as SkeletonPrimitive } from "@kobalte/core/skeleton"
+import { Root as SkeletonPrimitive } from "@opencenter-cloud/kobalte-core/skeleton"
 
 import { cx } from "@/registry/lib/cva"
 

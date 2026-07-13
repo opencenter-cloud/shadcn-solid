@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { Show, splitProps } from "solid-js"
-import { FileField as FileFieldPrimitive } from "@kobalte/core/file-field"
+import { FileField as FileFieldPrimitive } from "@opencenter-cloud/kobalte-core/file-field"
 import type { VariantProps } from "cva"
 
 import { cx } from "@/registry/lib/cva"

@@ -1,7 +1,7 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { mergeProps, splitProps } from "solid-js"
-import { DropdownMenu as DropdownMenuPrimitive } from "@kobalte/core/dropdown-menu"
-import { usePopperContext } from "@kobalte/core/popper"
+import { DropdownMenu as DropdownMenuPrimitive } from "@opencenter-cloud/kobalte-core/dropdown-menu"
+import { usePopperContext } from "@opencenter-cloud/kobalte-core/popper"
 
 import { cx } from "@/registry/lib/cva"
 

@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { Show, mergeProps, splitProps } from "solid-js"
-import { Dialog as DialogPrimitive } from "@kobalte/core/dialog"
+import { Dialog as DialogPrimitive } from "@opencenter-cloud/kobalte-core/dialog"
 
 import { cx } from "@/registry/lib/cva"
 

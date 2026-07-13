@@ -1,6 +1,6 @@
 import type { ComponentProps, ValidComponent } from "solid-js"
 import { splitProps } from "solid-js"
-import { Checkbox as CheckboxPrimitive } from "@kobalte/core/checkbox"
+import { Checkbox as CheckboxPrimitive } from "@opencenter-cloud/kobalte-core/checkbox"
 
 import { cx } from "@/registry/lib/cva"
 

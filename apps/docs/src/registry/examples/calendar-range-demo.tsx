@@ -43,7 +43,7 @@ const CalendarRangeDemo = () => {
                 <div class="flex flex-col gap-4">
                   <div class="flex h-7 items-center justify-center">
                     <CalendarLabel index={index}>
-                      {formatMonth(month().month)} {month().month.getFullYear()}
+                      {formatMonth(month.month)} {month.month.getFullYear()}
                     </CalendarLabel>
                   </div>
                   <CalendarTable index={index}>
@@ -52,26 +52,26 @@ const CalendarRangeDemo = () => {
                         <For each={props.weekdays}>
                           {(weekday) => (
                             <CalendarHeadCell
-                              abbr={formatWeekdayLong(weekday())}
+                              abbr={formatWeekdayLong(weekday)}
                             >
-                              {formatWeekdayShort(weekday())}
+                              {formatWeekdayShort(weekday)}
                             </CalendarHeadCell>
                           )}
                         </For>
                       </tr>
                     </thead>
                     <tbody>
-                      <For each={month().weeks}>
+                      <For each={month.weeks}>
                         {(week) => (
                           <tr class="mt-2 flex w-full">
-                            <For each={week()}>
+                            <For each={week}>
                               {(day) => (
                                 <CalendarCell>
                                   <CalendarCellTrigger
-                                    day={day()}
-                                    month={month().month}
+                                    day={day}
+                                    month={month.month}
                                   >
-                                    {day().getDate()}
+                                    {day.getDate()}
                                   </CalendarCellTrigger>
                                 </CalendarCell>
                               )}

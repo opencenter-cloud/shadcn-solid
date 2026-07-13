@@ -1,5 +1,5 @@
 import { splitProps, type ComponentProps, type ValidComponent } from "solid-js"
-import { ToggleButton as ToggleButtonPrimitive } from "@kobalte/core/toggle-button"
+import { ToggleButton as ToggleButtonPrimitive } from "@opencenter-cloud/kobalte-core/toggle-button"
 import type { VariantProps } from "cva"
 
 import { cva } from "@/registry/lib/cva"

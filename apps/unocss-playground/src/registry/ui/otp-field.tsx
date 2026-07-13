@@ -5,7 +5,7 @@ import {
   type ComponentProps,
   type ValidComponent,
 } from "solid-js"
-import OTPFieldPrimitive from "@corvu/otp-field"
+import OTPFieldPrimitive from "@corvu-next/otp-field"
 
 import { cx } from "@/registry/lib/cva"
 
