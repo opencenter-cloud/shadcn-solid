@@ -68,7 +68,7 @@ export const Carousel = (props: CarouselProps) => {
 
   const [ref, api] = createEmblaCarousel(
     () => ({
-      ...merge.options?.(),
+      ...mergedProps.options?.(),
       axis: mergedProps.orientation === "horizontal" ? "x" : "y",
     }),
     () => mergedProps.plugins?.() ?? [],
@@ -81,10 +81,10 @@ export const Carousel = (props: CarouselProps) => {
 
   const onSelect = (api: CarouselAPI) => {
     if (!api()) return
-    setStore({
+    setStore(() => ({
       canScrollNext: api()!.canScrollNext(),
       canScrollPrev: api()!.canScrollPrev(),
-    })
+    }))
   }
 
   const scrollPrev = () => {

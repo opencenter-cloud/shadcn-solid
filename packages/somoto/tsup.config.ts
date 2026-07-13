@@ -5,7 +5,7 @@ const preset_options: preset.PresetOptions = {
   entries: [
     {
       entry: 'src/index.ts',
-      dev_entry: true,
+      dev_entry: false,
       server_entry: true,
     },
   ],

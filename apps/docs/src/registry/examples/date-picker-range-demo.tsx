@@ -89,12 +89,12 @@ const DatePickerRangeDemo = () => {
                     {(month, index) => (
                       <div class="flex flex-col gap-4">
                         <div class="flex h-7 items-center justify-center">
-                          <CalendarLabel index={index}>
+                          <CalendarLabel index={index()}>
                             {formatMonth(month.month)}{" "}
                             {month.month.getFullYear()}
                           </CalendarLabel>
                         </div>
-                        <CalendarTable index={index}>
+                        <CalendarTable index={index()}>
                           <thead>
                             <tr class="flex">
                               <For each={props.weekdays}>

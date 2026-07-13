@@ -13,6 +13,7 @@ export default defineConfig({
   server: {
     port: 3001,
   },
+  assetsInclude: ["**/*.wasm"],
   plugins: [
     solidCompat(),
     tsConfigPaths({
@@ -31,16 +32,39 @@ export default defineConfig({
       extensions: [".mdx"],
     }),
   ],
-  build: {
-    rollupOptions: {
-      external: ["@vercel/og", "@opencenter-cloud/unovis-solid", "@unovis/ts", "@opencenter-cloud/somoto"],
+  optimizeDeps: {
+    exclude: [
+      "@vercel/og",
+      "@opencenter-cloud/kobalte-core",
+      "@opencenter-cloud/cmdk-solid",
+      "@opencenter-cloud/somoto",
+      "@corvu-next/calendar",
+      "@corvu-next/drawer",
+      "@corvu-next/otp-field",
+      "@corvu-next/resizable",
+    ],
+    esbuildOptions: {
+      plugins: [
+        {
+          name: "solidjs-web-browser-resolve",
+          setup(build) {
+            // Force @solidjs/web to resolve to the browser (dev) entry
+            // instead of the server entry during dep optimization
+            build.onResolve({ filter: /^@solidjs\/web$/ }, (args) => {
+              return {
+                path: resolve(
+                  import.meta.dirname,
+                  "../../node_modules/@solidjs/web/dist/dev.js"
+                ),
+              }
+            })
+          },
+        },
+      ],
     },
   },
-  resolve: {
-    alias: {
-      // Local solid-mdx replacement (upstream is Solid 1 only)
-      "solid-mdx": resolve(import.meta.dirname, "src/lib/solid-mdx.tsx"),
-    },
+  ssr: {
+    external: ["@vercel/og"],
     noExternal: [
       "@opencenter-cloud/kobalte-core",
       "@opencenter-cloud/cmdk-solid",
@@ -48,7 +72,20 @@ export default defineConfig({
       "@solid-primitives/deep",
       "@tanstack/solid-store",
       "@tanstack/solid-table",
+      "@tanstack/solid-form",
       /^@corvu-next\//,
     ],
+  },
+  build: {
+    rollupOptions: {
+      external: ["@vercel/og", "@opencenter-cloud/unovis-solid", "@unovis/ts", "@opencenter-cloud/somoto"],
+    },
+  },
+  resolve: {
+    conditions: ["browser", "development"],
+    alias: {
+      // Local solid-mdx replacement (upstream is Solid 1 only)
+      "solid-mdx": resolve(import.meta.dirname, "src/lib/solid-mdx.tsx"),
+    },
   },
 })

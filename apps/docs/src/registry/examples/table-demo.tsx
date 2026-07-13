@@ -82,7 +82,7 @@ const TableDemo = () => {
       </TableBody>
       <TableFooter>
         <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
+          <TableCell colspan={3}>Total</TableCell>
           <TableCell class="text-right">$2,500.00</TableCell>
         </TableRow>
       </TableFooter>

@@ -31,7 +31,7 @@ const CarouselPluginDemo = () => {
               <div class="p-1">
                 <Card>
                   <CardContent class="flex aspect-square items-center justify-center p-6">
-                    <span class="text-4xl font-semibold">{index + 1}</span>
+                    <span class="text-4xl font-semibold">{index() + 1}</span>
                   </CardContent>
                 </Card>
               </div>

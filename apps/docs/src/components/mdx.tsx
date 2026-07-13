@@ -1,4 +1,5 @@
 import type { ComponentProps, JSX } from "@solidjs/web"
+import type { Component } from "solid-js"
 import { Match, Show, Switch, lazy, omit } from "solid-js"
 
 import { cx } from "@/registry/lib/cva"
@@ -11,15 +12,11 @@ import CopyButton from "./copy-button"
 const ComponentInstallation = lazy(() => import("./component-installation"))
 const ComponentSource = lazy(() => import("./component-source"))
 const ComponentSourceTabs = lazy(() => import("./component-source-tabs"))
-const ComponentPreview = lazy(() => import("./component-preview"))
+const ComponentPreview = lazy<Component<any>>(() => import("./component-preview"))
 
-type MDXComponents = {
-  [key in keyof JSX.IntrinsicElements]: (
-    props: JSX.IntrinsicElements[key],
-  ) => JSX.Element
-}
+type MDXComponents = Record<string, (props: any) => JSX.Element>
 
-export const mdxCustomComponents: MDXComponents | Record<string, unknown> = {
+export const mdxCustomComponents: MDXComponents = {
   a: (props) => (
     <a class="font-medium underline underline-offset-4" {...props} />
   ),

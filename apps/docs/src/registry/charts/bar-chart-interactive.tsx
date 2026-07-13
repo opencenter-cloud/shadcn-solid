@@ -185,7 +185,7 @@ const BarChartInteractive = () => {
                     {chartConfig[chart].label}
                   </span>
                   <span class="text-lg leading-none font-bold sm:text-3xl">
-                    {total()[key as keyof typeof total]}
+                    {(total() as Record<string, number>)[key]}
                   </span>
                 </button>
               )

@@ -12,7 +12,7 @@ const TooltipDemo = () => {
     <Tooltip>
       <TooltipTrigger
         as={(props: TooltipTriggerProps) => (
-          <Button variant="outline" {...props}>
+          <Button variant="outline" {...(props as any)}>
             Hover
           </Button>
         )}

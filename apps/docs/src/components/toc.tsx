@@ -1,4 +1,4 @@
-import { For, createEffect, createSignal } from "solid-js"
+import { For, createEffect, createMemo, createSignal } from "solid-js"
 import { createIntersectionObserver } from "@solid-primitives/intersection-observer"
 
 const Toc = (props: {
@@ -12,22 +12,17 @@ const Toc = (props: {
     }
   })
 
-  const [activeItem, setActiveItem] = createSignal<string[]>([])
+  const [entries] = createIntersectionObserver(targets)
 
-  createIntersectionObserver(targets, (entries) => {
+  const activeItem = createMemo(() => {
+    const visible: string[] = []
     for (const entry of entries) {
       const id = entry.target.getAttribute("id")
-      if (id === null) return
-
-      if (entry.isIntersecting && !activeItem().includes(id)) {
-        setActiveItem([...activeItem(), id])
-        return
-      }
-      if (!entry.isIntersecting && activeItem().includes(id)) {
-        setActiveItem(activeItem().filter((h) => h !== id))
-        return
+      if (id !== null && entry.isIntersecting) {
+        visible.push(id)
       }
     }
+    return visible
   })
 
   return (

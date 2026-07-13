@@ -49,6 +49,7 @@ export const Route = createFileRoute("/_og/og")({
     return new ImageResponse(
       {
         type: "div",
+        key: null,
         props: {
           tw: "flex h-full w-full bg-black text-white",
           style: { fontFamily: "Geist Sans" },

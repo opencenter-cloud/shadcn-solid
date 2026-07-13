@@ -7,7 +7,8 @@ import type {
   XYComponentCore,
   XYContainerConfigInterface,
 } from '@unovis/ts'
-import type { JSX, ParentProps } from 'solid-js'
+import type { ParentProps } from 'solid-js'
+import type { JSX } from '@solidjs/web'
 import {
   createEffect,
   createSignal,
@@ -33,7 +34,7 @@ export function VisXYContainer<Datum>(props: VisXYContainerProps<Datum>) {
   const divProps = () => ({ children: props.children, class: props.class })
   const styleVal = () => props.style
   const dataVal = () => props.data
-  const rest = () => omit(props, ['children', 'class', 'style', 'data'])
+  const rest = () => omit(props, 'children', 'class', 'style', 'data')
 
   const [ref, setRef] = createSignal<HTMLDivElement>()
   const [chart, setChart] = createSignal<XYContainer<Datum>>()

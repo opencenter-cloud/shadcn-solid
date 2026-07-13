@@ -1,4 +1,5 @@
-import type { Accessor, JSX } from "solid-js"
+import type { Accessor } from "solid-js"
+import type { JSX } from "@solidjs/web"
 
 import AreaChart from "@/registry/charts/area-chart"
 import AreaChartGradient from "@/registry/charts/area-chart-gradient"

@@ -1,4 +1,4 @@
-import type { JSX } from "solid-js"
+import type { JSX } from "@solidjs/web"
 import { createEffect, createMemo } from "solid-js"
 import { createFileRoute } from "@tanstack/solid-router"
 

@@ -643,7 +643,7 @@ const DataTableDemo = () => {
               when={table.getRowModel().rows.length}
               fallback={
                 <TableRow>
-                  <TableCell colSpan={columns.length} class="h-24 text-center">
+                  <TableCell colspan={columns.length} class="h-24 text-center">
                     No results.
                   </TableCell>
                 </TableRow>

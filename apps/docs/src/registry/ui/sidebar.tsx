@@ -1,8 +1,9 @@
 import type {
   Accessor,
-  JSX,
   Setter
 } from "solid-js"
+import type { JSX } from "@solidjs/web"
+import { isServer } from "@solidjs/web"
 import {
   Match,
   Show,
@@ -119,10 +120,12 @@ export const SidebarProvider = (props: SidebarProviderProps) => {
     }
   }
 
-  window.addEventListener("keydown", handleKeyDown)
-  onCleanup(() => {
-    window.removeEventListener("keydown", handleKeyDown)
-  })
+  if (!isServer) {
+    window.addEventListener("keydown", handleKeyDown)
+    onCleanup(() => {
+      window.removeEventListener("keydown", handleKeyDown)
+    })
+  }
 
   const state = createMemo(() => (open() ? "expanded" : "collapsed"))
 
@@ -145,7 +148,9 @@ export const SidebarProvider = (props: SidebarProviderProps) => {
             "--sidebar-width": SIDEBAR_WIDTH,
             "--sidebar-width-icon": SIDEBAR_WIDTH_ICON,
           },
-          mergedProps.style,
+          typeof mergedProps.style === "object" || typeof mergedProps.style === "string"
+            ? mergedProps.style
+            : undefined,
         )}
         class={cx(
           "group/sidebar-wrapper has-data-[variant=inset]:bg-sidebar flex min-h-svh w-full",
@@ -341,7 +346,7 @@ export const SidebarRail = (props: SidebarRailProps) => {
       data-sidebar="rail"
       data-slot="sidebar-rail"
       aria-label="Toggle Sidebar"
-      tabIndex={-1}
+      tabindex={-1}
       onClick={toggleSidebar}
       title="Toggle Sidebar"
       class={cx(

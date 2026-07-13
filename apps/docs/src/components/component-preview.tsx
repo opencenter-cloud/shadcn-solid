@@ -1,11 +1,10 @@
-import type { JSX } from "@solidjs/web"
+import type { JSX, ComponentProps } from "@solidjs/web"
 import {
   Match,
   Switch,
   createMemo,
   merge,
   omit,
-  type ComponentProps,
 } from "solid-js"
 
 import { Index } from "@/registry/__index__"

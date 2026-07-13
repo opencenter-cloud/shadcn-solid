@@ -1,4 +1,5 @@
-import type { ComponentProps, VoidProps } from "solid-js"
+import type { VoidProps } from "solid-js"
+import type { ComponentProps } from "@solidjs/web"
 
 const Logo = (props: VoidProps<ComponentProps<"svg">>) => {
   return (

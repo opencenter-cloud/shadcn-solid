@@ -125,7 +125,8 @@ interface Content {
 export const Contents : Record<string, Content> = {\n${formattedContents}\n};`
 
   rimraf.sync(resolve("src/content/index.ts"))
-  writeFileSync(resolve("src/content/index.ts"), fileContent)
+  rimraf.sync(resolve("src/content/index.tsx"))
+  writeFileSync(resolve("src/content/index.tsx"), fileContent)
 }
 
 export default (): Plugin => {

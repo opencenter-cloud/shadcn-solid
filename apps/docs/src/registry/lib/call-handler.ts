@@ -1,7 +1,7 @@
 // https://github.com/kobaltedev/kobalte/blob/main/packages/utils/src/assertion.ts
 // https://github.com/kobaltedev/kobalte/blob/main/packages/utils/src/events.ts
 
-import type { JSX } from "solid-js"
+import type { JSX } from "@solidjs/web"
 
 // Function assertions
 export const isFunction = (value: unknown): value is Function =>

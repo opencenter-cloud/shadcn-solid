@@ -31,13 +31,28 @@ export default function solidCompat(): Plugin {
     },
     load(id) {
       if (id === VIRTUAL_ID) {
-        // Re-export everything from solid-js, plus aliases for removed names
+        // Re-export everything from solid-js, plus aliases for removed names.
+        // splitProps shim: returns [picked, rest] tuple matching Solid 1 API,
+        // implemented via omit() for the rest + direct prop access for picked keys.
         return `
 export * from "solid-js";
 export { merge as mergeProps } from "solid-js";
-export { omit as splitProps } from "solid-js";
 export { onSettled as onMount } from "solid-js";
 export { createEffect as createComputed } from "solid-js";
+import { omit as _omit } from "solid-js";
+export function splitProps(props, ...arrays) {
+  const keys = arrays.flat();
+  const picked = {};
+  for (const key of keys) {
+    Object.defineProperty(picked, key, {
+      get() { return props[key]; },
+      enumerable: true,
+      configurable: true,
+    });
+  }
+  const rest = _omit(props, ...keys);
+  return [picked, rest];
+}
 `
       }
       return null

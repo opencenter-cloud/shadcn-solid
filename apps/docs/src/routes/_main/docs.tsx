@@ -1,5 +1,5 @@
 import { Outlet, createFileRoute } from "@tanstack/solid-router"
-import { MDXProvider } from "solid-mdx"
+import { MDXProvider } from "@/lib/solid-mdx"
 
 import DocsSidebar from "@/components/docs-sidebar"
 import { mdxCustomComponents } from "@/components/mdx"

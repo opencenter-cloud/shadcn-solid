@@ -68,7 +68,7 @@ const CardsShare = () => {
           <TextFieldInput
             value="http://example.com/link/to/document"
             class="h-8 w-full"
-            readOnly
+            readonly
           />
           <Button
             size="sm"

@@ -154,7 +154,7 @@ export const RadioGroupItemLabel = <T extends ValidComponent = "span">(
 }
 
 export type RadioGroupDescriptionProps<T extends ValidComponent = "span"> =
-  ComponentProps<typeof RadioGroupPrimitive.Label<T>>
+  ComponentProps<typeof RadioGroupPrimitive.Description<T>>
 
 export const RadioGroupDescription = <T extends ValidComponent = "span">(
   props: RadioGroupDescriptionProps<T>,

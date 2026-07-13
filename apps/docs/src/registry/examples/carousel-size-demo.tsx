@@ -24,7 +24,7 @@ const CarouselSizeDemo = () => {
               <div class="p-1">
                 <Card>
                   <CardContent class="flex aspect-square items-center justify-center p-6">
-                    <span class="text-3xl font-semibold">{index + 1}</span>
+                    <span class="text-3xl font-semibold">{index() + 1}</span>
                   </CardContent>
                 </Card>
               </div>

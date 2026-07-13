@@ -7,8 +7,8 @@ import {
   merge,
   omit,
   useContext,
-  type JSX,
 } from "solid-js"
+import type { JSX } from "@solidjs/web"
 import { render } from "@solidjs/web"
 import type { VisCrosshairProps } from "@opencenter-cloud/unovis-solid"
 import {
