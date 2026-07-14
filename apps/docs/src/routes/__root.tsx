@@ -6,7 +6,7 @@ import {
   Scripts,
   createRootRoute,
 } from "@tanstack/solid-router"
-import { Loading } from "solid-js"
+// import { Loading } from "solid-js"
 import { ColorModeProvider, ColorModeScript } from "@opencenter-cloud/kobalte-core"
 
 import SEO from "@/components/seo"
@@ -27,7 +27,7 @@ function RootDocument(props: { children: JSX.Element }) {
       <body>
         <ColorModeScript />
         <ColorModeProvider>
-          <Loading fallback={null}>{props.children}</Loading>
+          {props.children}
           <Toaster />
         </ColorModeProvider>
         <Scripts />
