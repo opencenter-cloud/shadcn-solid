@@ -35,7 +35,9 @@ export default function clientOnlyWrapper<T extends Component<any>>(
     let m: boolean
     const rest = omit(props, "fallback")
     options.lazy && load(fn, setComp)
-    if ((Comp = comp()) && !sharedConfig.hydrating) return Comp(rest)
+    // One-time initialization check — reading comp() here is intentional:
+    // we only want the current value at mount time, not tracking.
+    if (untrack(() => comp()) && !sharedConfig.hydrating) return untrack(() => comp()!)(rest)
     const [mounted, setMounted] = createSignal(!sharedConfig.hydrating)
     onSettled(() => { setMounted(true) })
     return createMemo(

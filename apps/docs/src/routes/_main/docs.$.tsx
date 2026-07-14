@@ -1,4 +1,5 @@
 import { Show, createMemo } from "solid-js"
+import { Dynamic } from "@solidjs/web"
 import { Link, createFileRoute, useLocation } from "@tanstack/solid-router"
 
 import clientOnlyWrapper from "@/components/client-only-wrapper"
@@ -200,7 +201,7 @@ function RouteComponent() {
             </Show>
           </div>
           <div class="w-full flex-1 *:data-[slot=alert]:first:mt-0">
-            {component()}
+            <Dynamic component={component()} />
           </div>
         </div>
         <div class="mx-auto flex h-16 w-full max-w-2xl items-center gap-2 px-4 md:px-0">
