@@ -36,7 +36,7 @@
     "@corvu-next/otp-field": "^0.1.4",
     "@corvu-next/resizable": "^0.1.4",
     "@opencenter-cloud/cmdk-solid": "workspace:*",
-    "@opencenter-cloud/kobalte-core": "^0.1.2",
+    "@opencenter-cloud/kobalte-core": "^0.1.4",
     "@opencenter-cloud/somoto": "workspace:*",
     "@opencenter-cloud/unovis-solid": "workspace:*",
     "@solidjs/signals": "2.0.0-beta.17",

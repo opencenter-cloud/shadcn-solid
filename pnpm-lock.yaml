@@ -41,8 +41,8 @@ importers:
         specifier: workspace:*
         version: link:packages/cmdk-solid
       '@opencenter-cloud/kobalte-core':
-        specifier: ^0.1.2
-        version: 0.1.2(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
+        specifier: ^0.1.4
+        version: 0.1.4(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
       '@opencenter-cloud/somoto':
         specifier: workspace:*
         version: link:packages/somoto
@@ -1195,8 +1195,8 @@ packages:
       '@solidjs/web': 2.0.0-beta.17
       solid-js: 2.0.0-beta.17
 
-  '@opencenter-cloud/kobalte-core@0.1.2':
-    resolution: {integrity: sha512-nFlq8LPskreg/l50FNnyAbBubHNU39PmdcmCUshlHcSqe5cpR/pRmVLahA2ZEWocciK7Ic8Jzo6Ax47z1Cbbvw==}
+  '@opencenter-cloud/kobalte-core@0.1.4':
+    resolution: {integrity: sha512-aQARZ4zf4C2l3ceHhLXH3PsA95tzMWVB2AWrq+0yLQT7OMLIBgZ94jGjILsuyqmC0qYDjod6+7Ay4bi29F9rkQ==}
     peerDependencies:
       '@solidjs/web': 2.0.0-beta.17
       solid-js: 2.0.0-beta.17
@@ -5635,7 +5635,7 @@ snapshots:
       '@solidjs/web': 2.0.0-beta.17(solid-js@2.0.0-beta.17)
       solid-js: 2.0.0-beta.17
 
-  '@opencenter-cloud/kobalte-core@0.1.2(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)':
+  '@opencenter-cloud/kobalte-core@0.1.4(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)':
     dependencies:
       '@floating-ui/dom': 1.8.0
       '@internationalized/date': 3.12.2
