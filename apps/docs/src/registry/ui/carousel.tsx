@@ -1,4 +1,3 @@
-import { createStore } from "solid-js/store";
 import type {
   Accessor,
   Setter,
@@ -7,6 +6,7 @@ import type {
 import {
   createContext,
   createEffect,
+  createStore,
   merge,
   onSettled,
   omit,
