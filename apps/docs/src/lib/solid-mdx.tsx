@@ -1,4 +1,4 @@
-import { createContext, merge, useContext } from "solid-js"
+import { createContext, mergeProps, useContext } from "solid-js"
 import { Dynamic } from "@solidjs/web"
 import type { JSX } from "@solidjs/web"
 
@@ -50,9 +50,8 @@ export function MDXProvider(props: {
   children: JSX.Element
 }) {
   const existing = useContext(MDXContext)
-  const merged = merge(existing, props.components ?? {})
   return (
-    <MDXContext value={merged}>
+    <MDXContext value={mergeProps(existing, props.components ?? {})}>
       {props.children}
     </MDXContext>
   )

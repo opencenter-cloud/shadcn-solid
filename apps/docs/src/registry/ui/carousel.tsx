@@ -1,3 +1,4 @@
+import { createStore } from "solid-js/store";
 import type {
   Accessor,
   Setter,
@@ -11,7 +12,7 @@ import {
   omit,
   useContext,
 } from "solid-js"
-import { createStore } from "solid-js"
+
 import type { PolymorphicProps } from "@opencenter-cloud/kobalte-core/polymorphic"
 import type { CreateEmblaCarouselType } from "embla-carousel-solid"
 import createEmblaCarousel from "embla-carousel-solid"

@@ -22,7 +22,7 @@ function RouteComponent() {
       }
     }
     window.addEventListener("storage", handler)
-    onCleanup(() => window.removeEventListener("storage", handler))
+    onCleanup(() => { window.removeEventListener("storage", handler); })
   })
 
   const Component = createMemo(

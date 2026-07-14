@@ -1,6 +1,7 @@
 /// <reference types="vite/client" />
 import type { JSX } from "@solidjs/web"
 import {
+  ErrorComponent,
   HeadContent,
   Outlet,
   Scripts,
@@ -16,16 +17,32 @@ export const Route = createRootRoute({
   head: () => SEO(),
   component: Outlet,
   shellComponent: RootDocument,
+  errorComponent: (props) => {
+    return (
+      <html lang="en">
+        <head>
+          <title>Error</title>
+        </head>
+        <body>
+          <div style={{ padding: "20px", color: "red", background: "#f8d7da" }}>
+            <h1>Root Error</h1>
+            <p>{props.error?.message || String(props.error)}</p>
+            <pre>{props.error?.stack}</pre>
+          </div>
+        </body>
+      </html>
+    )
+  },
 })
 
 function RootDocument(props: { children: JSX.Element }) {
   return (
     <html lang="en">
       <head>
+        <ColorModeScript />
         <HeadContent />
       </head>
       <body>
-        <ColorModeScript />
         <ColorModeProvider>
           {props.children}
           <Toaster />

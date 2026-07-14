@@ -12,7 +12,7 @@ export default [
     languageOptions: {
       parser: tsparser,
       parserOptions: {
-        project: "tsconfig.json",
+        projectService: true,
       },
     },
   },
