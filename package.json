@@ -31,16 +31,16 @@
     "node": ">=22"
   },
   "dependencies": {
-    "@corvu-next/calendar": "^0.1.3",
-    "@corvu-next/drawer": "^0.1.3",
-    "@corvu-next/otp-field": "^0.1.3",
-    "@corvu-next/resizable": "^0.1.3",
+    "@corvu-next/calendar": "^0.1.4",
+    "@corvu-next/drawer": "^0.1.4",
+    "@corvu-next/otp-field": "^0.1.4",
+    "@corvu-next/resizable": "^0.1.4",
     "@opencenter-cloud/cmdk-solid": "workspace:*",
-    "@opencenter-cloud/kobalte-core": "^0.1.1",
+    "@opencenter-cloud/kobalte-core": "^0.1.2",
     "@opencenter-cloud/somoto": "workspace:*",
     "@opencenter-cloud/unovis-solid": "workspace:*",
-    "@solidjs/signals": "^2.0.0-beta.15",
-    "@solidjs/web": "2.0.0-beta.15",
+    "@solidjs/signals": "2.0.0-beta.17",
+    "@solidjs/web": "2.0.0-beta.17",
     "@tanstack/solid-form": "^1.25.0",
     "@tanstack/solid-table": "^8.21.3",
     "@unovis/ts": "^1.6.1",
@@ -48,12 +48,15 @@
     "embla-carousel-autoplay": "^8.6.0",
     "embla-carousel-solid": "^8.6.0",
     "minisearch": "^7.2.0",
-    "solid-js": "2.0.0-beta.15",
+    "solid-js": "2.0.0-beta.17",
     "tailwind-merge": "^3.3.1"
   },
   "pnpm": {
     "overrides": {
-      "babel-preset-solid": "2.0.0-beta.15"
+      "babel-preset-solid": "2.0.0-beta.17",
+      "solid-js": "2.0.0-beta.17",
+      "@solidjs/web": "2.0.0-beta.17",
+      "@solidjs/signals": "2.0.0-beta.17"
     },
     "patchedDependencies": {
       "@tanstack/solid-form@1.33.1": "patches/@tanstack__solid-form@1.33.1.patch",

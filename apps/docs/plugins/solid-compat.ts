@@ -11,20 +11,34 @@ import type { Plugin } from "vite"
 export default function solidCompat(): Plugin {
   const VIRTUAL_ID = "\0solid-compat"
 
+  // Only shim these packages — everything else (kobalte, corvu-next) now
+  // ships correct @solidjs/web imports from source rebuild.
+  const SHIMMED_PACKAGES = [
+    "@tanstack/solid-table",
+    "@tanstack/solid-form",
+    "@tanstack/solid-store",
+    "@solid-primitives/deep",
+  ]
+
+  function needsShim(importer: string | undefined): boolean {
+    if (!importer || !importer.includes("node_modules")) return false
+    return SHIMMED_PACKAGES.some((pkg) => importer.includes(pkg.replace("/", "/")))
+  }
+
   return {
     name: "solid-compat",
     enforce: "pre",
     resolveId(source, importer) {
-      // Only intercept 'solid-js' imports from node_modules
-      if (source === "solid-js" && importer && importer.includes("node_modules")) {
+      // Only intercept 'solid-js' imports from shimmed packages
+      if (source === "solid-js" && needsShim(importer)) {
         return VIRTUAL_ID
       }
-      // Redirect solid-js/web → @solidjs/web
-      if (source === "solid-js/web" && importer && importer.includes("node_modules")) {
+      // Redirect solid-js/web → @solidjs/web for shimmed packages
+      if (source === "solid-js/web" && needsShim(importer)) {
         return this.resolve("@solidjs/web", importer, { skipSelf: true })
       }
-      // Redirect solid-js/store → solid-js (our compat module)
-      if (source === "solid-js/store" && importer && importer.includes("node_modules")) {
+      // Redirect solid-js/store → solid-js (our compat module) for shimmed packages
+      if (source === "solid-js/store" && needsShim(importer)) {
         return VIRTUAL_ID
       }
       return null
@@ -38,8 +52,15 @@ export default function solidCompat(): Plugin {
 export * from "solid-js";
 export { merge as mergeProps } from "solid-js";
 export { onSettled as onMount } from "solid-js";
-export { createEffect as createComputed } from "solid-js";
+import { createEffect as _createEffect } from "solid-js";
 import { omit as _omit } from "solid-js";
+
+// Solid 1 createComputed(fn) ran synchronously on tracked deps.
+// Map to split-phase: compute returns the value, apply is a no-op.
+export function createComputed(fn, value) {
+  return _createEffect(fn, () => {});
+}
+
 export function splitProps(props, ...arrays) {
   const keys = arrays.flat();
   const picked = {};

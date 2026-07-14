@@ -42,6 +42,10 @@ export default defineConfig({
       "@corvu-next/drawer",
       "@corvu-next/otp-field",
       "@corvu-next/resizable",
+      "@tanstack/solid-table",
+      "@tanstack/solid-form",
+      "@tanstack/solid-store",
+      "@solid-primitives/deep",
     ],
     esbuildOptions: {
       plugins: [

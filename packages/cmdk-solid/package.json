@@ -39,8 +39,8 @@
     "tsup-preset-solid": "^2.2.0",
     "babel-preset-solid": "2.0.0-beta.15",
     "typescript": "^6.0.1",
-    "solid-js": "2.0.0-beta.15",
-    "@solidjs/web": "2.0.0-beta.15"
+    "solid-js": "2.0.0-beta.17",
+    "@solidjs/web": "2.0.0-beta.17"
   },
   "sideEffects": false,
   "browser": {},

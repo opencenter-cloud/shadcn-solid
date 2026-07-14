@@ -29,8 +29,12 @@ const ComponentPreview = (props: Props) => {
   )
   const rest = omit(mergedProps, "name", "type", "align", "hideCode")
 
+  const registryEntry = createMemo(
+    () => Index.tailwindcss[mergedProps.name],
+  )
+
   const component = createMemo(
-    () => Index.tailwindcss[mergedProps.name]?.component() as JSX.Element,
+    () => registryEntry()?.component() as JSX.Element,
   )
 
   return (
@@ -44,7 +48,7 @@ const ComponentPreview = (props: Props) => {
         />
       }
     >
-      <Match when={!component()}>
+      <Match when={!registryEntry()}>
         <p class="text-muted-foreground text-sm">
           Component{" "}
           <code class="bg-muted relative rounded px-[0.3rem] py-[0.2rem] font-mono text-sm">

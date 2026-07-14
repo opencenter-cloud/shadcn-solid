@@ -6,11 +6,17 @@ const Toc = (props: {
 }) => {
   const [targets, setTargets] = createSignal<Element[]>([])
 
-  createEffect(() => {
-    for (const item of props.data) {
-      setTargets((p) => [...p, document.getElementById(item.slug) as Element])
-    }
-  })
+  createEffect(
+    () => props.data,
+    (data) => {
+      const els: Element[] = []
+      for (const item of data) {
+        const el = document.getElementById(item.slug)
+        if (el) els.push(el)
+      }
+      setTargets(els)
+    },
+  )
 
   const [entries] = createIntersectionObserver(targets)
 
