@@ -41,8 +41,8 @@ importers:
         specifier: workspace:*
         version: link:packages/cmdk-solid
       '@opencenter-cloud/kobalte-core':
-        specifier: ^0.1.5
-        version: 0.1.5(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
+        specifier: ^0.1.6
+        version: 0.1.6(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
       '@opencenter-cloud/somoto':
         specifier: workspace:*
         version: link:packages/somoto
@@ -229,8 +229,8 @@ importers:
         specifier: workspace:*
         version: link:../../packages/cmdk-solid
       '@opencenter-cloud/kobalte-core':
-        specifier: ^0.1.1
-        version: 0.1.1(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
+        specifier: ^0.1.6
+        version: 0.1.6(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
       '@opencenter-cloud/somoto':
         specifier: workspace:*
         version: link:../../packages/somoto
@@ -278,8 +278,8 @@ importers:
   packages/cmdk-solid:
     dependencies:
       '@opencenter-cloud/kobalte-core':
-        specifier: ^0.1.0
-        version: 0.1.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
+        specifier: ^0.1.6
+        version: 0.1.6(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
       '@opencenter-cloud/kobalte-utils':
         specifier: ^0.1.0
         version: 0.1.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
@@ -1183,20 +1183,8 @@ packages:
     resolution: {integrity: sha512-hAX0pT/73190NLqBPPWSdBVGtbY6VOhWYK3qqHqtXQ1gK7kS2yz4+ivsN07hpJ6I3aeMtKP6J6npsEKOAzuTLA==}
     engines: {node: '>=20.0'}
 
-  '@opencenter-cloud/kobalte-core@0.1.0':
-    resolution: {integrity: sha512-Zgnzs05tJoxuEdyFAi9Qh3h6fvuod2CKIazE/7G6VMM0BH5gQbZ9cNc5+MFxlgTRutWdxz8yzUrurCGDaWTs/g==}
-    peerDependencies:
-      '@solidjs/web': 2.0.0-beta.17
-      solid-js: 2.0.0-beta.17
-
-  '@opencenter-cloud/kobalte-core@0.1.1':
-    resolution: {integrity: sha512-abPFy9oJgJVYLDoKzhpJa4daWZhgY90Pv/1VC109bRuntqIqSCXZeOJbBCVRT39Hgb8v0VjpIEvhjp20Yb76Rg==}
-    peerDependencies:
-      '@solidjs/web': 2.0.0-beta.17
-      solid-js: 2.0.0-beta.17
-
-  '@opencenter-cloud/kobalte-core@0.1.5':
-    resolution: {integrity: sha512-LInufv9Xj1d3aCyuuqX4KPOVygZU4RvNS+MfDU6svBT5bvqXGc4MQG2FKH5qkQWURsibOB5ScGFzDAQJQbmAfQ==}
+  '@opencenter-cloud/kobalte-core@0.1.6':
+    resolution: {integrity: sha512-tyCQRw7P0CHYKQ0RMSfsmHDl28RBnSMlre1CQNNkmy8IMGcPIQ7MO6IuuqjBoW8cgcjnA3eryf7HqFZcAT3KmA==}
     peerDependencies:
       '@solidjs/web': 2.0.0-beta.17
       solid-js: 2.0.0-beta.17
@@ -5591,51 +5579,7 @@ snapshots:
 
   '@oozcitak/util@10.0.0': {}
 
-  '@opencenter-cloud/kobalte-core@0.1.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)':
-    dependencies:
-      '@floating-ui/dom': 1.8.0
-      '@internationalized/date': 3.12.2
-      '@internationalized/number': 3.6.7
-      '@opencenter-cloud/kobalte-utils': 0.1.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/a11y': 1.0.0-next.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/controlled-signal': 1.0.0-next.1(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/focus': 1.0.0-next.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/form': 1.0.0-next.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/i18n': 3.0.0-next.2(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/interaction': 1.0.0-next.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/keyboard': 2.0.0-next.3(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/presence': 1.0.0-next.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/props': 4.0.0-next.1(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/resize-observer': 4.0.0-next.1(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/scroll': 3.0.0-next.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/upload': 1.0.0-next.1(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/utils': 7.0.0-next.1(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solidjs/web': 2.0.0-beta.17(solid-js@2.0.0-beta.17)
-      solid-js: 2.0.0-beta.17
-
-  '@opencenter-cloud/kobalte-core@0.1.1(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)':
-    dependencies:
-      '@floating-ui/dom': 1.8.0
-      '@internationalized/date': 3.12.2
-      '@internationalized/number': 3.6.7
-      '@opencenter-cloud/kobalte-utils': 0.1.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/a11y': 1.0.0-next.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/controlled-signal': 1.0.0-next.1(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/focus': 1.0.0-next.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/form': 1.0.0-next.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/i18n': 3.0.0-next.2(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/interaction': 1.0.0-next.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/keyboard': 2.0.0-next.3(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/presence': 1.0.0-next.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/props': 4.0.0-next.1(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/resize-observer': 4.0.0-next.1(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/scroll': 3.0.0-next.0(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/upload': 1.0.0-next.1(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solid-primitives/utils': 7.0.0-next.1(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)
-      '@solidjs/web': 2.0.0-beta.17(solid-js@2.0.0-beta.17)
-      solid-js: 2.0.0-beta.17
-
-  '@opencenter-cloud/kobalte-core@0.1.5(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)':
+  '@opencenter-cloud/kobalte-core@0.1.6(@solidjs/web@2.0.0-beta.17(solid-js@2.0.0-beta.17))(solid-js@2.0.0-beta.17)':
     dependencies:
       '@floating-ui/dom': 1.8.0
       '@internationalized/date': 3.12.2

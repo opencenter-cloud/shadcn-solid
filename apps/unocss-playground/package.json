@@ -22,7 +22,7 @@
     "babel-preset-solid": "2.0.0-beta.15"
   },
   "dependencies": {
-    "@opencenter-cloud/kobalte-core": "^0.1.1",
+    "@opencenter-cloud/kobalte-core": "^0.1.6",
     "@opencenter-cloud/cmdk-solid": "workspace:*",
     "@opencenter-cloud/somoto": "workspace:*",
     "@opencenter-cloud/unovis-solid": "workspace:*",
