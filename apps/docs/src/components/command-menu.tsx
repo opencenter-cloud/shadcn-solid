@@ -2,7 +2,6 @@ import type { ComponentProps } from "@solidjs/web"
 import {
   For,
   Show,
-  createEffect,
   createSignal,
   onCleanup,
   onSettled,
@@ -48,6 +47,7 @@ const CommandKbd = (props: ComponentProps<"kbd">) => {
 }
 
 const CommandMenuItem = (
+  // eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
   props: ComponentProps<typeof CommandItem> & {
     onHighlight?: () => void
   },

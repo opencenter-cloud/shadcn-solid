@@ -19,7 +19,7 @@ export const Popover = (props: PopoverProps) => {
     props,
   )
 
-  return <PopoverPrimitive data-slot="popover" {...merge} />
+  return <PopoverPrimitive data-slot="popover" {...mergedProps} />
 }
 
 export type PopoverTriggerProps<T extends ValidComponent = "button"> =

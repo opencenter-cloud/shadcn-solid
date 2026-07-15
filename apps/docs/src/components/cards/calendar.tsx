@@ -21,15 +21,20 @@ const { format: formatMonth } = new Intl.DateTimeFormat("en", {
   month: "long",
 })
 
+const selectedFrom = new Date(2026, 6, 15)
+const selectedTo = new Date(2026, 6, 21)
+
 const CardsCalendar = () => {
   return (
     <Card class="hidden max-w-[260px] p-0 sm:flex">
       <CardContent class="p-0">
         <Calendar
           mode="range"
+          initialMonth={selectedFrom}
+          initialFocusedDay={selectedFrom}
           initialValue={{
-            from: new Date(),
-            to: new Date(Date.now() + 1000 * 60 * 60 * 24 * 6),
+            from: selectedFrom,
+            to: selectedTo,
           }}
         >
           {(props) => (

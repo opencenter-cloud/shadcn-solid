@@ -14,6 +14,7 @@ import { Toaster } from "@/registry/ui/sonner"
 
 export const Route = createRootRoute({
   head: () => ({
+    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     ...SEO(),
     headScripts: [
       ...(SEO().scripts ?? []),
@@ -36,8 +37,8 @@ export const Route = createRootRoute({
         <body>
           <div style={{ padding: "20px", color: "red", background: "#f8d7da" }}>
             <h1>Root Error</h1>
-            <p>{props.error?.message || String(props.error)}</p>
-            <pre>{props.error?.stack}</pre>
+            <p>{props.error.message || String(props.error)}</p>
+            <pre>{props.error.stack}</pre>
           </div>
         </body>
       </html>

@@ -40,7 +40,7 @@ export const MenubarMenu = (props: MenubarMenuProps) => {
     props,
   )
 
-  return <MenubarPrimitive.Menu data-slot="menubar-menu" {...merge} />
+  return <MenubarPrimitive.Menu data-slot="menubar-menu" {...mergedProps} />
 }
 
 export type MenubarGroupProps = ComponentProps<typeof MenubarPrimitive.Group>

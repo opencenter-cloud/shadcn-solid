@@ -1,17 +1,10 @@
 /* eslint-disable */
 // @ts-ignore
 // @refresh skip
-import type { Component, Setter } from "solid-js"
+import type { Component } from "solid-js"
 import type { ComponentProps, JSX } from "@solidjs/web"
-import {
-  createMemo,
-  createSignal,
-  onSettled,
-  sharedConfig,
-  omit,
-  untrack,
-} from "solid-js"
-import { isServer } from "@solidjs/web"
+import { omit } from "solid-js"
+import { isServer, render } from "@solidjs/web"
 
 /**
  *
@@ -24,28 +17,33 @@ export default function clientOnlyWrapper<T extends Component<any>>(
   }>,
   options: { lazy?: boolean } = {},
 ) {
-  if (isServer)
-    return (props: ComponentProps<T> & { fallback?: JSX.Element }) =>
-      props.fallback
+  void options
 
-  const [comp, setComp] = createSignal<T>()
-  !options.lazy && load(fn, setComp)
+  let loaded: T | undefined
+  let loadPromise: Promise<T> | undefined
+  const loadOnce = () => {
+    if (loaded) return Promise.resolve(loaded)
+    loadPromise ??= load(fn)
+    loadPromise.then((m) => {
+      loaded = m
+    })
+    return loadPromise
+  }
+
   return (props: ComponentProps<T>) => {
-    let Comp: T | undefined
-    let m: boolean
+    let host: HTMLDivElement | undefined
     const rest = omit(props, "fallback")
-    options.lazy && load(fn, setComp)
-    // One-time initialization check — reading comp() here is intentional:
-    // we only want the current value at mount time, not tracking.
-    if (untrack(() => comp()) && !sharedConfig.hydrating) return untrack(() => comp()!)(rest)
-    const [mounted, setMounted] = createSignal(!sharedConfig.hydrating)
-    onSettled(() => { setMounted(true) })
-    return createMemo(
-      () => (
-        (Comp = comp()),
-        (m = mounted()),
-        untrack(() => (Comp && m ? Comp(rest) : props.fallback))
-      ),
+    if (!isServer)
+      setTimeout(() => {
+        if (!host) return
+        loadOnce().then((Comp) => {
+          render(() => <Comp {...rest} />, host!)
+        })
+      }, 0)
+    return (
+      <div ref={host} data-client-only="" style={{ display: "contents" }}>
+        {props.fallback}
+      </div>
     )
   }
 }
@@ -54,7 +52,6 @@ function load<T>(
   fn: () => Promise<{
     default: T
   }>,
-  setComp: Setter<T>,
 ) {
-  fn().then((m) => setComp(() => m.default))
+  return fn().then((m) => m.default)
 }

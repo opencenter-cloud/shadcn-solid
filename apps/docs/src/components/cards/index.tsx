@@ -1,10 +1,10 @@
 import clientOnlyWrapper from "../client-only-wrapper"
-import CardsCalendar from "./calendar"
 import CardsCookieSettings from "./cookie-settings"
 import CardsCreateAccount from "./create-account"
 import CardsForms from "./forms"
 import CardsShare from "./share"
 
+const CardsCalendar = clientOnlyWrapper(() => import("./calendar"))
 const CardsStats = clientOnlyWrapper(() => import("./stats"))
 const CardsActivityGoal = clientOnlyWrapper(() => import("./activity-goal"))
 const CardsExerciseMinutes = clientOnlyWrapper(

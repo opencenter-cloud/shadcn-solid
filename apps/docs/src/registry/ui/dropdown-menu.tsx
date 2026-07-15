@@ -16,7 +16,7 @@ export const DropdownMenu = (props: DropdownMenuProps) => {
     props,
   )
 
-  return <DropdownMenuPrimitive data-slot="dropdown-menu" {...merge} />
+  return <DropdownMenuPrimitive data-slot="dropdown-menu" {...mergedProps} />
 }
 
 export type DropdownMenuTriggerProps<T extends ValidComponent = "div"> =

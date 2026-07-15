@@ -6,7 +6,7 @@ import type {
 import {
   createContext,
   createEffect,
-  createStore,
+  createStore, // eslint-disable-line solid/imports -- createStore lives in solid-js in Solid 2, not solid-js/store
   merge,
   onSettled,
   omit,

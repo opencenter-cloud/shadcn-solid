@@ -46,7 +46,7 @@ function resolvePackage(pkg: string): string | null {
       // Match the version part: after the package prefix + "@"
       const afterPrefix = e.slice(prefix.length + 1) // skip "@" after name
       const versionPart = afterPrefix.split("_")[0] // version before peer suffix
-      return versionPart?.includes("next")
+      return versionPart.includes("next")
     })
     if (nextEntries.length > 0) entries = nextEntries
   }
@@ -154,7 +154,7 @@ describe("SSR noExternal: Solid 2 native packages", () => {
           string,
           unknown
         >
-        const solidEntry = rootExport?.solid as string | undefined
+        const solidEntry = rootExport.solid as string | undefined
 
         expect(solidEntry).toBeDefined()
         expect(solidEntry).toMatch(/\.jsx$/)
@@ -207,7 +207,7 @@ describe("SSR noExternal: TanStack shimmed packages (with solid condition)", () 
           string,
           unknown
         >
-        const solidEntry = rootExport?.solid
+        const solidEntry = rootExport.solid
 
         expect(solidEntry).toBeDefined()
       })
@@ -220,7 +220,7 @@ describe("SSR noExternal: TanStack shimmed packages (with solid condition)", () 
           string,
           unknown
         >
-        const solidEntry = rootExport?.solid as
+        const solidEntry = rootExport.solid as
           | string
           | { default?: string }
           | undefined
@@ -277,7 +277,7 @@ describe("SSR noExternal: TanStack shimmed packages (no solid condition)", () =>
           unknown
         >
         // v0.11.0 dropped the solid condition — only has import/require
-        expect(rootExport?.solid).toBeUndefined()
+        expect(rootExport.solid).toBeUndefined()
       })
 
       it("uses solid-js/web in compiled dist (confirming shim is needed)", () => {
@@ -326,8 +326,8 @@ describe("SSR noExternal: special packages", () => {
       >
 
       // somoto uses browser/node/worker conditions instead of solid
-      expect(rootExport?.browser).toBeDefined()
-      expect(rootExport?.node).toBeDefined()
+      expect(rootExport.browser).toBeDefined()
+      expect(rootExport.node).toBeDefined()
     })
 
     it("does NOT import from solid-js/web in dist", () => {

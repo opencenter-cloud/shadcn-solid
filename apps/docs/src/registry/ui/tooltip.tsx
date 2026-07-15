@@ -18,7 +18,7 @@ export const Tooltip = (props: TooltipProps) => {
     props,
   )
 
-  return <TooltipPrimitive data-slot="tooltip" {...merge} />
+  return <TooltipPrimitive data-slot="tooltip" {...mergedProps} />
 }
 
 export type TooltipTriggerProps<T extends ValidComponent = "button"> =

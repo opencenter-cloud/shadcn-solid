@@ -21,6 +21,7 @@ export const Command = (props: CommandProps) => {
   )
 }
 
+// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
 export type CommandDialogProps = ComponentProps<
   typeof CommandPrimitive.Dialog
 > & {

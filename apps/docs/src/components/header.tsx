@@ -7,11 +7,25 @@ import { cx } from "@/registry/lib/cva"
 import { Button } from "@/registry/ui/button"
 import { Separator } from "@/registry/ui/separator"
 
+import clientOnlyWrapper from "./client-only-wrapper"
 import CommandMenu from "./command-menu"
 import Logo from "./logo"
 import MainNav from "./main-nav"
 import ModeToggle from "./mode-toggle"
-import NavbarMobile from "./navbar-mobile"
+
+/**
+ * NavbarMobile uses Kobalte Popover which causes hydration mismatch when SSR'd
+ * (lesson #34 root cause). clientOnlyWrapper renders a stable <div data-client-only
+ * style="display:contents"> host on both server and client, preventing hydration key
+ * divergence, then mounts NavbarMobile via render() after hydration.
+ *
+ * Note: In dev mode with HMR, the solid-refresh wrapper may cause a recursion error
+ * in the polymorphic `as` prop pattern inside render(). This is an HMR-only artifact
+ * that does not occur in production builds.
+ */
+const NavbarMobile = clientOnlyWrapper(
+  () => import("./navbar-mobile"),
+)
 
 const Header = () => {
   return (
