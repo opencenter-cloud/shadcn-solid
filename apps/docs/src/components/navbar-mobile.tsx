@@ -1,3 +1,4 @@
+/* @refresh skip */
 import type { ComponentProps } from "@solidjs/web"
 import { For, createSignal, omit } from "solid-js"
 import { Link } from "@tanstack/solid-router"

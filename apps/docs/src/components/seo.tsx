@@ -8,16 +8,14 @@ interface SEOProps {
   description?: string
 }
 
-type Awaitable<T> = T | Promise<T>
-
 const SEO = (
   { title, description }: SEOProps = Object.assign({}),
-): Awaitable<{
+): {
   links?: AnyRouteMatch["links"]
   scripts?: AnyRouteMatch["headScripts"]
   meta?: AnyRouteMatch["meta"]
   styles?: AnyRouteMatch["styles"]
-}> => {
+} => {
   const metaTitle = `${title ?? "The Foundation for your Design System"} - ${siteConfig.title}`
   const metaDescription = description ?? siteConfig.description
   const metaOG = `${siteConfig.url}/og?title=${encodeURIComponent(

@@ -127,7 +127,7 @@ export default defineConfig({
   },
   build: {
     rollupOptions: {
-      external: ["@vercel/og", "@opencenter-cloud/unovis-solid", "@unovis/ts", "@opencenter-cloud/somoto"],
+      external: ["@vercel/og"],
     },
   },
   resolve: {
